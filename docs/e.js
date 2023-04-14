@@ -306,9 +306,8 @@ async function sell() {
 		txh = await TCS.approve(R.address, ain);
 		notice(`
 			<h2><img style="vertical-align: bottom;" height="32px" src="${STATE.ts.logo}"> Approving the E3 router...</h2>
-			<br><br>
-			<b>Awaiting confirmation from the network . . ..<b>
-			<br><i>Please wait.</i>
+			<b>Awaiting confirmation from the network . . ..</b>
+			<br><br><i>Please wait.</i>
 		`);
 		txr = await txh.wait();
 		notice(`
@@ -318,9 +317,10 @@ async function sell() {
 	}
 	notice(`
 		<h2>Finding path...</h2>
-		To sell ${(Number(ain)/10**selldeci).toFixed(selldeci)}
-		 ${(dir?T_X:T_Y).symbol} for ${(dir?T_Y:T_X).symbol}
-		<br><i>Slippage Tolerance: 1%</i>
+		To sell ${(Number(ain)/10**selldeci).toFixed(selldeci)}	 ${(dir?T_X:T_Y).symbol}
+		<br>To buy ${(dir?T_Y:T_X).symbol}
+		<br>
+		<br><i>Slippage Tolerance</i> : ±1%
 	`);
 	let sod = await R.getSwapOut(POOLADDR, ain, dir);
 	let bmin = Math.floor(Number(sod[1]) * 99/100);
@@ -332,7 +332,7 @@ async function sell() {
 		<img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"><img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"> ${(sod[1]/ain).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol} per ${(dir?T_X:T_Y).symbol}
 		<br><img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"><img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"> ${(ain/sod[1]).toFixed(selldeci)} ${(dir?T_X:T_Y).symbol} per ${(dir?T_Y:T_X).symbol}
 		<br><h3>Slippage</h3>
-		<b>Tolerance</b> : 1%</i>
+		<b>Tolerance</b> : ±1%</i>
 		<br><b>Minimum Received</b> : <img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"> ${(bmin/10**buydeci).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol}</i>
 		<br>
 		<br><br><b><u>Please confirm this transaction in your wallet</u></b>
@@ -347,16 +347,17 @@ async function sell() {
 		<img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"><img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"> ${(sod[1]/ain).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol} per ${(dir?T_X:T_Y).symbol}
 		<br><img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"><img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"> ${(ain/sod[1]).toFixed(selldeci)} ${(dir?T_X:T_Y).symbol} per ${(dir?T_Y:T_X).symbol}
 		<br><h3>Slippage</h3>
-		<b>Tolerance</b> : 1%</i>
+		<b>Tolerance</b> : ±1%</i>
 		<br><b>Minimum Received</b> : <img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"> ${(bmin/10**buydeci).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol}</i>
 		<br>
 		<br><br><b><u>Please wait till this transaction is confirmed by the ${CHAIN_NAME} Network.</u></b>
 		<h4><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
 	`);
-	await txr.wait();
+	txr = await txh.wait();
 	notice(`
-		<h2>Trade Executed</h2>
-		Sold ${(Number(ain)/10**selldeci).toFixed(selldeci)} ${(dir?T_X:T_Y).symbol} for ${(dir?T_Y:T_X).symbol}.
+		<h2>Trade Executed Succesfully</h2>
+		Sold ${(Number(ain)/10**selldeci).toFixed(selldeci)} ${(dir?T_X:T_Y).symbol}
+		<br>Bought ${(dir?T_Y:T_X).symbol}.
 		<br>
 		<h4><a target="_blank" href="https://ftmscan.com/tx/${txr.hash}">View on Explorer</a></h4>
 	`);
