@@ -291,21 +291,21 @@ async function sell() {
 	]);
 	if(Number(ubs[0]) < Number(ain)) {
 		notice(`
-		<h2><img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"> Insufficient Balance</h2>
+		<h2><img style="vertical-align: bottom;" height="32px" src="${STATE.ts.logo}"> Insufficient Balance</h2>
 		You have ${(ubs[0]/10**selldeci).toFixed(selldeci)} ${(dir?T_X:T_Y).symbol}.
 		<br><br><i>Desired amount: ${(ain/10**selldeci).toFixed(selldeci)} ${(dir?T_X:T_Y).symbol}
 		`);
 	}
 	if(Number(ubs[1]) < Number(ain)) {
 		notice(`
-			<h2>Approve ${(dir?T_X:T_Y).symbol} <img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"> for Trade</h2>
+			<h2>Approve ${(dir?T_X:T_Y).symbol} <img style="vertical-align: bottom;" height="32px" src="${STATE.ts.logo}"> for Trade</h2>
 			E3 Engine needs your approval to trade ${(dir?T_X:T_Y).symbol}.
 			<br>
 			<br><b>Please confirm this tx in your wallet.<b>
 		`);
-		txh = await pc.approve(R.address, ain);
+		txh = await TCS.approve(R.address, ain);
 		notice(`
-			<h2><img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"> <img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"></h2>
+			<h2><img style="vertical-align: bottom;" height="32px" src="${STATE.ts.logo}"> <img style="vertical-align: bottom;" height="32px" src="${STATE.tb.logo}"></h2>
 			<br>
 			<h2>Approving the E3 router...</h2>
 			<b>Awaiting confirmation from the network . . ..<b>
@@ -329,11 +329,11 @@ async function sell() {
 		Selling ${(Number(ain)/10**selldeci).toFixed(selldeci)} ${(dir?T_X:T_Y).symbol} <img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}">
 		<br>Buying ${(Number(sod[1])/10**buydeci).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol} <img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}">
 		<br><h3>Expected Prices</h3>
-		<br><img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"><img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"> ${(sod[1]/ain).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol} per ${(dir?T_X:T_Y).symbol}
+		<img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"><img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"> ${(sod[1]/ain).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol} per ${(dir?T_X:T_Y).symbol}
 		<br><img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"><img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"> ${(ain/sod[1]).toFixed(selldeci)} ${(dir?T_X:T_Y).symbol} per ${(dir?T_Y:T_X).symbol}
 		<br><h3>Slippage</h3>
 		<b>Tolerance</b> : 1%</i>
-		<b>Minimum Received</b> : <img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"> ${(bmin/10**buydeci).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol}</i>
+		<br><b>Minimum Received</b> : <img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"> ${(bmin/10**buydeci).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol}</i>
 		<br>
 		<br><br><b><u>Please confirm this transaction in your wallet</u></b>
 	`);
@@ -344,11 +344,11 @@ async function sell() {
 		Selling ${(Number(ain)/10**selldeci).toFixed(selldeci)} ${(dir?T_X:T_Y).symbol} <img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}">
 		<br>Buying ${(Number(sod[1])/10**buydeci).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol} <img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}">
 		<br><h3>Expected Prices</h3>
-		<br><img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"><img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"> ${(sod[1]/ain).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol} per ${(dir?T_X:T_Y).symbol}
+		<img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"><img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"> ${(sod[1]/ain).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol} per ${(dir?T_X:T_Y).symbol}
 		<br><img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"><img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"> ${(ain/sod[1]).toFixed(selldeci)} ${(dir?T_X:T_Y).symbol} per ${(dir?T_Y:T_X).symbol}
 		<br><h3>Slippage</h3>
 		<b>Tolerance</b> : 1%</i>
-		<b>Minimum Received</b> : <img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"> ${(bmin/10**buydeci).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol}</i>
+		<br><b>Minimum Received</b> : <img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"> ${(bmin/10**buydeci).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol}</i>
 		<br>
 		<br><br><b><u>Please wait till this transaction is confirmed by the ${CHAIN_NAME} Network.</u></b>
 		<h4><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
