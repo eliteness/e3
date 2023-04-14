@@ -298,22 +298,22 @@ async function sell() {
 	}
 	if(Number(ubs[1]) < Number(ain)) {
 		notice(`
-			<h2>Approve ${(dir?T_X:T_Y).symbol} <img style="vertical-align: bottom;" height="32px" src="${STATE.ts.logo}"> for Trade</h2>
+			<h2><img style="vertical-align: bottom;" height="32px" src="${STATE.ts.logo}"> Approve ${(dir?T_X:T_Y).symbol} for Trade</h2>
 			E3 Engine needs your approval to trade ${(dir?T_X:T_Y).symbol}.
-			<br>
-			<br><b>Please confirm this tx in your wallet.<b>
+			<br><br>
+			<br><i>Please confirm this tx in your wallet.<i>
 		`);
 		txh = await TCS.approve(R.address, ain);
 		notice(`
-			<h2><img style="vertical-align: bottom;" height="32px" src="${STATE.ts.logo}"> <img style="vertical-align: bottom;" height="32px" src="${STATE.tb.logo}"></h2>
-			<br>
-			<h2>Approving the E3 router...</h2>
+			<h2><img style="vertical-align: bottom;" height="32px" src="${STATE.ts.logo}"> Approving the E3 router...</h2>
+			<br><br>
 			<b>Awaiting confirmation from the network . . ..<b>
+			<br><i>Please wait.</i>
 		`);
 		txr = await txh.wait();
 		notice(`
-			<h2>Approval Granted Successfully</h2>
-			<h2>Starting Trade Execution</h2>
+			<h2><img style="vertical-align: bottom;" height="32px" src="${STATE.ts.logo}"> Approval Granted</h2>
+			<br>Starting Trade Execution...
 		`);
 	}
 	notice(`
@@ -338,7 +338,7 @@ async function sell() {
 		<br><br><b><u>Please confirm this transaction in your wallet</u></b>
 	`);
 	console.log([ BigInt(ain), BigInt(bmin), {pairBinSteps:[1], versions:[2], tokenPath: dir?[T_X.address, T_Y.address]:[T_Y.address, T_X.address]}, window.ethereum.selectedAddress, Math.floor(Date.now()/1000+3600) ]);
-	let txh = await R.swapExactTokensForTokens( BigInt(ain), BigInt(bmin), {pairBinSteps:[1], versions:[2], tokenPath: dir?[T_X.address, T_Y.address]:[T_Y.address, T_X.address]}, window.ethereum.selectedAddress, Math.floor(Date.now()/1000+3600) );
+	txh = await R.swapExactTokensForTokens( BigInt(ain), BigInt(bmin), {pairBinSteps:[1], versions:[2], tokenPath: dir?[T_X.address, T_Y.address]:[T_Y.address, T_X.address]}, window.ethereum.selectedAddress, Math.floor(Date.now()/1000+3600) );
 	notice(`
 		<h2>Awaiting Confirmation..</h2>
 		Selling ${(Number(ain)/10**selldeci).toFixed(selldeci)} ${(dir?T_X:T_Y).symbol} <img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}">
