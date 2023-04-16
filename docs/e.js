@@ -226,8 +226,10 @@ async function gubs() {
 		gubs_ts.balanceOf(window.ethereum.selectedAddress),
 		gubs_tb.balanceOf(window.ethereum.selectedAddress),
 	]);
-	$("amount-sold-balance").innerHTML = "Balance: "+ (bal[0]/10**STATE.ts.decimals).toFixed(STATE.ts.decimals) +" "+ STATE.ts.symbol;
-	$("amount-bought-balance").innerHTML = "Balance: "+ (bal[1]/10**STATE.tb.decimals).toFixed(STATE.tb.decimals) +" "+ STATE.tb.symbol
+	_ub_s = (bal[0]/10**STATE.ts.decimals).toFixed(STATE.ts.decimals);
+	_ub_b = (bal[1]/10**STATE.tb.decimals).toFixed(STATE.tb.decimals);
+	$("amount-sold-balance").innerHTML = `<span onclick='$("amount-sold-input").value=${_ub_s}'>Balance: `+ _ub_s +" "+ STATE.ts.symbol+"</span>";
+	$("amount-bought-balance").innerHTML = `<span onclick="">Balance: `+ _ub_s +" "+ STATE.tb.symbol+"</span>";
 }
 
 async function pre_stats() {
