@@ -293,8 +293,10 @@ async function sell() {
 		notice(`
 		<h2><img style="vertical-align: bottom;" height="32px" src="${STATE.ts.logo}"> Insufficient Balance</h2>
 		You have ${(ubs[0]/10**selldeci).toFixed(selldeci)} ${(dir?T_X:T_Y).symbol}.
-		<br><br><i>Desired amount: ${(ain/10**selldeci).toFixed(selldeci)} ${(dir?T_X:T_Y).symbol}
+		<br><br><i>Desired amount:</i> ${(ain/10**selldeci).toFixed(selldeci)} ${(dir?T_X:T_Y).symbol}
+		<br><br><u>Please re-check your inputs & try again</u>
 		`);
+		return;
 	}
 	if(Number(ubs[1]) < Number(ain)) {
 		notice(`
