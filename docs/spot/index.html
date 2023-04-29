@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+<meta charset="UTF-8">
+<head>
+<meta name="description" content="E3 DEX | FTM.guru">
+<meta name="keywords" content="Ftm.guru, Guru Network, Finance, Decentralized Finance, defi, Airdrop, veNFT, Solidly, Equalizer, Fantom Opera, FTM">
+<title>E3 DEX | FTM.guru</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="https://ftm.guru/icons/64.png"/>
+<link rel="stylesheet" href="e.css"/>
+<body>
+	<div class="topnav">
+		<div align="left">eliteness.network</div>
+		<div align="right">
+			<p id="p_cw"><span id="cw" onclick="cw()">Hello 👋 <span id="cw_og">Connect wallet!</span></p>
+		</div>
+	</div>
+	<div class="partnership">
+		<h1><span>Spot Trading</span></h1>
+		<h2>Experience Zero-Slippage Trading with Elite E3 Engine</h2>
+	</div>
+	<br>
+	<div class="mechanism">
+		<div class="input-amount">
+			<br>
+			<div class="input-amount-els">
+				<div onclick="pairSelectionMenu()">
+					<img class="bigthumb" id="logo-sold" src="https://ftm.guru/icons/ftm.svg"/>
+				</div>
+				<div class="amount-area">
+					<div class="prefill-num">
+						<span id="amount-sold-balance">0.000000 WFTM available</span>
+					</div>
+					<div class="amount-sold" id="token-sold">
+						<input value="1" placeholder="Sell Amount" id="amount-sold-input">
+					</div>
+				</div>
+			</div>
+  			<div class="arrow-content" onclick="flipAssets()">
+  				<br>
+    			<svg id="more-arrows" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+      				<polygon class="arrow-top" points="37.6,27.9 1.8,1.3 3.3,0 37.6,25.3 71.9,0 73.7,1.3 "/>
+      				<polygon class="arrow-middle" points="37.6,45.8 0.8,18.7 4.4,16.4 37.6,41.2 71.2,16.4 74.5,18.7 "/>
+      				<polygon class="arrow-bottom" points="37.6,64 0,36.1 5.1,32.8 37.6,56.8 70.4,32.8 75.5,36.1 "/>
+    			</svg>
+  				<br>
+  			</div>
+			<div class="input-amount-els">
+				<div onclick="pairSelectionMenu()">
+					<img class="bigthumb" id="logo-bought" src="https://ftm.guru/icons/usdc.svg"/>
+				</div>
+				<div class="amount-area">
+					<div class="prefill-num">
+						<span id="amount-bought-balance">0.000000 USDC available</span>
+					</div>
+					<div class="amount-bought" id="token-bought">
+						<input value="Loading.." placeholder="Buy Amount" id="amount-bought-input" disabled="">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="margin-top: -25px;" align="center">
+			<button class="submit equal-gradient" onclick="sell()"><span id="claim-offer">Execute Order</span></button>
+			<br><br>
+		</div>
+	</div>
+	<div class="analytics" style="display:none">
+		<a class="equal-gradient-white">Mint</a>
+		<a href="staking">Stake</a>
+		<a href="https://dune.com/eliteness/ethena" target="_blank">Analytics</a>
+		<a href="https://thena.fi/swap" target="_blank">Trade</a>
+		<a href="https://ftm.guru/docs/eTHENA/eTHENA" target="_blank">Docs</a>
+	</div>
+
+
+	<div id="note" class="overlay">
+		<div class="popup">
+			<a class="close" href="#">&times;</a>
+			<div class="content" id="content1">
+				w31c0m3 fren!<br>trade well :)
+			</div>
+		</div>
+	</div>
+
+
+	<div class="extra">
+		<br><br>
+		<!--
+		<h3><a href="https://eliteness.network">Powered by Guru Network</a></h3>
+		-->
+		<div id="social">
+			<a target="_blank" href="https://discord.gg/QpyfMarNrV"><img src="https://ftm.guru/icons/discord.svg"></a>
+			<a target="_blank" href="https://twitter.com/FTM1337"><img src="https://ftm.guru/icons/twitter.svg"></a>
+			<a target="_blank" href="https://dune.com/e3/fees"><img src="https://ftm.guru/icons/dune.svg"></a>
+			<a target="_blank" href="https://defillama.com/protocol/guru-network"><img src="https://ftm.guru/icons/defillama.svg"></a>
+		</div>
+		<!--
+		<small id="stats">
+		</small>
+		<h1><span></span></h1>
+		-->
+		<br><br>
+	</div>
+
+	<div id="scroll-container" style="display:none">
+		<div id="scroll-text">
+			 • <span>eTHENA Price: $Unknown (Unknown THE)</span>
+			 • <span>eTHENA Minting Ratio (veTHE): 1.Unknown</span>
+			 • <span>Market Cap: $Unknown</span>
+			 • <span>Total Supply: 200,000+</span>
+			 • <span>veTHE Controlled: 228,228+</span>
+			 • <span>Collateralization: Unknown%</span>
+			 • <span>eTHENA/WBNB Liquidity: $Unknown</span>
+			 • <span>eTHENA-Staking (Earn BNB) APR: Unknown%</span>
+			 • <span>eTHENA/WBNB-Farming (Earn THE) APR: Unknown%</span>
+		<div>
+	<div>
+
+
+
+
+
+
+<!-- IGNORE BELOW BLOCK : DEV LOGS -->
+		<div style="display:none">
+		<span id="cw_m"></span>
+		<div id="connect">
+			Please connect your web3 wallet.
+			<br><br>
+			<button onclick="cw()" id="btn-connect">Connect</button>
+		</div>
+		<div id="switch">
+			<b id="btn-switch" onclick="cw()">
+				<img src="img/wallet.svg" width="24px" style="position:relative;top:4px">
+				<span id="cw"></span>
+			</b>
+			<br>Balance: <b style="font-family:bold" id="usb-mtv">?</b> <img class="imgmtv" src="https://ftm.guru/icons/ftm.svg" width="20px" style="position:relative;top:4px">WFTM<br>
+			<span style="font-size:0.9em">Wallet at <img class="imgmtv" src="https://ftm.guru/icons/ftm.svg" width="20px" style="position:relative;top:4px">Fantom Opera. <a href="index.html" style="color:aqua;font-family:bold">Change?</a></span>
+		</div>
+	</div>
+<!-- IGNORE ABOVE BLOCK : DEV LOGS -->
+
+		<div id="particle-container">
+			<div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+		</div>
+		<script>
+			DAPPNAME = "E3";
+			CHAINID = 250;
+			RPC_URL = "https://rpc2.fantom.network";
+			EXPLORE = "https://ftmscan.com";
+			CHAIN_NAME = "Fantom Opera";
+			CHAIN_GAS = "FTM"
+			WFTM="0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83";
+			USDC="0x04068DA6C83AFCFA0e13ba15A6696662335D5B75";
+			FUSDT="0x049d68029688eAbF473097a2fC38ef61633A3C7A";
+
+			POOLID = 1;
+			POOLADDR = "0x6fea3b68a0666bd77b5c002ceedca0e4eb93f4aa";
+			T_X = {
+				symbol: "WFTM",
+				address: WFTM,
+				decimals: 18,
+				logo: "https://ftm.guru/icons/ftm.svg"
+			}
+			T_Y = {
+				symbol: "USDC",
+				address: USDC,
+				decimals: 6,
+				logo: "https://ftm.guru/icons/usdc.svg"
+			}
+
+			INITIAL = "1";
+			MINAMTOUT = 9990;
+		</script>
+		<script src="https://ftm.guru/ethers-5.2.umd.min.js" type="application/javascript" defer="true"></script>
+
+		<!--
+		<script src="https://ftm.guru/chart.min.js" type="application/javascript"></script>
+		<script src="https://ftm.guru/chartjs-adapter-date-fns.bundle.min.js" type="application/javascript"></script>
+		-->
+
+		<script src="e.js"></script>
+	</body>
+</html>
