@@ -342,7 +342,7 @@ async function sell() {
 		<br><br><b><u>Please confirm this transaction in your wallet</u></b>
 	`);
 	console.log([ BigInt(ain), BigInt(bmin), {pairBinSteps:[1], versions:[2], tokenPath: dir?[T_X.address, T_Y.address]:[T_Y.address, T_X.address]}, window.ethereum.selectedAddress, Math.floor(Date.now()/1000+3600) ]);
-	txh = await R.swapExactTokensForTokens( BigInt(ain), BigInt(bmin), {pairBinSteps:[1], versions:[2], tokenPath: dir?[T_X.address, T_Y.address]:[T_Y.address, T_X.address]}, window.ethereum.selectedAddress, Math.floor(Date.now()/1000+3600) );
+	txh = await R.swapExactTokensForTokens( BigInt(ain), BigInt(bmin), {pairBinSteps:[BUCKET], versions:[2], tokenPath: dir?[T_X.address, T_Y.address]:[T_Y.address, T_X.address]}, window.ethereum.selectedAddress, Math.floor(Date.now()/1000+3600) );
 	notice(`
 		<h2>Awaiting Confirmation..</h2>
 		Selling ${(Number(ain)/10**selldeci).toFixed(selldeci)} ${(dir?T_X:T_Y).symbol} <img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}">
