@@ -269,12 +269,12 @@ async function priceFinder() {
 	let dir = T_X.address == _nam ? true : false;
 	let selldeci = ( dir ? T_X.decimals : T_Y.decimals);
 	let buydeci = ( dir ? T_Y.decimals : T_X.decimals);
-	let ain = (Number($("amount-sold-input").value) * 10**selldeci).toFixed(0);
+	let ain = BigInt(Number($("amount-sold-input").value) * 10**selldeci);
 	let sod = await R.getSwapOut(POOLADDR, ain, dir);
 	//$("amount-sold-input").value = ((Number(ain)-Number(sod[0]))/10**selldeci).toFixed(selldeci);
 	let aout = (Number(sod[1])/10**buydeci).toFixed(buydeci);
 	$("amount-bought-input").value = aout;
-	console.log([ain, Number(sod[1]), Date.now()])
+	console.log([ain, Number(sod[1]), Date.now()]);
 	//set slippage
 }
 
