@@ -364,7 +364,7 @@ async function sell() {
 		Sold <img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"> ${(Number(ain)/10**selldeci).toFixed(selldeci)} ${(dir?T_X:T_Y).symbol}
 		<br>Bought <img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"> ${(Number(sod[1])/10**buydeci).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol}.
 		<br>
-		<h4><a target="_blank" href="https://ftmscan.com/tx/${txr.hash}">View on Explorer</a></h4>
+		<h4><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
 	`);
 }
 
@@ -410,4 +410,73 @@ async function flipAssets2() {
 		$("logo-sold").src = T_X.logo;
 		$("logo-bought").src = T_Y.logo;
 	}
+}
+
+function pairSelectionMenu() {
+	notice(`
+		<h2>Select a Pair to Trade</h2>
+		<div style="overflow:auto;max-height:60vh">
+			<h2 class="pairSelectionMenu">
+				<a href="0">
+					<div><img src="https://ftm.guru/icons/usdc.svg"><img src="https://ftm.guru/icons/usdt.svg"></div>
+					<div>USDC/fUSDT</div>
+				</a>
+				<a href="1">
+					<div><img src="https://ftm.guru/icons/ftm.svg"><img src="https://ftm.guru/icons/usdc.svg"></div>
+					<div>WFTM/USDC</div>
+				</a>
+			</h2>
+		</div>
+	`);
+}
+
+async function libPH_getIdFromPrice(_id, _step) {
+	fa2=new ethers.providers.JsonRpcProvider("https://rpc.testnet.fantom.network");
+	PH = new ethers.Contract("0xc8f66ab5619fc637c2d51abb0d24781b3f29e6c6",[{"inputs":[],"name":"SafeCast__Exceeds24Bits","type":"error"},{"inputs":[],"name":"Uint128x128Math__LogUnderflow","type":"error"},{"inputs":[{"internalType":"uint256","name":"x","type":"uint256"},{"internalType":"int256","name":"y","type":"int256"}],"name":"Uint128x128Math__PowUnderflow","type":"error"},{"inputs":[],"name":"Uint256x256Math__MulDivOverflow","type":"error"},{"inputs":[],"name":"Uint256x256Math__MulShiftOverflow","type":"error"},{"inputs":[{"internalType":"uint256","name":"price128x128","type":"uint256"}],"name":"convert128x128PriceToDecimal","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"pure","type":"function"},{"inputs":[{"internalType":"uint256","name":"price","type":"uint256"}],"name":"convertDecimalPriceTo128x128","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"pure","type":"function"},{"inputs":[{"internalType":"uint16","name":"binStep","type":"uint16"}],"name":"getBase","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"pure","type":"function"},{"inputs":[{"internalType":"uint24","name":"id","type":"uint24"}],"name":"getExponent","outputs":[{"internalType":"int256","name":"","type":"int256"}],"stateMutability":"pure","type":"function"},{"inputs":[{"internalType":"uint256","name":"price","type":"uint256"},{"internalType":"uint16","name":"binStep","type":"uint16"}],"name":"getIdFromPrice","outputs":[{"internalType":"uint24","name":"id","type":"uint24"}],"stateMutability":"pure","type":"function"},{"inputs":[{"internalType":"uint24","name":"id","type":"uint24"},{"internalType":"uint16","name":"binStep","type":"uint16"}],"name":"getPriceFromId","outputs":[{"internalType":"uint256","name":"price","type":"uint256"}],"stateMutability":"pure","type":"function"}],fa2);
+	_price_raw = await PH.getIdFromPrice(_id,_step);
+}
+
+function e3lib_Num_to_hex32(_num) {
+	_dec = (_num % 1) ;
+	_dec32 = ethers.utils.hexZeroPad("0x" + ( _dec * 16**32 ).toString(16) , 16 );
+	_int = Math.floor(_num);
+	_int32 = ethers.utils.hexZeroPad("0x" + _int.toString(16) , 16);
+	return _int32 + _dec32.substr(2);
+}
+
+function e3lib_hex32_to_num(_hex) {
+	_hex = ethers.utils.hexZeroPad( _hex.toString(16) , 32);
+	_int = Number(_hex.substr(0,34));
+	_dec = Number("0x"+_hex.substr(34,32))/16**32;
+	return (_int + _dec);
+}
+
+function e3lib_gen(mid,step,count){
+	let ra=[];
+	for(i=0-count;i<=0+count;i++) {
+		ra.push( mid + i*step )
+	}
+	return ra
+}
+
+function e3lib_spread_uniform(n) {
+	if(n%2==0) throw new Error("Should be odd-lengthed!");
+	let m = ((n+1)/2)-1;
+	let b = BigInt(Math.floor(1e18/(m+1)));
+	let x=[], y=[];
+	for(let i=0;i<n;i++) {
+		if(i<m) {
+			x[i] = b;
+			y[i] = 0;
+		}
+		else if(i==m) {
+			x[i] = b;
+			y[i] = b;
+		}
+		else if(i>m) {
+			x[i] = 0;
+			y[i] = b;
+		}
+	}
+	return {x:x,y:y}
 }

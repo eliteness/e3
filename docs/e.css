@@ -620,6 +620,31 @@ img.bigthumb {
 	vertical-align: middle;
 }
 
+.pairSelectionMenu a {
+	display:grid;
+	grid-template-columns:max-content auto ;
+}
+.pairSelectionMenu a {
+	text-decoration:none;
+	margin: 10px auto;
+	transition: ease-in-out 0.15s !important;
+}
+.pairSelectionMenu a img {
+	vertical-align: bottom;
+	height:32px;
+	width:32px;
+}
+.pairSelectionMenu a img:nth-child(2) {
+	position:relative;left:-12px;
+}
+.pairSelectionMenu a:hover {
+  background: rgba(0,255,255,0.2);
+  border-radius: 100px;
+}
+.pairSelectionMenu a div:nth-child(2) {
+	text-align:left;
+}
+
 
 
 
