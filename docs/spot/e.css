@@ -622,7 +622,7 @@ img.bigthumb {
 
 .pairSelectionMenu a {
 	display:grid;
-	grid-template-columns:max-content auto ;
+	grid-template-columns:max-content auto auto;
 }
 .pairSelectionMenu a {
 	text-decoration:none;
@@ -643,6 +643,12 @@ img.bigthumb {
 }
 .pairSelectionMenu a div:nth-child(2) {
 	text-align:left;
+}
+
+.pairSelectionMenu a div:nth-child(3) {
+	text-align:left;
+	font-family: regular_italic;
+	color: rgba(255,255,255,0.3);
 }
 
 

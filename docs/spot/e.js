@@ -274,7 +274,7 @@ async function priceFinder() {
 	//$("amount-sold-input").value = ((Number(ain)-Number(sod[0]))/10**selldeci).toFixed(selldeci);
 	let aout = (Number(sod[1])/10**buydeci).toFixed(buydeci);
 	$("amount-bought-input").value = aout;
-	console.log([ain, Number(sod[1]), Date.now()]);
+	console.log([ain, Number(sod[1]), Date.now()])
 	//set slippage
 }
 
@@ -333,8 +333,8 @@ async function sell() {
 		Selling ${(Number(ain)/10**selldeci).toFixed(selldeci)} ${(dir?T_X:T_Y).symbol} <img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}">
 		<br>Buying ${(Number(sod[1])/10**buydeci).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol} <img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}">
 		<br><h3>Expected Prices</h3>
-		<img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"><img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"> ${(Number(sod[1])/Number(ain)).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol} per ${(dir?T_X:T_Y).symbol}
-		<br><img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"><img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"> ${(Number(ain)/Number(sod[1])).toFixed(selldeci)} ${(dir?T_X:T_Y).symbol} per ${(dir?T_Y:T_X).symbol}
+		<img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"><img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"> ${((Number(sod[1])/10**buydeci)/(Number(ain)*10**selldeci)).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol} per ${(dir?T_X:T_Y).symbol}
+		<br><img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"><img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"> ${((Number(ain)*10**selldeci)/(Number(sod[1])/10**buydeci)).toFixed(selldeci)} ${(dir?T_X:T_Y).symbol} per ${(dir?T_Y:T_X).symbol}
 		<br><h3>Slippage</h3>
 		<b>Tolerance</b> : ±0.1%</i>
 		<br><b>Minimum Received</b> : <img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"> ${(bmin/10**buydeci).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol}</i>
@@ -348,8 +348,8 @@ async function sell() {
 		Selling ${(Number(ain)/10**selldeci).toFixed(selldeci)} ${(dir?T_X:T_Y).symbol} <img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}">
 		<br>Buying ${(Number(sod[1])/10**buydeci).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol} <img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}">
 		<br><h3>Expected Prices</h3>
-		<img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"><img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"> ${(Number(sod[1])/Number(ain)).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol} per ${(dir?T_X:T_Y).symbol}
-		<br><img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"><img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"> ${(Number(ain)/Number(sod[1])).toFixed(selldeci)} ${(dir?T_X:T_Y).symbol} per ${(dir?T_Y:T_X).symbol}
+		<img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"><img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"> ${((Number(sod[1])/10**buydeci)/(Number(ain)*10**selldeci)).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol} per ${(dir?T_X:T_Y).symbol}
+		<br><img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"><img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"> ${((Number(ain)*10**selldeci)/(Number(sod[1])/10**buydeci)).toFixed(selldeci)} ${(dir?T_X:T_Y).symbol} per ${(dir?T_Y:T_X).symbol}
 		<br><h3>Slippage</h3>
 		<b>Tolerance</b> : ±0.1%</i>
 		<br><b>Minimum Received</b> : <img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"> ${(bmin/10**buydeci).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol}</i>
@@ -420,10 +420,12 @@ function pairSelectionMenu() {
 				<a href="0">
 					<div><img src="https://ftm.guru/icons/usdc.svg"><img src="https://ftm.guru/icons/usdt.svg"></div>
 					<div>USDC/fUSDT</div>
+					<div>#0</div>
 				</a>
 				<a href="1">
 					<div><img src="https://ftm.guru/icons/ftm.svg"><img src="https://ftm.guru/icons/usdc.svg"></div>
 					<div>WFTM/USDC</div>
+					<div>#1</div>
 				</a>
 			</h2>
 		</div>
