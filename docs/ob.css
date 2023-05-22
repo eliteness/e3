@@ -50,7 +50,7 @@
 
 .OBR_A div:first-child,
 .OBR_B div:first-child{
-  text-align: right;
+	text-align: right;
 }
 .OBR_A div:nth-child(2),.OBR_A div:nth-child(3),
 .OBR_B div:nth-child(2), .OBR_B div:nth-child(3) {
@@ -78,4 +78,8 @@
 .OBR_AB, #OBR_AB {
 	background: #00f;
 	font-size: 1.25em;
+}
+.OBR_AB div img {
+	width: 20px !important;
+	vertical-align: !important;
 }

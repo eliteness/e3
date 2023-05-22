@@ -62,10 +62,10 @@ async function basetrip()
 	}
 	//DrefreshFarm()
 	//arf()
+	paintBook()
 	cw()
 	dexstats()
 	gubs()
-	paintBook()
 }
 
 
@@ -507,8 +507,8 @@ async function paintBook() {
 		_up = (_ux == 0 && _uy == 0)
 			? "-"
 			: (
-				_ux > 0 ? `<img src="${T_X.logo}">${_ux.toFixed(4)}` : ""
-				+ _uy > 0 ? `<br><img src="${T_Y.logo}">${_uy.toFixed(4)}` : ""
+				_ux > 0 ? `${_ux.toFixed(4)} <img src="${T_X.logo}">` : ""
+				+ _uy > 0 ? ` ${_uy.toFixed(4)} <img src="${T_Y.logo}">` : ""
 				+ ` <button onclick="closePositionAt(${rd[0][i]},${rd[1][i]},${rd[2][i]})"><img src="img/cross.svg"></button>`
 			)
 		;
