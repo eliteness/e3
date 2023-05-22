@@ -1,0 +1,81 @@
+@font-face{ font-family:mono_regular;src: url(font/ChivoMono-Regular.ttf);}
+
+#OB {
+	overflow:auto;
+}
+
+.OBR_A div, .OBR_B div{
+	font-family:mono_regular !important;
+}
+
+#OBH, .OBR_A, .OBR_B {
+	display:grid;
+	grid-template-columns: 20% 20% 20% 20% 20%;
+}
+
+#OBH div {
+	font-size:1.25em;
+	margin-bottom: 10px;
+}
+#OBH div:nth-child(1), #OBH div:nth-child(2), #OBH div:nth-child(3) {
+	text-align:right;
+}
+
+#OBP span {
+	font-size:2em;
+}
+
+
+#OB button, #OB input {
+	background:none;
+	padding:2px;
+	border-radius:100px;
+	border:none;
+}
+#OB input {
+	background:#44447744;
+	width:50%;
+	text-align:center;
+}
+
+#OB img {
+	width:16px;
+	vertical-align: top;
+}
+
+.OBR_A div:nth-child(1), .OBR_A div:nth-child(2), .OBR_A div:nth-child(3),
+.OBR_B div:nth-child(1), .OBR_B div:nth-child(2), .OBR_B div:nth-child(3) {
+	margin: auto 20px;
+}
+
+.OBR_A div:first-child,
+.OBR_B div:first-child{
+  text-align: right;
+}
+.OBR_A div:nth-child(2),.OBR_A div:nth-child(3),
+.OBR_B div:nth-child(2), .OBR_B div:nth-child(3) {
+	text-align: right
+}
+
+#OBH {
+	background: #111b;
+	padding-top: 10px;
+}
+
+.OBR_A {
+	background: #FF000017;
+}
+
+.OBR_B {
+	background: #00FF0017;
+}
+
+
+.OBR_A:hover, .OBR_B:hover {
+	background: #0044ff44;
+}
+
+.OBR_AB, #OBR_AB {
+	background: #00f;
+	font-size: 1.25em;
+}

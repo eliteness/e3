@@ -20,7 +20,7 @@ async function basetrip()
 	//PRE
 	pre_stats();
 	//MAIN
-	if(!(window.ethereum)){$("cw_m").innerHTML = "Wallet wasn't detected!";console.log("Wallet wasn't detected!");notice("<h3>Wallet wasn't detected!</h3>Please make sure that your device and browser have an active Web3 wallet like MetaMask installed and running.<br><br>Visit <a href='https://metamask.io' target='_blank'>metamask.io</a> to install MetaMask wallet.");provider = new ethers.providers.JsonRpcProvider(RPC_URL); await dexstats();return}
+	if(!(window.ethereum)){$("cw_m").innerHTML = "Wallet wasn't detected!";console.log("Wallet wasn't detected!");notice("<h3>Wallet wasn't detected!</h3>Please make sure that your device and browser have an active Web3 wallet like MetaMask installed and running.<br><br>Visit <a href='https://metamask.io' target='_blank'>metamask.io</a> to install MetaMask wallet.");provider = new ethers.providers.JsonRpcProvider(RPC_URL); await dexstats();paintBook();return}
 	else if(!Number(window.ethereum.chainId)==CHAINID){$("cw_m").innerHTML = "Wrong network! Please Switch to "+CHAINID;provider = new ethers.providers.JsonRpcProvider(RPC_URL);await dexstats();notice("<h3>Wrong network!</h3>Please Switch to Chain #"+CHAINID+"<btr"+ CHAIN_NAME+ "</u> Blockchain.");}
 	else if(//typeOf window.ethereum == Object &&Number(window.ethereum.chainId)
 		Number(window.ethereum.chainId)==CHAINID)
@@ -65,6 +65,7 @@ async function basetrip()
 	cw()
 	dexstats()
 	gubs()
+	paintBook()
 }
 
 
@@ -74,12 +75,12 @@ function fornum(n,d)
 {
 	_n=(Number(n)/10**Number(d));
 	n_=_n;
-	if(_n>1e18){n_=(_n/1e18).toFixed(2)+" Qt."}
-	else if(_n>1e15){n_=(_n/1e15).toFixed(2)+" Qd."}
-	else if(_n>1e12){n_=(_n/1e12).toFixed(2)+" Tn."}
-	else if(_n>1e9){n_=(_n/1e9).toFixed(2)+" Bn."}
-	else if(_n>1e6){n_=(_n/1e6).toFixed(2)+" Mn."}
-	else if(_n>1e3){n_=(_n/1e3).toFixed(2)+" Th."}
+	if(_n>1e18){n_=(_n/1e18).toFixed(4)+" Qt."}
+	else if(_n>1e15){n_=(_n/1e15).toFixed(4)+" Qd."}
+	else if(_n>1e12){n_=(_n/1e12).toFixed(4)+" Tn."}
+	else if(_n>1e9){n_=(_n/1e9).toFixed(4)+" Bn."}
+	else if(_n>1e6){n_=(_n/1e6).toFixed(4)+" Mn."}
+	else if(_n>1e3){n_=(_n/1e3).toFixed(4)+" Th."}
 	else if(_n>0){n_=(_n/1e0).toFixed(5)+""}
 	return(n_);
 }
@@ -178,12 +179,12 @@ function fornum2(n,d)
 {
 	_n=(Number(n)/10**Number(d));
 	n_=_n;
-	if(_n>1e18){n_=(_n/1e18).toFixed(2)+" Quintillion"}
-	else if(_n>1e15){n_=(_n/1e15).toFixed(2)+" Quadrillion"}
-	else if(_n>1e12){n_=(_n/1e12).toFixed(2)+" Trillion"}
-	else if(_n>1e9){n_=(_n/1e9).toFixed(2)+" Billion"}
-	else if(_n>1e6){n_=(_n/1e6).toFixed(2)+" Million"}
-	else if(_n>1e3){n_=(_n/1e3).toFixed(2)+" Thousand"}
+	if(_n>1e18){n_=(_n/1e18).toFixed(4)+" Quintillion"}
+	else if(_n>1e15){n_=(_n/1e15).toFixed(4)+" Quadrillion"}
+	else if(_n>1e12){n_=(_n/1e12).toFixed(4)+" Trillion"}
+	else if(_n>1e9){n_=(_n/1e9).toFixed(4)+" Billion"}
+	else if(_n>1e6){n_=(_n/1e6).toFixed(4)+" Million"}
+	else if(_n>1e3){n_=(_n/1e3).toFixed(4)+" Thousand"}
 	else if(_n>1){n_=(_n/1e0).toFixed(8)+""}
 	return(n_);
 }
@@ -481,4 +482,64 @@ function e3lib_spread_uniform(n) {
 		}
 	}
 	return {x:x,y:y}
+}
+
+
+//////
+
+async function paintBook() {
+	let ua = ""; try { ua = window.ethereum.selectedAddress; } catch(e) { ua="0x0000000000000000000000000000000000000000";}
+	BL=new ethers.Contract("0x5a054233e59323e7a58f6b7dae86e6992f1f92e2",[{"inputs": [],"name": "LA","outputs": [{"internalType": "contract ILA","name": "","type": "address"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "contract IP","name": "p","type": "address"}],"name": "bucketList","outputs": [{"internalType": "uint24[]","name": "","type": "uint24[]"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint24[]","name": "inp","type": "uint24[]"}],"name": "cast_24_256","outputs": [{"internalType": "uint256[]","name": "","type": "uint256[]"}],"stateMutability": "pure","type": "function"},{"inputs": [{"internalType": "address","name": "user","type": "address"},{"internalType": "address","name": "_pair","type": "address"}],"name": "poolInfo","outputs": [{"internalType": "uint256[]","name": "bIds","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsX","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsY","type": "uint256[]"},{"internalType": "uint256[]","name": "liquidities","type": "uint256[]"},{"internalType": "uint256[]","name": "TamountsX","type": "uint256[]"},{"internalType": "uint256[]","name": "TamountsY","type": "uint256[]"},{"internalType": "uint256[]","name": "Tliquidities","type": "uint256[]"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "address","name": "user","type": "address"},{"internalType": "address","name": "_pair","type": "address"}],"name": "positionOf","outputs": [{"internalType": "uint256[]","name": "bIds","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsX","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsY","type": "uint256[]"},{"internalType": "uint256[]","name": "liquidities","type": "uint256[]"}],"stateMutability": "view","type": "function"}],provider)
+	rd = await BL.poolInfo(ua, POOLADDR);
+
+	for(let i=0;i<rd[0].length;i++) {
+		//POW(CAST(1.0020 AS DOUBLE),CAST(CAST(AVG(Bucket) AS DOUBLE)-8388608 AS DOUBLE)) * 1e12 as Price;
+		_p = (1+BUCKET/1e4) ** (rd[0][i] - BUCK_1) * 10**(POOLID==0?0:12);
+		_ux = Number(rd[1][i])/10**T_X.decimals;
+		_uy = Number(rd[2][i])/10**T_Y.decimals;
+		_ul = Number(rd[3][i])/10**T_Y.decimals;
+		_px = Number(rd[4][i])/10**T_X.decimals;
+		_py = Number(rd[5][i])/10**T_Y.decimals;
+		_pl = Number(rd[6][i])/10**T_Y.decimals;
+
+		_up = (_ux == 0 && _uy == 0)
+			? "-"
+			: (
+				_ux > 0 ? `<img src="${T_X.logo}">${_ux.toFixed(4)}` : ""
+				+ _uy > 0 ? `<br><img src="${T_Y.logo}">${_uy.toFixed(4)}` : ""
+				+ ` <button onclick="closePositionAt(${rd[0][i]},${rd[1][i]},${rd[2][i]})"><img src="img/cross.svg"></button>`
+			)
+		;
+
+		//_qt =
+
+
+		$("OBA").innerHTML = `
+			<div id="${(_px > 0 && _py > 0)?'OBR_AB':''}" class="${(_px > 0)?'OBR_A':''} ${(_py > 0)?'OBR_B':''} ${(_px > 0 && _py > 0)?'OBR_AB':''}">
+				<div>${_p.toFixed(6)}</div>
+				<div>${(_pl/_p).toFixed(4)}</div>
+				<div>${_pl.toFixed(4)}</div>
+				<div>${_up}</div>
+				<div><input placeholder="0.00"> <button onclick="openPositionAt(${rd[0][i]})"><img src="img/check.svg"></button></div>
+			</div>
+		` + $("OBA").innerHTML;
+	}
+}
+
+
+
+async function closePositionAt(_bId,_upx,_upy) {
+	notice(`
+		<h3>Closing Old Position</h3>
+		Limit Price: ${(1+BUCKET/1e4) ** (_bId - BUCK_1) * 10**(POOLID==0?6:12)}<br>
+		Ask Amount: ${_upx} ${T_X.symbol}<br>
+		Bid Amount: ${_upy} ${T_Y.symbol}<br>
+	`);
+}
+
+async function openPositionAt(_bId,) {
+	notice(`
+		<h3>Opening New Position</h3>
+		Limit Price: ${(1+BUCKET/1e4) ** (_bId - BUCK_1) * 10**(POOLID==0?6:12)}
+	`);
 }

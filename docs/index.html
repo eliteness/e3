@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" href="https://ftm.guru/icons/e3.png"/>
 <link rel="stylesheet" href="e.css"/>
+<link rel="stylesheet" href="ob.css"/>
 <body>
 	<div class="topnav">
 		<div align="left">
@@ -95,7 +96,8 @@
 			<a target="_blank" href="https://discord.gg/QpyfMarNrV"><img src="https://ftm.guru/icons/discord.svg"></a>
 			<a target="_blank" href="https://twitter.com/FTM1337"><img src="https://ftm.guru/icons/twitter.svg"></a>
 			<a target="_blank" href="https://dune.com/e3/fees"><img src="https://ftm.guru/icons/dune.svg"></a>
-			<a target="_blank" href="https://defillama.com/protocol/guru-network"><img src="https://ftm.guru/icons/defillama.svg"></a>
+			<a target="_blank" href="https://defillama.com/protocol/e3"><img src="https://ftm.guru/icons/defillama.svg"></a>
+			<a target="_blank" href="https://coinmarketcap.com/exchanges/e3"><img src="https://ftm.guru/icons/cmc.svg"></a>
 		</div>
 		<!--
 		<small id="stats">
@@ -116,8 +118,78 @@
 			 • <span>eTHENA/WBNB Liquidity: $Unknown</span>
 			 • <span>eTHENA-Staking (Earn BNB) APR: Unknown%</span>
 			 • <span>eTHENA/WBNB-Farming (Earn THE) APR: Unknown%</span>
-		<div>
-	<div>
+		</div>
+	</div>
+
+
+	<br><br><br><br>
+
+
+	<div id="OB" align="center">
+
+		<div id="OBH">
+			<div>Spot Price <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdc.svg"></div>
+			<div>Quantity <img src="https://ftm.guru/icons/ftm.svg" style="vertical-align: top;width: 24px;"></div>
+			<div>Aggregate<img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdc.svg"></div>
+			<div>My Position</div>
+			<div>Add New Order</div>
+		</div>
+
+		<div id="OBA" style="display:">
+
+			<!--
+			<div class="OBR_A">
+				<div>$0.370000</div>
+				<div>1234</div>
+				<div>100</div>
+				<div>-</div>
+				<div><input placeholder="0.00"> <button><img src="img/check.svg"></button></div>
+			</div>
+			<div class="OBR_A">
+				<div>$0.370000</div>
+				<div>1234</div>
+				<div>100</div>
+				<div>75.76 <button><img src="img/cross.svg"></button></div>
+				<div><input placeholder="0.00"> <button><img src="img/check.svg"></button></div>
+			</div>
+			<div class="OBR_A">
+				<div>$0.370000</div>
+				<div>1234</div>
+				<div>100</div>
+				<div>-</div>
+				<div><input placeholder="0.00"> <button><img src="img/check.svg"></button></div>
+			</div>
+			<div class="OBR_A">
+				<div>$0.370000</div>
+				<div>1234</div>
+				<div>100</div>
+				<div>-</div>
+				<div><input placeholder="0.00"> <button><img src="img/check.svg"></button></div>
+			</div>
+			<div class="OBR_A">
+				<div>$0.370000</div>
+				<div>1234</div>
+				<div>100</div>
+				<div>125.50 <button><img src="img/cross.svg"></button></div>
+				<div><input placeholder="0.00"> <button><img src="img/check.svg"></button></div>
+			</div>
+			-->
+
+
+		</div>
+
+		<div id="OBP" style="display:none">
+			<span id="OB_LMP">$0.361089</span>
+		</div>
+
+		<div id="OBB">
+
+		</div>
+	</div>
+
+	<br><br><br><br>
+	<div align="center">Work in Progress (🦾,🚀)</div>
+	<h2>Powered by Guru Network</h2>
 
 
 
@@ -143,7 +215,7 @@
 	</div>
 <!-- IGNORE ABOVE BLOCK : DEV LOGS -->
 
-		<div id="particle-container">
+		<div id="particle-container" style="display:none">
 			<div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
 		</div>
 		<script>
@@ -159,6 +231,7 @@
 
 			POOLID = 1;
 			BUCKET = 20;
+			BUCK_1 = 8388608;
 			POOLADDR = "0x6fea3b68a0666bd77b5c002ceedca0e4eb93f4aa";
 			T_X = {
 				symbol: "WFTM",
@@ -183,6 +256,6 @@
 		<script src="https://ftm.guru/chartjs-adapter-date-fns.bundle.min.js" type="application/javascript"></script>
 		-->
 
-		<script src="e.js"></script>
+		<script src="eo1.js"></script>
 	</body>
 </html>
