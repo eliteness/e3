@@ -207,11 +207,12 @@ function arf(){
 			//if($('ain').value == "" ) { $('ain').value=INITIAL }
 			if(o != $('amount-sold-input').value){priceFinder()}
 			if(t != STATE.ts.address){priceFinder()}
-			if(c%10==0){priceFinder()}
-			if(c%20==0){
+			if(c%20==0){priceFinder()}
+			if(c%30==0){
 				try { if( ethers.utils.isAddress(window.ethereum.selectedAddress) ) {gubs();} }
 				catch(e) { console.log('No web3 wallet found!'); }
 			}
+			if(c%50==0){paintBook()}
 			o = $('amount-sold-input').value;
 			t = STATE.ts.address;
 			c++
