@@ -646,7 +646,7 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 		]);
 		//_prx = _op_ubb[2][0];
 		//_pry = _op_ubb[2][1];
-		if( _op_ubb[0] < _ops ) { notice(`<h3>Insufficient Balance!</h3><br>Desired: ${$('op_'+_bId).value} ${T_X.symbol}<br>Available: ${op_ubb[2][0]/10**T_X.decimals} ${T_X.symbol}`); return};
+		if( _op_ubb[0] < _ops ) { notice(`<h3>Insufficient Balance!</h3><br>Desired: ${$('op_'+_bId).value} ${T_X.symbol}<br>Available: ${op_ubb[2]/10**T_X.decimals} ${T_X.symbol}`); return};
 
 		if(Number(_op_ubb[1]) < Number(_op_ubb[0])) {
 			notice(`
@@ -707,10 +707,11 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 			//_POOL.getBin(_bId),
 			_T_Y.allowance(window.ethereum.selectedAddress, ROUTER.address),
 			//gubs_ty.allowance(window.ethereum.selectedAddress, ROUTER.address),
+			_POOL.getActiveId()
 		]);
 		//_prx = _op_ubb[2][0];
 		//_pry = _op_ubb[2][1];
-		if( _op_ubb[0] < _ops ) { notice(`<h3>Insufficient Balance!</h3><br>Desired: ${$('op_'+_bId).value} ${T_Y.symbol}<br>Available: ${op_ubb[2][0]/10**T_Y.decimals} ${T_Y.symbol}`); return};
+		if( _op_ubb[0] < _ops ) { notice(`<h3>Insufficient Balance!</h3><br>Desired: ${$('op_'+_bId).value} ${T_Y.symbol}<br>Available: ${op_ubb[2]/10**T_Y.decimals} ${T_Y.symbol}`); return};
 
 		if(Number(_op_ubb[1]) < Number(_op_ubb[0])) {
 			notice(`
