@@ -747,7 +747,7 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 			<br><br>
 			<br><i>Please confirm this tx in your wallet.</i>
 		`);
-		let _op_obj = {"tokenX": T_X.address, "tokenY": T_Y.address, "binStep": BUCKET, "amountX": BigInt(_ops), "amountY": 0, "amountXMin": BigInt(Math.floor(_ops*SLIPBPS/1e4)), "amountYMin": 0, "activeIdDesired": _op_ubb[2], "idSlippage": 0, "deltaIds": [_bId - _op_ubb[2]], "distributionX": [BigInt(1e18)], "distributionY": [BigInt(1e18)], "to": window.ethereum.selectedAddress, "refundTo": window.ethereum.selectedAddress, "deadline": Math.floor(Date.now()/999.999) };
+		let _op_obj = {"tokenX": T_X.address, "tokenY": T_Y.address, "binStep": BUCKET, "amountX": 0, "amountY": BigInt(_ops), "amountXMin": 0, "amountYMin": BigInt(Math.floor(_ops*SLIPBPS/1e4)), "activeIdDesired": _op_ubb[2], "idSlippage": 0, "deltaIds": [_bId - _op_ubb[2]], "distributionX": [BigInt(1e18)], "distributionY": [BigInt(1e18)], "to": window.ethereum.selectedAddress, "refundTo": window.ethereum.selectedAddress, "deadline": Math.floor(Date.now()/999.999) };
 		console.log("_op_obj",_op_obj);
 		txh = await R.addLiquidity(_op_obj);
 		notice(`
