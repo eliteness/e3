@@ -311,7 +311,7 @@ async function sell() {
 			<h2><img style="vertical-align: bottom;" height="32px" src="${STATE.ts.logo}"> Approve ${(dir?T_X:T_Y).symbol} for Trade</h2>
 			E3 Engine needs your approval to trade ${(dir?T_X:T_Y).symbol}.
 			<br><br>
-			<br><i>Please confirm this tx in your wallet.<i>
+			<br><i>Please confirm this tx in your wallet.</i>
 		`);
 		txh = await TCS.approve(R.address, ain);
 		notice(`
@@ -633,6 +633,7 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 	_T_Y = new ethers.Contract(T_Y.address, ["function balanceOf(address) public view returns(uint256)","function allowance(address,address) public view returns(uint256)","function approve(address,uint256)"], signer);
 
 	if(_prx>0 && _pry ==0) { //Sale order
+		notice(`Validating your Sale Order...<br><br>Please wait.`);
 
 		_ops = _ops * 10**T_X.decimals;
 		_op_ubb = await Promise.all([
@@ -641,6 +642,7 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 			//_POOL.getBin(_bId),
 			_T_X.allowance(window.ethereum.selectedAddress, ROUTER.address),
 			//gubs_ty.allowance(window.ethereum.selectedAddress, ROUTER.address),
+			_POOL.getActiveId()
 		]);
 		//_prx = _op_ubb[2][0];
 		//_pry = _op_ubb[2][1];
@@ -651,7 +653,7 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 				<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}"> Approve ${T_X.symbol} for Trade</h2>
 				E3 Engine needs your approval to open a new ${$('op_'+_bId).value} ${T_X.symbol} position.
 				<br><br>
-				<br><i>Please confirm this tx in your wallet.<i>
+				<br><i>Please confirm this tx in your wallet.</i>
 			`);
 			txh = await _T_X.approve(ROUTER.address, _ops);
 			notice(`
@@ -675,9 +677,9 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 			Price: ${_price.toFixed(6)} ${T_Y.symbol}<br>
 			Size: ${ ($('op_'+_bId).value/_price).toFixed(6) } ${T_Y.symbol}<br>
 			<br><br>
-			<br><i>Please confirm this tx in your wallet.<i>
+			<br><i>Please confirm this tx in your wallet.</i>
 		`);
-		txh = await R.addLiquidity({"tokenX": T_X.address, "tokenY": T_Y.address, "binStep": BUCKET, "amountX": BigInt(_ops), "amountY": 0, "amountXMin": BigInt(Math.floor(_ops*SLIPBPS/1e4)), "amountYMin": 0, "activeIdDesired": _bId, "idSlippage": 0, "deltaIds": [0], "distributionX": [BigInt(1e18)], "distributionY": [BigInt(1e18)], "to": window.ethereum.selectedAddress, "refundTo": window.ethereum.selectedAddress, "deadline": Math.floor(Date.now()/999.999) });
+		txh = await R.addLiquidity({"tokenX": T_X.address, "tokenY": T_Y.address, "binStep": BUCKET, "amountX": BigInt(_ops), "amountY": 0, "amountXMin": BigInt(Math.floor(_ops*SLIPBPS/1e4)), "amountYMin": 0, "activeIdDesired": _op_ubb[2], "idSlippage": 0, "deltaIds": [_bId - _op_ubb], "distributionX": [BigInt(1e18)], "distributionY": [BigInt(1e18)], "to": window.ethereum.selectedAddress, "refundTo": window.ethereum.selectedAddress, "deadline": Math.floor(Date.now()/999.999) });
 		notice(`
 			<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}"> Approving EⅢ Position Manager</h2>
 			<b>Awaiting confirmation from the network . . ..</b>
@@ -696,6 +698,7 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 	}
 
 	if(_prx==0 && _pry >0) { //Purchase order
+		notice(`Validating your Purchase Order...<br><br>Please wait.`);
 
 		_ops = _ops * 10**T_X.decimals;
 		_op_ubb = await Promise.all([
@@ -714,7 +717,7 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 				<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}"> Approve ${T_X.symbol} for Trade</h2>
 				E3 Engine needs your approval to open a new ${$('op_'+_bId).value} ${T_X.symbol} position.
 				<br><br>
-				<br><i>Please confirm this tx in your wallet.<i>
+				<br><i>Please confirm this tx in your wallet.</i>
 			`);
 			txh = await _T_Y.approve(ROUTER.address, _ops);
 			notice(`
@@ -738,9 +741,9 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 			Price: ${_price.toFixed(6)} ${T_X.symbol}<br>
 			Size: ${ ($('op_'+_bId).value/_price).toFixed(6) } ${T_X.symbol}<br>
 			<br><br>
-			<br><i>Please confirm this tx in your wallet.<i>
+			<br><i>Please confirm this tx in your wallet.</i>
 		`);
-		txh = await R.addLiquidity({"tokenX": T_X.address, "tokenY": T_Y.address, "binStep": BUCKET, "amountX": 0, "amountY": BigInt(_ops), "amountXMin": 0, "amountYMin": BigInt(Math.floor(_ops*SLIPBPS/1e4)), "activeIdDesired": _bId, "idSlippage": 0, "deltaIds": [0], "distributionX": [BigInt(1e18)], "distributionY": [BigInt(1e18)], "to": window.ethereum.selectedAddress, "refundTo": window.ethereum.selectedAddress, "deadline": Math.floor(Date.now()/999.999) });
+		txh = await R.addLiquidity({"tokenX": T_X.address, "tokenY": T_Y.address, "binStep": BUCKET, "amountX": 0, "amountY": BigInt(_ops), "amountXMin": 0, "amountYMin": BigInt(Math.floor(_ops*SLIPBPS/1e4)), "activeIdDesired": _op_ubb[2], "idSlippage": 0, "deltaIds": [_bId - _op_ubb], "distributionX": [BigInt(1e18)], "distributionY": [BigInt(1e18)], "to": window.ethereum.selectedAddress, "refundTo": window.ethereum.selectedAddress, "deadline": Math.floor(Date.now()/999.999) });
 		notice(`
 			<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}"> Approving EⅢ Position Manager</h2>
 			<b>Awaiting confirmation from the network . . ..</b>
