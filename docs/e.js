@@ -5,6 +5,9 @@ let STATE = {
 	ts: T_X,
 	tb: T_Y
 };
+let CACHE = {
+	oldinp: [,]
+}
 window.addEventListener('load',async function() {
 	console.log("waitin for 3 secs..");
 	$("cw_m").innerHTML = "Connecting.. Please wait."
@@ -363,7 +366,7 @@ async function sell() {
 	txr = await txh.wait();
 	console.log(txr);
 	notice(`
-		<h2>Trade Executed Succesfully</h2>
+		<h2>Trade Executed successfully</h2>
 		Sold <img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"> ${(Number(ain)/10**selldeci).toFixed(selldeci)} ${(dir?T_X:T_Y).symbol}
 		<br>Bought <img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"> ${(Number(sod[1])/10**buydeci).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol}.
 		<br>
@@ -514,7 +517,7 @@ async function paintBook() {
 			)
 		;
 
-		_oldinp = $('op_'+rd[0][i]) == null ? '' : $('op_'+rd[0][i]).value;
+		_oldinp = CACHE.oldinp[0] == rd[0][i] ? CACHE.oldinp[1] : '';
 
 		//_qt =
 
@@ -611,7 +614,7 @@ async function closePositionAt(_bId,_upx,_upy,_upl) {
 	txr = await txh.wait();
 
 	notice(`
-		<h2>Position Closed Succesfully</h2>
+		<h2>Position Closed successfully</h2>
 		<h4 align="center"><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
 		<br><br>
 		EⅢ is glad to have served you. Best of luck for your next trade!
@@ -620,8 +623,9 @@ async function closePositionAt(_bId,_upx,_upy,_upl) {
 }
 
 async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
-	let _ops = $('op'+_bId).value;
+	let _ops = $('op_'+_bId).value;
 	if(!isFinite(_ps)) { notice(`<h3>Invalid input amount!</h3><br>Please check the number and try again.`); return}
+	CACHE.oldinp = [_bId, _ops];
 
 	_POOL = new ethers.Contract(POOLADDR,PAIRABI,signer);
 	_T_X = new ethers.Contract(T_X.address, ["function balanceOf(address) public view returns(uint256)","function allowance(address,address) public view returns(uint256)","function approve(address,uint256)"], signer);
@@ -639,12 +643,12 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 		]);
 		//_prx = _op_ubb[2][0];
 		//_pry = _op_ubb[2][1];
-		if( _op_ubb[0] < _ops ) { notice(`<h3>Insufficient Balance!</h3><br>Desired: ${$('op'+_bId).value} ${T_X.symbol}<br>Available: ${op_ubb[2][0]/10**T_X.decimals} ${T_X.symbol}`); return};
+		if( _op_ubb[0] < _ops ) { notice(`<h3>Insufficient Balance!</h3><br>Desired: ${$('op_'+_bId).value} ${T_X.symbol}<br>Available: ${op_ubb[2][0]/10**T_X.decimals} ${T_X.symbol}`); return};
 
 		if(Number(_op_ubb[1]) < Number(_op_ubb[0])) {
 			notice(`
 				<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}"> Approve ${T_X.symbol} for Trade</h2>
-				E3 Engine needs your approval to open a new ${$('op'+_bId).value} ${T_X.symbol} position.
+				E3 Engine needs your approval to open a new ${$('op_'+_bId).value} ${T_X.symbol} position.
 				<br><br>
 				<br><i>Please confirm this tx in your wallet.<i>
 			`);
@@ -666,9 +670,9 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 		notice(`
 			<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}"> New Limit Order</h2>
 			<h4>Selling ${T_X.symbol} for ${T_Y.symbol}
-			Quantity: ${$('op'+_bId).value} ${T_X.symbol} position<br>
+			Quantity: ${$('op_'+_bId).value} ${T_X.symbol} position<br>
 			Price: ${_price.toFixed(6)} ${T_Y.symbol}<br>
-			Size: ${ ($('op'+_bId).value/_price).toFixed(6) } ${T_Y.symbol}<br>
+			Size: ${ ($('op_'+_bId).value/_price).toFixed(6) } ${T_Y.symbol}<br>
 			<br><br>
 			<br><i>Please confirm this tx in your wallet.<i>
 		`);
@@ -683,9 +687,9 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 		notice(`
 			<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}">New Position Opened</h2>
 			<h4>Selling ${T_X.symbol} for ${T_Y.symbol}
-			Quantity: ${$('op'+_bId).value} ${T_X.symbol} position<br>
+			Quantity: ${$('op_'+_bId).value} ${T_X.symbol} position<br>
 			Price: ${_price.toFixed(6)} ${T_Y.symbol}<br>
-			Size: ${ ($('op'+_bId).value/_price).toFixed(6) } ${T_Y.symbol}<br>
+			Size: ${ ($('op_'+_bId).value/_price).toFixed(6) } ${T_Y.symbol}<br>
 			<h4 align="center"><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
 	}
@@ -702,12 +706,12 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 		]);
 		//_prx = _op_ubb[2][0];
 		//_pry = _op_ubb[2][1];
-		if( _op_ubb[0] < _ops ) { notice(`<h3>Insufficient Balance!</h3><br>Desired: ${$('op'+_bId).value} ${T_Y.symbol}<br>Available: ${op_ubb[2][0]/10**T_Y.decimals} ${T_Y.symbol}`); return};
+		if( _op_ubb[0] < _ops ) { notice(`<h3>Insufficient Balance!</h3><br>Desired: ${$('op_'+_bId).value} ${T_Y.symbol}<br>Available: ${op_ubb[2][0]/10**T_Y.decimals} ${T_Y.symbol}`); return};
 
 		if(Number(_op_ubb[1]) < Number(_op_ubb[0])) {
 			notice(`
 				<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}"> Approve ${T_X.symbol} for Trade</h2>
-				E3 Engine needs your approval to open a new ${$('op'+_bId).value} ${T_X.symbol} position.
+				E3 Engine needs your approval to open a new ${$('op_'+_bId).value} ${T_X.symbol} position.
 				<br><br>
 				<br><i>Please confirm this tx in your wallet.<i>
 			`);
@@ -729,9 +733,9 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 		notice(`
 			<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}"> New Limit Order</h2>
 			<h4>Selling ${T_Y.symbol} for ${T_X.symbol}
-			Quantity: ${$('op'+_bId).value} ${T_Y.symbol} position<br>
+			Quantity: ${$('op_'+_bId).value} ${T_Y.symbol} position<br>
 			Price: ${_price.toFixed(6)} ${T_X.symbol}<br>
-			Size: ${ ($('op'+_bId).value/_price).toFixed(6) } ${T_X.symbol}<br>
+			Size: ${ ($('op_'+_bId).value/_price).toFixed(6) } ${T_X.symbol}<br>
 			<br><br>
 			<br><i>Please confirm this tx in your wallet.<i>
 		`);
@@ -746,9 +750,9 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 		notice(`
 			<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}">New Position Opened</h2>
 			<h4>Purchasing ${T_X.symbol} for ${T_Y.symbol}
-			Quantity: ${$('op'+_bId).value/price} ${T_X.symbol} position<br>
+			Quantity: ${$('op_'+_bId).value/price} ${T_X.symbol} position<br>
 			Price: ${_price.toFixed(6)} ${T_Y.symbol}<br>
-			Size: ${ ($('op'+_bId).value).toFixed(6) } ${T_Y.symbol}<br>
+			Size: ${ ($('op_'+_bId).value).toFixed(6) } ${T_Y.symbol}<br>
 			<h4 align="center"><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
 	}
