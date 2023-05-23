@@ -213,7 +213,7 @@ function arf(){
 				try { if( ethers.utils.isAddress(window.ethereum.selectedAddress) ) {gubs();} }
 				catch(e) { console.log('No web3 wallet found!'); }
 			}
-			if(c%50==0){paintBook()}
+			if(c%40==0){paintBook()}
 			o = $('amount-sold-input').value;
 			t = STATE.ts.address;
 			c++
@@ -283,7 +283,7 @@ async function priceFinder() {
 
 
 async function sell() {
-	let R = new ethers.Contract(ROUTER.address, ROUTER.ABI, signer);
+	R = new ethers.Contract(ROUTER.address, ROUTER.ABI, signer);
 	let _nam = STATE.ts.address;
 	let dir = T_X.address == _nam ? true : false;
 	let selldeci = ( dir ? T_X.decimals : T_Y.decimals);
@@ -514,6 +514,8 @@ async function paintBook() {
 			)
 		;
 
+		_oldinp = $('op_'+rd[0][i]) == null ? '' : $('op_'+rd[0][i]).value;
+
 		//_qt =
 
 
@@ -523,7 +525,7 @@ async function paintBook() {
 				<div>${(_pl/_p).toFixed(4)}</div>
 				<div>${_pl.toFixed(4)}</div>
 				<div>${_up}</div>
-				<div><input placeholder="0.00"> <button onclick="openPositionAt(${rd[0][i]})"><img src="img/check.svg"></button></div>
+				<div><input placeholder="0.00" id="op_${rd[0][i]}" value="${ _oldinp }"> <button onclick="openPositionAt(${rd[0][i]},${rd[1][i]},${rd[2][i]},${rd[3][i]},${rd[4][i]},${rd[5][i]},${rd[6][i]})"><img src="img/check.svg"></button></div>
 			</div>
 		` + $("OBA").innerHTML;
 	}
@@ -537,8 +539,8 @@ async function closePositionAt(_bId,_upx,_upy,_upl) {
 	notice(`
 		<h3>Closing Old Position</h3>
 		Limit Price: ${(1+BUCKET/1e4) ** (_bId - BUCK_1) * 10**(POOLID==0?6:12)} ${T_Y.symbol}S<br>
-		Ask Amount: ${_upx/10**T_X.decimals} ${T_X.symbol} <br>
-		Bid Amount: ${_upy/10**T_Y.decimals} ${T_Y.symbol}<br>
+		Ask: ${_upx/10**T_X.decimals} ${T_X.symbol} <br>
+		Bid: ${_upy/10**T_Y.decimals} ${T_Y.symbol}<br>
 		Net Position: ${_upl/10**T_Y.decimals} ${T_Y.symbol}<br>
 	`);
 
@@ -552,8 +554,8 @@ async function closePositionAt(_bId,_upx,_upy,_upl) {
 		notice(`
 			<h3>Position Closed</h3>
 			Limit Price: ${(1+BUCKET/1e4) ** (_bId - BUCK_1) * 10**(POOLID==0?6:12)} ${T_Y.symbol}S<br>
-			Ask Amount: ${_upx/10**T_X.decimals} ${T_X.symbol} <br>
-			Bid Amount: ${_upy/10**T_Y.decimals} ${T_Y.symbol}<br>
+			Ask: ${_upx/10**T_X.decimals} ${T_X.symbol} <br>
+			Bid: ${_upy/10**T_Y.decimals} ${T_Y.symbol}<br>
 			Net Position: ${_upl/10**T_Y.decimals} ${T_Y.symbol}<br>
 			<br>
 			This position was closed.
@@ -585,15 +587,16 @@ async function closePositionAt(_bId,_upx,_upy,_upl) {
 	notice(`
 		<h3>Closing your Position</h3>
 		Limit Price: ${(1+BUCKET/1e4) ** (_bId - BUCK_1) * 10**(POOLID==0?6:12)} ${T_Y.symbol}S<br>
-		Ask Amount: ${_upx/10**T_X.decimals} ${T_X.symbol}<br>
-		Bid Amount: ${_upy/10**T_Y.decimals} ${T_Y.symbol}<br>
+		Ask: ${_upx/10**T_X.decimals} ${T_X.symbol}<br>
+		Bid: ${_upy/10**T_Y.decimals} ${T_Y.symbol}<br>
 		Net Position: ${_upl/10**T_Y.decimals} ${T_Y.symbol}<br><br>
-		Slippage Tolerance: ±0.1%
-		Ask Amount: ${_upx/10**T_X.decimals*SLIPBPS/1e4} ${T_X.symbol}<br>
-		Bid Amount: ${_upy/10**T_Y.decimals*SLIPBPS/1e4} ${T_Y.symbol}<br>
+		Slippage Tolerance: ±0.1%<br>
+		Ask: ${_upx/10**T_X.decimals*SLIPBPS/1e4} ${T_X.symbol}<br>
+		Bid: ${_upy/10**T_Y.decimals*SLIPBPS/1e4} ${T_Y.symbol}<br>
 		<br><br>
 		<b>Please approve the this transaction in your wallet..</b>
 	`);
+	R = new ethers.Contract(ROUTER.address, ROUTER.ABI, signer);
 	txh = await R.removeLiquidity(
 		T_X.address, T_Y.address, BUCKET,
 		BigInt(Math.floor(_upx/10**T_X.decimals*SLIPBPS/1e4)), BigInt(Math.floor(_upy/10**T_Y.decimals*SLIPBPS/1e4)),
@@ -609,15 +612,145 @@ async function closePositionAt(_bId,_upx,_upy,_upl) {
 
 	notice(`
 		<h2>Position Closed Succesfully</h2>
-		<br>
-		<h4><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
+		<h4 align="center"><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
+		<br><br>
+		EⅢ is glad to have served you. Best of luck for your next trade!
 	`);
 
 }
 
-async function openPositionAt(_bId,) {
-	notice(`
-		<h3>Opening New Position</h3>
-		Limit Price: ${(1+BUCKET/1e4) ** (_bId - BUCK_1) * 10**(POOLID==0?6:12)}
-	`);
+async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
+	let _ops = $('op'+_bId).value;
+	if(!isFinite(_ps)) { notice(`<h3>Invalid input amount!</h3><br>Please check the number and try again.`); return}
+
+	_POOL = new ethers.Contract(POOLADDR,PAIRABI,signer);
+	_T_X = new ethers.Contract(T_X.address, ["function balanceOf(address) public view returns(uint256)","function allowance(address,address) public view returns(uint256)","function approve(address,uint256)"], signer);
+	_T_Y = new ethers.Contract(T_Y.address, ["function balanceOf(address) public view returns(uint256)","function allowance(address,address) public view returns(uint256)","function approve(address,uint256)"], signer);
+
+	if(_prx>0 && _pry ==0) { //Sale order
+
+		_ops = _ops * 10**T_X.decimals;
+		_op_ubb = await Promise.all([
+			_T_X.balanceOf(window.ethereum.selectedAddress),
+			//gubs_ty.balanceOf(window.ethereum.selectedAddress),
+			//_POOL.getBin(_bId),
+			_T_X.allowance(window.ethereum.selectedAddress, ROUTER.address),
+			//gubs_ty.allowance(window.ethereum.selectedAddress, ROUTER.address),
+		]);
+		//_prx = _op_ubb[2][0];
+		//_pry = _op_ubb[2][1];
+		if( _op_ubb[0] < _ops ) { notice(`<h3>Insufficient Balance!</h3><br>Desired: ${$('op'+_bId).value} ${T_X.symbol}<br>Available: ${op_ubb[2][0]/10**T_X.decimals} ${T_X.symbol}`); return};
+
+		if(Number(_op_ubb[1]) < Number(_op_ubb[0])) {
+			notice(`
+				<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}"> Approve ${T_X.symbol} for Trade</h2>
+				E3 Engine needs your approval to open a new ${$('op'+_bId).value} ${T_X.symbol} position.
+				<br><br>
+				<br><i>Please confirm this tx in your wallet.<i>
+			`);
+			txh = await _T_X.approve(ROUTER.address, _ops);
+			notice(`
+				<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}"> Approving EⅢ Position Manager</h2>
+				<b>Awaiting confirmation from the network . . ..</b>
+				<br><br><i>Please wait.</i>
+			`);
+			txr = await txh.wait();
+			notice(`
+				<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}"> Approval Granted</h2>
+				<br>Starting Order Creation...
+			`);
+		}
+
+		R = new ethers.Contract(ROUTER.address, ROUTER.ABI, signer);
+		let _price = (1+BUCKET/1e4) ** (_bId - BUCK_1) * 10**(POOLID==0?0:12);
+		notice(`
+			<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}"> New Limit Order</h2>
+			<h4>Selling ${T_X.symbol} for ${T_Y.symbol}
+			Quantity: ${$('op'+_bId).value} ${T_X.symbol} position<br>
+			Price: ${_price.toFixed(6)} ${T_Y.symbol}<br>
+			Size: ${ ($('op'+_bId).value/_price).toFixed(6) } ${T_Y.symbol}<br>
+			<br><br>
+			<br><i>Please confirm this tx in your wallet.<i>
+		`);
+		txh = await R.addLiquidity({"tokenX": T_X.address, "tokenY": T_Y.address, "binStep": BUCKET, "amountX": BigInt(_ops), "amountY": 0, "amountXMin": BigInt(Math.floor(_ops*SLIPBPS/1e4)), "amountYMin": 0, "activeIdDesired": _bId, "idSlippage": 0, "deltaIds": [0], "distributionX": [BigInt(1e18)], "distributionY": [BigInt(1e18)], "to": window.ethereum.selectedAddress, "refundTo": window.ethereum.selectedAddress, "deadline": Math.floor(Date.now()/999.999) });
+		notice(`
+			<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}"> Approving EⅢ Position Manager</h2>
+			<b>Awaiting confirmation from the network . . ..</b>
+			<br><br><i>Please wait.</i>
+			<h4 align="center"><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
+		`);
+		txr = await txh.wait();
+		notice(`
+			<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}">New Position Opened</h2>
+			<h4>Selling ${T_X.symbol} for ${T_Y.symbol}
+			Quantity: ${$('op'+_bId).value} ${T_X.symbol} position<br>
+			Price: ${_price.toFixed(6)} ${T_Y.symbol}<br>
+			Size: ${ ($('op'+_bId).value/_price).toFixed(6) } ${T_Y.symbol}<br>
+			<h4 align="center"><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
+		`);
+	}
+
+	if(_prx==0 && _pry >0) { //Purchase order
+
+		_ops = _ops * 10**T_X.decimals;
+		_op_ubb = await Promise.all([
+			_T_Y.balanceOf(window.ethereum.selectedAddress),
+			//gubs_ty.balanceOf(window.ethereum.selectedAddress),
+			//_POOL.getBin(_bId),
+			_T_Y.allowance(window.ethereum.selectedAddress, ROUTER.address),
+			//gubs_ty.allowance(window.ethereum.selectedAddress, ROUTER.address),
+		]);
+		//_prx = _op_ubb[2][0];
+		//_pry = _op_ubb[2][1];
+		if( _op_ubb[0] < _ops ) { notice(`<h3>Insufficient Balance!</h3><br>Desired: ${$('op'+_bId).value} ${T_Y.symbol}<br>Available: ${op_ubb[2][0]/10**T_Y.decimals} ${T_Y.symbol}`); return};
+
+		if(Number(_op_ubb[1]) < Number(_op_ubb[0])) {
+			notice(`
+				<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}"> Approve ${T_X.symbol} for Trade</h2>
+				E3 Engine needs your approval to open a new ${$('op'+_bId).value} ${T_X.symbol} position.
+				<br><br>
+				<br><i>Please confirm this tx in your wallet.<i>
+			`);
+			txh = await _T_Y.approve(ROUTER.address, _ops);
+			notice(`
+				<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}"> Approving EⅢ Position Manager</h2>
+				<b>Awaiting confirmation from the network . . ..</b>
+				<br><br><i>Please wait.</i>
+			`);
+			txr = await txh.wait();
+			notice(`
+				<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}"> Approval Granted</h2>
+				<br>Starting Order Creation...
+			`);
+		}
+
+		R = new ethers.Contract(ROUTER.address, ROUTER.ABI, signer);
+		let _price = (1+BUCKET/1e4) ** (_bId - BUCK_1) * 10**(POOLID==0?0:12);
+		notice(`
+			<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}"> New Limit Order</h2>
+			<h4>Selling ${T_Y.symbol} for ${T_X.symbol}
+			Quantity: ${$('op'+_bId).value} ${T_Y.symbol} position<br>
+			Price: ${_price.toFixed(6)} ${T_X.symbol}<br>
+			Size: ${ ($('op'+_bId).value/_price).toFixed(6) } ${T_X.symbol}<br>
+			<br><br>
+			<br><i>Please confirm this tx in your wallet.<i>
+		`);
+		txh = await R.addLiquidity({"tokenX": T_X.address, "tokenY": T_Y.address, "binStep": BUCKET, "amountX": 0, "amountY": BigInt(_ops), "amountXMin": 0, "amountYMin": BigInt(Math.floor(_ops*SLIPBPS/1e4)), "activeIdDesired": _bId, "idSlippage": 0, "deltaIds": [0], "distributionX": [BigInt(1e18)], "distributionY": [BigInt(1e18)], "to": window.ethereum.selectedAddress, "refundTo": window.ethereum.selectedAddress, "deadline": Math.floor(Date.now()/999.999) });
+		notice(`
+			<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}"> Approving EⅢ Position Manager</h2>
+			<b>Awaiting confirmation from the network . . ..</b>
+			<br><br><i>Please wait.</i>
+			<h4 align="center"><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
+		`);
+		txr = await txh.wait();
+		notice(`
+			<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}">New Position Opened</h2>
+			<h4>Purchasing ${T_X.symbol} for ${T_Y.symbol}
+			Quantity: ${$('op'+_bId).value/price} ${T_X.symbol} position<br>
+			Price: ${_price.toFixed(6)} ${T_Y.symbol}<br>
+			Size: ${ ($('op'+_bId).value).toFixed(6) } ${T_Y.symbol}<br>
+			<h4 align="center"><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
+		`);
+	}
+
 }
