@@ -674,7 +674,7 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 		notice(`
 			<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}"> New Limit Order</h2>
 			<h4>Selling ${T_X.symbol} for ${T_Y.symbol}</h4>
-			Quantity: ${$('op_'+_bId).value} ${T_X.symbol} position<br>
+			Quantity: ${$('op_'+_bId).value} ${T_X.symbol}<br>
 			Price: ${_price.toFixed(6)} ${T_Y.symbol}<br>
 			Size: ${ ($('op_'+_bId).value/_price).toFixed(6) } ${T_Y.symbol}<br>
 			<br><br>
@@ -760,7 +760,7 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 		notice(`
 			<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}">New Position Opened</h2>
 			<h4>Purchasing ${T_X.symbol} for ${T_Y.symbol}
-			Quantity: ${$('op_'+_bId).value/price} ${T_X.symbol} position<br>
+			Quantity: ${$('op_'+_bId).value/_price} ${T_X.symbol}<br>
 			Price: ${_price.toFixed(6)} ${T_Y.symbol}<br>
 			Size: ${ ($('op_'+_bId).value).toFixed(6) } ${T_Y.symbol}<br>
 			<h4 align="center"><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
