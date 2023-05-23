@@ -211,17 +211,17 @@ function arf(){
 			//if($('ain').value == "" ) { $('ain').value=INITIAL }
 			if(o != $('amount-sold-input').value){priceFinder()}
 			if(t != STATE.ts.address){priceFinder()}
-			if(c%20==0){priceFinder()}
-			if(c%30==0){
+			if(c%15==0){priceFinder()}
+			if(c%20==0){
 				try { if( ethers.utils.isAddress(window.ethereum.selectedAddress) ) {gubs();} }
 				catch(e) { console.log('No web3 wallet found!'); }
 			}
-			if(c%40==0){paintBook()}
+			if(c%25==0){paintBook()}
 			o = $('amount-sold-input').value;
 			t = STATE.ts.address;
 			c++
 		},
-		500
+		750
 	)
 }
 
@@ -280,7 +280,7 @@ async function priceFinder() {
 	//$("amount-sold-input").value = ((Number(ain)-Number(sod[0]))/10**selldeci).toFixed(selldeci);
 	let aout = (Number(sod[1])/10**buydeci).toFixed(buydeci);
 	$("amount-bought-input").value = aout;
-	console.log([ain, Number(sod[1]), Date.now()])
+	//console.log([ain, Number(sod[1]), Date.now()])
 	//set slippage
 }
 
@@ -647,7 +647,7 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 		]);
 		//_prx = _op_ubb[2][0];
 		//_pry = _op_ubb[2][1];
-		if( _op_ubb[0] < _ops ) { notice(`<h3>Insufficient Balance!</h3><br>Desired: ${$('op_'+_bId).value} ${T_X.symbol}<br>Available: ${op_ubb[2]/10**T_X.decimals} ${T_X.symbol}`); return};
+		if( _op_ubb[0] < _ops ) { notice(`<h3>Insufficient Balance!</h3><br>Desired: ${$('op_'+_bId).value} ${T_X.symbol}<br>Available: ${_op_ubb[2]/10**T_X.decimals} ${T_X.symbol}`); return};
 
 		if(Number(_op_ubb[1]) < Number(_op_ubb[0])) {
 			notice(`
@@ -714,7 +714,7 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 		]);
 		//_prx = _op_ubb[2][0];
 		//_pry = _op_ubb[2][1];
-		if( _op_ubb[0] < _ops ) { notice(`<h3>Insufficient Balance!</h3><br>Desired: ${$('op_'+_bId).value} ${T_Y.symbol}<br>Available: ${op_ubb[2]/10**T_Y.decimals} ${T_Y.symbol}`); return};
+		if( _op_ubb[0] < _ops ) { notice(`<h3>Insufficient Balance!</h3><br>Desired: ${$('op_'+_bId).value} ${T_Y.symbol}<br>Available: ${_op_ubb[2]/10**T_Y.decimals} ${T_Y.symbol}`); return};
 
 		if(Number(_op_ubb[1]) < Number(_op_ubb[0])) {
 			notice(`
@@ -766,5 +766,7 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 			<h4 align="center"><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
 	}
+
+	await paintBook();
 
 }
