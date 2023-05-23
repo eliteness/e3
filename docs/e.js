@@ -9,6 +9,7 @@ window.addEventListener('load',async function() {
 	console.log("waitin for 3 secs..");
 	$("cw_m").innerHTML = "Connecting.. Please wait."
 	setTimeout(async () => { await basetrip(); }, 3000);
+	paintBook();
 	arf();
 }, false);
 
@@ -543,8 +544,8 @@ async function closePositionAt(_bId,_upx,_upy,_upl) {
 
 	_POOL = new ethers.Contract(POOLADDR,PAIRABI,signer);
 	_ulpal = await Promise.all([
-		(_POOL).balanceOf(window.ethereum.selectedAddress,_bId)
-		(_POOL).isApprovedForAll(window.ethereum.selectedAddress,ROUTER.address)
+		_POOL.balanceOf(window.ethereum.selectedAddress,_bId),
+		_POOL.isApprovedForAll(window.ethereum.selectedAddress,ROUTER.address)
 	]);
 
 	if( Number(_ulpal[0]) == 0) {
