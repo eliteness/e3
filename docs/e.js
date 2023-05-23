@@ -626,6 +626,7 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 	console.log("openPositionAt",_bId,_ubx,_uby,_ubl,_prx,_pry,_prl);
 	let _ops = $('op_'+_bId).value;
 	if(!isFinite(_ops)) { notice(`<h3>Invalid input amount!</h3><br>Please check the number and try again.`); return}
+	_ops = Number(_ops);
 	CACHE.oldinp = [_bId, _ops];
 
 	_POOL = new ethers.Contract(POOLADDR,PAIRABI,signer);
@@ -672,14 +673,16 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 		let _price = (1+BUCKET/1e4) ** (_bId - BUCK_1) * 10**(POOLID==0?0:12);
 		notice(`
 			<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}"> New Limit Order</h2>
-			<h4>Selling ${T_X.symbol} for ${T_Y.symbol}
+			<h4>Selling ${T_X.symbol} for ${T_Y.symbol}</h4>
 			Quantity: ${$('op_'+_bId).value} ${T_X.symbol} position<br>
 			Price: ${_price.toFixed(6)} ${T_Y.symbol}<br>
 			Size: ${ ($('op_'+_bId).value/_price).toFixed(6) } ${T_Y.symbol}<br>
 			<br><br>
 			<br><i>Please confirm this tx in your wallet.</i>
 		`);
-		txh = await R.addLiquidity({"tokenX": T_X.address, "tokenY": T_Y.address, "binStep": BUCKET, "amountX": BigInt(_ops), "amountY": 0, "amountXMin": BigInt(Math.floor(_ops*SLIPBPS/1e4)), "amountYMin": 0, "activeIdDesired": _op_ubb[2], "idSlippage": 0, "deltaIds": [_bId - _op_ubb], "distributionX": [BigInt(1e18)], "distributionY": [BigInt(1e18)], "to": window.ethereum.selectedAddress, "refundTo": window.ethereum.selectedAddress, "deadline": Math.floor(Date.now()/999.999) });
+		let _op_obj = {"tokenX": T_X.address, "tokenY": T_Y.address, "binStep": BUCKET, "amountX": BigInt(_ops), "amountY": 0, "amountXMin": BigInt(Math.floor(_ops*SLIPBPS/1e4)), "amountYMin": 0, "activeIdDesired": _op_ubb[2], "idSlippage": 0, "deltaIds": [_bId - _op_ubb], "distributionX": [BigInt(1e18)], "distributionY": [BigInt(1e18)], "to": window.ethereum.selectedAddress, "refundTo": window.ethereum.selectedAddress, "deadline": Math.floor(Date.now()/999.999) };
+		console.log("_op_obj",_op_obj);
+		txh = await R.addLiquidity(_op_obj);
 		notice(`
 			<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}"> Approving EⅢ Position Manager</h2>
 			<b>Awaiting confirmation from the network . . ..</b>
@@ -737,7 +740,7 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 		let _price = (1+BUCKET/1e4) ** (_bId - BUCK_1) * 10**(POOLID==0?0:12);
 		notice(`
 			<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}"> New Limit Order</h2>
-			<h4>Selling ${T_Y.symbol} for ${T_X.symbol}
+			<h4>Selling ${T_Y.symbol} for ${T_X.symbol}</h4>
 			Quantity: ${$('op_'+_bId).value} ${T_Y.symbol} position<br>
 			Price: ${_price.toFixed(6)} ${T_X.symbol}<br>
 			Size: ${ ($('op_'+_bId).value/_price).toFixed(6) } ${T_X.symbol}<br>
