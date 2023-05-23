@@ -684,7 +684,7 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 		console.log("_op_obj",_op_obj);
 		txh = await R.addLiquidity(_op_obj);
 		notice(`
-			<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}"> Approving EⅢ Position Manager</h2>
+			<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}">Opening new Sale position</h2>
 			<b>Awaiting confirmation from the network . . ..</b>
 			<br><br><i>Please wait.</i>
 			<h4 align="center"><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
@@ -725,7 +725,7 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 			`);
 			txh = await _T_Y.approve(ROUTER.address, _ops);
 			notice(`
-				<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}"> Approving EⅢ Position Manager</h2>
+				<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}">Opening new Purchase Position</h2>
 				<b>Awaiting confirmation from the network . . ..</b>
 				<br><br><i>Please wait.</i>
 			`);
