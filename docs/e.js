@@ -692,8 +692,8 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 		txr = await txh.wait();
 		notice(`
 			<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}">New Position Opened</h2>
-			<h4>Selling ${T_X.symbol} for ${T_Y.symbol}
-			Quantity: ${$('op_'+_bId).value} ${T_X.symbol} position<br>
+			<h4>Selling ${T_X.symbol} for ${T_Y.symbol}</h4>
+			Quantity: ${$('op_'+_bId).value} ${T_X.symbol}<br>
 			Price: ${_price.toFixed(6)} ${T_Y.symbol}<br>
 			Size: ${ ($('op_'+_bId).value/_price).toFixed(6) } ${T_Y.symbol}<br>
 			<h4 align="center"><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
@@ -703,7 +703,7 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 	if(_prx==0 && _pry >0) { //Purchase order
 		notice(`Validating your Purchase Order...<br><br>Please wait.`);
 
-		_ops = _ops * 10**T_X.decimals;
+		_ops = _ops * 10**T_Y.decimals;
 		_op_ubb = await Promise.all([
 			_T_Y.balanceOf(window.ethereum.selectedAddress),
 			//gubs_ty.balanceOf(window.ethereum.selectedAddress),
@@ -741,7 +741,7 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 		notice(`
 			<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}"> New Limit Order</h2>
 			<h4>Selling ${T_Y.symbol} for ${T_X.symbol}</h4>
-			Quantity: ${$('op_'+_bId).value} ${T_Y.symbol} position<br>
+			Quantity: ${$('op_'+_bId).value} ${T_Y.symbol}<br>
 			Price: ${_price.toFixed(6)} ${T_X.symbol}<br>
 			Size: ${ ($('op_'+_bId).value/_price).toFixed(6) } ${T_X.symbol}<br>
 			<br><br>
