@@ -623,8 +623,9 @@ async function closePositionAt(_bId,_upx,_upy,_upl) {
 }
 
 async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
+	console.log("openPositionAt",_bId,_ubx,_uby,_ubl,_prx,_pry,_prl);
 	let _ops = $('op_'+_bId).value;
-	if(!isFinite(_ps)) { notice(`<h3>Invalid input amount!</h3><br>Please check the number and try again.`); return}
+	if(!isFinite(_ops)) { notice(`<h3>Invalid input amount!</h3><br>Please check the number and try again.`); return}
 	CACHE.oldinp = [_bId, _ops];
 
 	_POOL = new ethers.Contract(POOLADDR,PAIRABI,signer);
