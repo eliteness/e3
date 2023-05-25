@@ -647,12 +647,12 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 		]);
 		//_prx = _op_ubb[2][0];
 		//_pry = _op_ubb[2][1];
-		if( _op_ubb[0] < _ops ) { notice(`<h3>Insufficient Balance!</h3><br>Desired: ${$('op_'+_bId).value} ${T_X.symbol}<br>Available: ${_op_ubb[2]/10**T_X.decimals} ${T_X.symbol}`); return};
+		if( _op_ubb[0] < _ops ) { notice(`<h3>Insufficient Balance!</h3><br>Desired: ${(_ops / 10**T_Y.decimals).toFixed(6)} ${T_X.symbol}<br>Available: ${_op_ubb[2]/10**T_X.decimals} ${T_X.symbol}`); return};
 
 		if(Number(_op_ubb[1]) < Number(_op_ubb[0])) {
 			notice(`
 				<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}"> Approve ${T_X.symbol} for Trade</h2>
-				E3 Engine needs your approval to open a new ${$('op_'+_bId).value} ${T_X.symbol} position.
+				E3 Engine needs your approval to open a new ${(_ops / 10**T_Y.decimals).toFixed(6)} ${T_X.symbol} position.
 				<br><br>
 				<br><i>Please confirm this tx in your wallet.</i>
 			`);
@@ -674,9 +674,9 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 		notice(`
 			<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}"> New Limit Order</h2>
 			<h4>Selling ${T_X.symbol} for ${T_Y.symbol}</h4>
-			Quantity: ${$('op_'+_bId).value} ${T_X.symbol}<br>
+			Quantity: ${(_ops / 10**T_Y.decimals)} ${T_X.symbol}<br>
 			Price: ${_price.toFixed(6)} ${T_Y.symbol}<br>
-			Size: ${ ($('op_'+_bId).value/_price).toFixed(6) } ${T_Y.symbol}<br>
+			Size: ${ ((_ops / 10**T_Y.decimals).toFixed(6)/_price).toFixed(6) } ${T_Y.symbol}<br>
 			<br><br>
 			<br><i>Please confirm this tx in your wallet.</i>
 		`);
@@ -693,9 +693,9 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 		notice(`
 			<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}">New Position Opened</h2>
 			<h4>Selling ${T_X.symbol} for ${T_Y.symbol}</h4>
-			Quantity: ${$('op_'+_bId).value} ${T_X.symbol}<br>
+			Quantity: ${(_ops / 10**T_Y.decimals).toFixed(6)} ${T_X.symbol}<br>
 			Price: ${_price.toFixed(6)} ${T_Y.symbol}<br>
-			Size: ${ ($('op_'+_bId).value/_price).toFixed(6) } ${T_Y.symbol}<br>
+			Size: ${ ((_ops / 10**T_Y.decimals)/_price).toFixed(6) } ${T_Y.symbol}<br>
 			<h4 align="center"><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
 	}
@@ -714,18 +714,18 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 		]);
 		//_prx = _op_ubb[2][0];
 		//_pry = _op_ubb[2][1];
-		if( _op_ubb[0] < _ops ) { notice(`<h3>Insufficient Balance!</h3><br>Desired: ${$('op_'+_bId).value} ${T_Y.symbol}<br>Available: ${_op_ubb[2]/10**T_Y.decimals} ${T_Y.symbol}`); return};
+		if( _op_ubb[0] < _ops ) { notice(`<h3>Insufficient Balance!</h3><br>Desired: ${(_ops / 10**T_Y.decimals).toFixed(6)} ${T_Y.symbol}<br>Available: ${_op_ubb[2]/10**T_Y.decimals} ${T_Y.symbol}`); return};
 
 		if(Number(_op_ubb[1]) < Number(_op_ubb[0])) {
 			notice(`
-				<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}"> Approve ${T_X.symbol} for Trade</h2>
-				E3 Engine needs your approval to open a new ${$('op_'+_bId).value} ${T_X.symbol} position.
+				<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}"> Approve ${T_Y.symbol} for Trade</h2>
+				E3 Engine needs your approval to open a new ${(_ops / 10**T_Y.decimals).toFixed(6)} ${T_Y.symbol} position.
 				<br><br>
 				<br><i>Please confirm this tx in your wallet.</i>
 			`);
 			txh = await _T_Y.approve(ROUTER.address, _ops);
 			notice(`
-				<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}">Opening new Purchase Position</h2>
+				<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}"> Approving EⅢ Position Manager</h2>
 				<b>Awaiting confirmation from the network . . ..</b>
 				<br><br><i>Please wait.</i>
 			`);
@@ -740,10 +740,10 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 		let _price = (1+BUCKET/1e4) ** (_bId - BUCK_1) * 10**(POOLID==0?0:12);
 		notice(`
 			<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}"> New Limit Order</h2>
-			<h4>Selling ${T_Y.symbol} for ${T_X.symbol}</h4>
-			Quantity: ${$('op_'+_bId).value} ${T_Y.symbol}<br>
+			<h4>Purchasing ${T_X.symbol} using ${T_Y.symbol}</h4>
+			Quantity: ${(_ops / 10**T_Y.decimals).toFixed(6)} ${T_Y.symbol}<br>
 			Price: ${_price.toFixed(6)} ${T_X.symbol}<br>
-			Size: ${ ($('op_'+_bId).value/_price).toFixed(6) } ${T_X.symbol}<br>
+			Size: ${ ((_ops / 10**T_Y.decimals)/_price).toFixed(6) } ${T_X.symbol}<br>
 			<br><br>
 			<br><i>Please confirm this tx in your wallet.</i>
 		`);
@@ -760,9 +760,9 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 		notice(`
 			<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}">New Position Opened</h2>
 			<h4>Purchasing ${T_X.symbol} for ${T_Y.symbol}
-			Quantity: ${$('op_'+_bId).value/_price} ${T_X.symbol}<br>
+			Quantity: ${(_ops / 10**T_Y.decimals)/_price} ${T_X.symbol}<br>
 			Price: ${_price.toFixed(6)} ${T_Y.symbol}<br>
-			Size: ${ ($('op_'+_bId).value).toFixed(6) } ${T_Y.symbol}<br>
+			Size: ${ ((_ops / 10**T_Y.decimals).toFixed(6)).toFixed(6) } ${T_Y.symbol}<br>
 			<h4 align="center"><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
 	}
