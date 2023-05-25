@@ -652,7 +652,7 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 		if(Number(_op_ubb[1]) < Number(_op_ubb[0])) {
 			notice(`
 				<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}"> Approve ${T_X.symbol} for Trade</h2>
-				E3 Engine needs your approval to open a new ${(_ops / 10**T_Y.decimals).toFixed(6)} ${T_X.symbol} position.
+				E3 Engine needs your approval to open a new ${(_ops / 10**T_X.decimals).toFixed(6)} ${T_X.symbol} position.
 				<br><br>
 				<br><i>Please confirm this tx in your wallet.</i>
 			`);
