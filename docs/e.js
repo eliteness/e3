@@ -203,25 +203,25 @@ function arf(){
 }
 */
 
-function arf(){
-	let o = INITIAL; let c=0; let t=T_X.address;
+async function arf(){
+	let o = INITIAL; let c=0; let t=T_X.address; let d1=Date.now()
 	var xfr = setInterval(
-		function(){
+		async function(){
 			if(!isFinite($('amount-sold-input').value) ) { return }
 			//if($('ain').value == "" ) { $('ain').value=INITIAL }
-			if(o != $('amount-sold-input').value){priceFinder()}
-			if(t != STATE.ts.address){priceFinder()}
-			if(c%15==0){priceFinder()}
-			if(c%20==0){
-				try { if( ethers.utils.isAddress(window.ethereum.selectedAddress) ) {gubs();} }
+			if(o != $('amount-sold-input').value){await priceFinder()}
+			if(t != STATE.ts.address){await priceFinder()}
+			if(c%8==0){await priceFinder()}
+			if(c%10==0){
+				try { if( ethers.utils.isAddress(window.ethereum.selectedAddress) ) {await gubs();} }
 				catch(e) { console.log('No web3 wallet found!'); }
 			}
-			if(c%25==0){paintBook()}
+			if(c%12==0){await paintBook()}
 			o = $('amount-sold-input').value;
 			t = STATE.ts.address;
-			c++
+			c++;
 		},
-		750
+		1337
 	)
 }
 
