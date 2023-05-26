@@ -656,7 +656,7 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 				<br><br>
 				<br><i>Please confirm this tx in your wallet.</i>
 			`);
-			txh = await _T_X.approve(ROUTER.address, BigInt(Math.floor(_ops))));
+			txh = await _T_X.approve(ROUTER.address, BigInt(Math.floor(_ops)));
 			notice(`
 				<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}"> Approving EⅢ Position Manager</h2>
 				<b>Awaiting confirmation from the network . . ..</b>
