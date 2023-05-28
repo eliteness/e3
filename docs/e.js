@@ -11,7 +11,7 @@ let CACHE = {
 window.addEventListener('load',async function() {
 	console.log("waitin for 3 secs..");
 	$("cw_m").innerHTML = "Connecting.. Please wait."
-	setTimeout(async () => { await basetrip(); }, 3000);
+	setTimeout(async () => { basetrip(); }, 3000);
 	paintBook();
 	arf();
 }, false);
@@ -255,7 +255,7 @@ async function arf(){
 			if(t != STATE.ts.address){/*await*/ priceFinder()}
 			if(c%23==0){/*await*/ priceFinder()}
 			if(c%29==0){
-				try { if( ethers.utils.isAddress(window.ethereum.selectedAddress) ) {await gubs();} }
+				try { if( ethers.utils.isAddress(window.ethereum.selectedAddress) ) {/*await*/ gubs();} }
 				catch(e) { console.log('No web3 wallet found!'); }
 			}
 			if(c%17==0){/*await*/ paintBook()}
