@@ -24,7 +24,7 @@ async function basetrip()
 	//PRE
 	pre_stats();
 	//MAIN
-	if(!(window.ethereum)){$("cw_m").innerHTML = "Wallet wasn't detected!";console.log("Wallet wasn't detected!");notice("<h3>Wallet wasn't detected!</h3>Please make sure that your device and browser have an active Web3 wallet like MetaMask installed and running.<br><br>Visit <a href='https://metamask.io' target='_blank'>metamask.io</a> to install MetaMask wallet.");provider = new ethers.providers.JsonRpcProvider(RPC_URL); await dexstats();paintBook();return}
+	if(!(window.ethereum)){$("cw_m").innerHTML = "Wallet wasn't detected!";console.log("Wallet wasn't detected!");notice("<h3>Wallet wasn't detected!</h3>Please make sure that your device and browser have an active Web3 wallet like MetaMask installed and running.<br><br>Visit <a href='https://metamask.io' target='_blank'>metamask.io</a> to install MetaMask wallet.");provider = new ethers.providers.JsonRpcProvider(RPC_URL); dexstats();paintBook();return}
 	else if(!Number(window.ethereum.chainId)==CHAINID){$("cw_m").innerHTML = "Wrong network! Please Switch to "+CHAINID;provider = new ethers.providers.JsonRpcProvider(RPC_URL);await dexstats();notice("<h3>Wrong network!</h3>Please Switch to Chain #"+CHAINID+"<btr"+ CHAIN_NAME+ "</u> Blockchain.");}
 	else if(//typeOf window.ethereum == Object &&Number(window.ethereum.chainId)
 		Number(window.ethereum.chainId)==CHAINID)
@@ -192,6 +192,48 @@ function fornum2(n,d)
 	else if(_n>1){n_=(_n/1e0).toFixed(8)+""}
 	return(n_);
 }
+
+function sortit(n,_maintable,_trName,_tdName) {
+  var t, r, z, i, x, y, v, b, c = 0;
+  t = document.getElementById(_maintable);//.getElementsByTagName("tbody")[0];
+  z = true;
+  b = "a";
+  while (z) {
+    z = false;
+    r = t.getElementsByClassName(_trName);
+    for (i = 0; i < (r.length - 1); i++) {
+      v = false;
+      x = (r[i].getElementsByTagName(_tdName)[n].textContent)//.replace(/,| |\.|\$|%/g,'');
+      if(isFinite(x)){x=Number(x)}else{x=x.toLowerCase()}
+      y = (r[i + 1].getElementsByTagName(_tdName)[n].textContent)//.replace(/,| |\.|\$|%/g,'');
+      if(isFinite(y)){y=Number(y)}else{y=y.toLowerCase()}
+      if (b == "a") {
+        if ((x) > (y)) {
+          v= true;
+          break;
+        }
+      } else if (b == "d") {
+        if ((x) < (y)) {
+          v = true;
+          break;
+        }
+      }
+    }
+    if (v) {
+      r[i].parentNode.insertBefore(r[i + 1], r[i]);
+      z = true;
+      c ++;
+    } else {
+      if (c == 0 && b == "a") {
+        b = "d";
+        z = true;
+      }
+    }
+  }
+    var t, r, z, i, x, y, v, b, c = 0;
+}
+
+
 /*
 function arf(){
 	var xfr = setInterval(function() {
@@ -501,6 +543,10 @@ async function paintBook() {
 	BL=new ethers.Contract("0x5a054233e59323e7a58f6b7dae86e6992f1f92e2",[{"inputs": [],"name": "LA","outputs": [{"internalType": "contract ILA","name": "","type": "address"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "contract IP","name": "p","type": "address"}],"name": "bucketList","outputs": [{"internalType": "uint24[]","name": "","type": "uint24[]"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint24[]","name": "inp","type": "uint24[]"}],"name": "cast_24_256","outputs": [{"internalType": "uint256[]","name": "","type": "uint256[]"}],"stateMutability": "pure","type": "function"},{"inputs": [{"internalType": "address","name": "user","type": "address"},{"internalType": "address","name": "_pair","type": "address"}],"name": "poolInfo","outputs": [{"internalType": "uint256[]","name": "bIds","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsX","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsY","type": "uint256[]"},{"internalType": "uint256[]","name": "liquidities","type": "uint256[]"},{"internalType": "uint256[]","name": "TamountsX","type": "uint256[]"},{"internalType": "uint256[]","name": "TamountsY","type": "uint256[]"},{"internalType": "uint256[]","name": "Tliquidities","type": "uint256[]"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "address","name": "user","type": "address"},{"internalType": "address","name": "_pair","type": "address"}],"name": "positionOf","outputs": [{"internalType": "uint256[]","name": "bIds","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsX","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsY","type": "uint256[]"},{"internalType": "uint256[]","name": "liquidities","type": "uint256[]"}],"stateMutability": "view","type": "function"}],provider)
 	rd = await BL.poolInfo(ua, POOLADDR);
 	$("OBA").innerHTML = "";
+	$("OBB").innerHTML = "";
+	$("OBAB").innerHTML = "";
+	let _tliq = 0;let _tliqMax = 0;
+	for(let i=0;i<rd[0].length;i++){_cliq=Number(rd[6][i])/10**T_Y.decimals;_tliq+=_cliq;_tliqMax=_tliqMax<_cliq?_cliq:_tliqMax;}
 
 	for(let i=0;i<rd[0].length;i++) {
 		//POW(CAST(1.0020 AS DOUBLE),CAST(CAST(AVG(Bucket) AS DOUBLE)-8388608 AS DOUBLE)) * 1e12 as Price;
@@ -525,16 +571,92 @@ async function paintBook() {
 
 		//_qt =
 
+		if(_px!=0 && _py==0) {
+			$("OBA").innerHTML = `
+				<div
+					id="OBR_${rd[0][i]}"
+					class="OBR_A"
+					style="background:linear-gradient(to right, #ff00003f 0 ${_pl/_tliqMax*100}%, #ff000017 0 100%)"
+				>
+					<div>${_p.toFixed(6)}</div>
+					<div>${(_pl/_p).toFixed(4)}</div>
+					<div>${_pl.toFixed(4)}</div>
+					<div>${_up}</div>
+					<div><input placeholder="0.00" id="op_${rd[0][i]}" value="${ _oldinp }"> <button onclick="openPositionAt(${rd[0][i]},${rd[1][i]},${rd[2][i]},${rd[3][i]},${rd[4][i]},${rd[5][i]},${rd[6][i]})"><img src="img/check.svg"></button></div>
+				</div>
+			` + $("OBA").innerHTML;
+		}
 
-		$("OBA").innerHTML = `
-			<div id="${(_px > 0 && _py > 0)?'OBR_AB':''}" class="${(_px > 0)?'OBR_A':''} ${(_py > 0)?'OBR_B':''} ${(_px > 0 && _py > 0)?'OBR_AB':''}">
-				<div>${_p.toFixed(6)}</div>
-				<div>${(_pl/_p).toFixed(4)}</div>
-				<div>${_pl.toFixed(4)}</div>
-				<div>${_up}</div>
-				<div><input placeholder="0.00" id="op_${rd[0][i]}" value="${ _oldinp }"> <button onclick="openPositionAt(${rd[0][i]},${rd[1][i]},${rd[2][i]},${rd[3][i]},${rd[4][i]},${rd[5][i]},${rd[6][i]})"><img src="img/check.svg"></button></div>
-			</div>
-		` + $("OBA").innerHTML;
+
+		else if(_px==0 && _py!=0) {
+			$("OBB").innerHTML = `
+				<div
+					id="OBR_${rd[0][i]}"
+					class="OBR_B"
+					style="background:linear-gradient(to right, #00cc003f 0 ${_pl/_tliqMax*100}%, #00cc0017 0 100%)"
+				>
+					<div>${_p.toFixed(6)}</div>
+					<div>${(_pl/_p).toFixed(4)}</div>
+					<div>${_pl.toFixed(4)}</div>
+					<div>${_up}</div>
+					<div><input placeholder="0.00" id="op_${rd[0][i]}" value="${ _oldinp }"> <button onclick="openPositionAt(${rd[0][i]},${rd[1][i]},${rd[2][i]},${rd[3][i]},${rd[4][i]},${rd[5][i]},${rd[6][i]})"><img src="img/check.svg"></button></div>
+				</div>
+			` + $("OBB").innerHTML;
+		}
+
+		else if(_px!=0 && _py!=0) {
+
+			$("OBA").innerHTML = `
+				<div
+					id="OBR_${rd[0][i]}"
+					class="OBR_A"
+					style="background:linear-gradient(to right, #ff00003f 0 ${_pl/_tliqMax*100}%, #ff000017 0 100%)"
+				>
+					<div>${_p.toFixed(6)}</div>
+					<div>${(_pl/_p).toFixed(4)}</div>
+					<div>${_pl.toFixed(4)}</div>
+					<div>${_up}</div>
+					<div><input placeholder="0.00" id="op_${rd[0][i]}" value="${ _oldinp }"> <button onclick="openPositionAt(${rd[0][i]},${rd[1][i]},${rd[2][i]},${rd[3][i]},${rd[4][i]},${rd[5][i]},${rd[6][i]})"><img src="img/check.svg"></button></div>
+				</div>
+			` + $("OBA").innerHTML;
+
+			$("OBB").innerHTML = `
+				<div
+					id="OBR_${rd[0][i]}"
+					class="OBR_B"
+					style="background:linear-gradient(to right, #00cc003f 0 ${_pl/_tliqMax*100}%, #00cc0017 0 100%)"
+				>
+					<div>${_p.toFixed(6)}</div>
+					<div>${(_pl/_p).toFixed(4)}</div>
+					<div>${_pl.toFixed(4)}</div>
+					<div>${_up}</div>
+					<div><input placeholder="0.00" id="op_${rd[0][i]}" value="${ _oldinp }"> <button onclick="openPositionAt(${rd[0][i]},${rd[1][i]},${rd[2][i]},${rd[3][i]},${rd[4][i]},${rd[5][i]},${rd[6][i]})"><img src="img/check.svg"></button></div>
+				</div>
+			` + $("OBB").innerHTML;
+
+		/*
+			$("OBAB").innerHTML = `
+				<div
+					id="OBR_${rd[0][i]}"
+					class="OBR_AB"
+					style="background:linear-gradient(to right, #0000ffff 0 ${_pl/_tliqMax*100}%, #0000ffff 0 100%)"
+				>
+					<div>${_p.toFixed(6)}</div>
+					<div>${(_pl/_p).toFixed(4)}</div>
+					<div>${_pl.toFixed(4)}</div>
+					<div>${_up}</div>
+					<div><input placeholder="0.00" id="op_${rd[0][i]}" value="${ _oldinp }"> <button onclick="openPositionAt(${rd[0][i]},${rd[1][i]},${rd[2][i]},${rd[3][i]},${rd[4][i]},${rd[5][i]},${rd[6][i]})"><img src="img/check.svg"></button></div>
+				</div>
+			`;// + $("OBAB").innerHTML;
+			*/;
+		}
+
+		sortit(0,"OBA","OBR_A","div");
+		//sortit(0,"OBA","OBR_A","div");
+
+		sortit(0,"OBB","OBR_B","div");
+		sortit(0,"OBB","OBR_B","div");
+
 	}
 }
 
@@ -771,6 +893,6 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl) {
 		`);
 	}
 
-	await paintBook();
+	/*await*/paintBook();
 
 }

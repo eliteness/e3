@@ -4,20 +4,20 @@
 	overflow:auto;
 }
 
-.OBR_A div, .OBR_B div{
+.OBR_A div, .OBR_B div, .OBR_AB div{
 	font-family:mono_regular !important;
 }
 
-#OBH, .OBR_A, .OBR_B {
+.OBH, .OBR_A, .OBR_B, .OBR_AB {
 	display:grid;
 	grid-template-columns: 20% 20% 20% 20% 20%;
 }
 
-#OBH div {
+.OBH div {
 	font-size:1.25em;
 	margin-bottom: 10px;
 }
-#OBH div:nth-child(1), #OBH div:nth-child(2), #OBH div:nth-child(3) {
+.OBH div:nth-child(1), .OBH div:nth-child(2), .OBH div:nth-child(3) {
 	text-align:right;
 }
 
@@ -44,20 +44,23 @@
 }
 
 .OBR_A div:nth-child(1), .OBR_A div:nth-child(2), .OBR_A div:nth-child(3),
-.OBR_B div:nth-child(1), .OBR_B div:nth-child(2), .OBR_B div:nth-child(3) {
+.OBR_B div:nth-child(1), .OBR_B div:nth-child(2), .OBR_B div:nth-child(3),
+.OBR_AB div:nth-child(1), .OBR_AB div:nth-child(2), .OBR_AB div:nth-child(3) {
 	margin: auto 20px;
 }
 
 .OBR_A div:first-child,
-.OBR_B div:first-child{
+.OBR_B div:first-child,
+.OBR_AB div:first-child{
 	text-align: right;
 }
 .OBR_A div:nth-child(2),.OBR_A div:nth-child(3),
-.OBR_B div:nth-child(2), .OBR_B div:nth-child(3) {
+.OBR_B div:nth-child(2), .OBR_B div:nth-child(3),
+.OBR_AB div:nth-child(2), .OBR_AB div:nth-child(3) {
 	text-align: right
 }
 
-#OBH {
+.OBH {
 	background: #111b;
 	padding-top: 10px;
 }
@@ -70,16 +73,38 @@
 	background: #00CC0017;
 }
 
+.OBR_AB {
+	background: #0000ff17;
+}
 
-.OBR_A:hover, .OBR_B:hover {
+
+.OBR_A:hover, .OBR_B:hover, .OBR_AB:hover {
 	background: #0044ff44;
 }
 
-.OBR_AB, #OBR_AB {
+.OBR_AB, #OBR_AB, .OBR_AB {
 	background: #00f;
 	font-size: 1.25em;
 }
 .OBR_AB div img {
 	width: 20px !important;
 	vertical-align: !important;
+}
+
+#OBOOK {
+}
+
+#OBH_B {
+	display:none;
+}
+
+@media(min-width:641px){
+	#OBOOK {
+		display: grid;
+		grid-template-columns: 50% 50%;
+	}
+
+	#OBH_B {
+		display:grid;
+	}
 }
