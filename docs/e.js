@@ -211,17 +211,17 @@ async function arf(){
 			//if($('ain').value == "" ) { $('ain').value=INITIAL }
 			if(o != $('amount-sold-input').value){/*await*/ priceFinder()}
 			if(t != STATE.ts.address){/*await*/ priceFinder()}
-			if(c%8==0){/*await*/ priceFinder()}
-			if(c%10==0){
+			if(c%23==0){/*await*/ priceFinder()}
+			if(c%29==0){
 				try { if( ethers.utils.isAddress(window.ethereum.selectedAddress) ) {await gubs();} }
 				catch(e) { console.log('No web3 wallet found!'); }
 			}
-			if(c%12==0){/*await*/ paintBook()}
+			if(c%17==0){/*await*/ paintBook()}
 			o = $('amount-sold-input').value;
 			t = STATE.ts.address;
 			c++;
 		},
-		1337
+		1000
 	)
 }
 
