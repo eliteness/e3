@@ -209,14 +209,14 @@ async function arf(){
 		async function(){
 			if(!isFinite($('amount-sold-input').value) ) { return }
 			//if($('ain').value == "" ) { $('ain').value=INITIAL }
-			if(o != $('amount-sold-input').value){await priceFinder()}
-			if(t != STATE.ts.address){await priceFinder()}
-			if(c%8==0){await priceFinder()}
+			if(o != $('amount-sold-input').value){/*await*/ priceFinder()}
+			if(t != STATE.ts.address){/*await*/ priceFinder()}
+			if(c%8==0){/*await*/ priceFinder()}
 			if(c%10==0){
 				try { if( ethers.utils.isAddress(window.ethereum.selectedAddress) ) {await gubs();} }
 				catch(e) { console.log('No web3 wallet found!'); }
 			}
-			if(c%12==0){await paintBook()}
+			if(c%12==0){/*await*/ paintBook()}
 			o = $('amount-sold-input').value;
 			t = STATE.ts.address;
 			c++;
