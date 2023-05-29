@@ -11,8 +11,7 @@ let CACHE = {
 window.addEventListener('load',async function() {
 	console.log("waitin for 3 secs..");
 	$("cw_m").innerHTML = "Connecting.. Please wait."
-	setTimeout(async () => { basetrip(); }, 3000);
-	paintBook();
+	setTimeout(async () => { await basetrip(); await paintBook();}, 3000);
 	arf();
 }, false);
 
