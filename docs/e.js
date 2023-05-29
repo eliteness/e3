@@ -904,7 +904,7 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl,_kind) {
 			<h4>Purchasing ${T_X.symbol} for ${T_Y.symbol}
 			Quantity: ${(_ops / 10**T_Y.decimals)/_price} ${T_X.symbol}<br>
 			Price: ${_price.toFixed(6)} ${T_Y.symbol}<br>
-			Size: ${ ((_ops / 10**T_Y.decimals).toFixed(6)).toFixed(6) } ${T_Y.symbol}<br>
+			Size: ${ ((_ops / 10**T_Y.decimals).toFixed(6)) } ${T_Y.symbol}<br>
 			<h4 align="center"><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
 	}
