@@ -62,7 +62,8 @@ async function basetrip()
         		blockExplorerUrls: [EXPLORE]
     		}]
 		});
-		window.location.reload()
+		//window.location.reload()
+		notice(`<h3>Wrong Network!</h3>Please Switch to ${CHAIN_NAME}`)
 	}
 	//DrefreshFarm()
 	//arf()
@@ -263,7 +264,7 @@ async function arf(){
 			t = STATE.ts.address;
 			c++;
 		},
-		1000
+		2000
 	)
 }
 
