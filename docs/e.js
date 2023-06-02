@@ -948,15 +948,19 @@ async function closeAll() {
 	_t=[0,0];for(i=0;i<rd2[0].length;i++){_t[0]+=Number(rd2[1][i]);_t[1]+=Number(rd2[2][i]);}
 	rd3=[];for(i=0;i<rd2[0].length;i++){if(Number(rd2[3][i])>0){rd3.push(Number(rd2[0][i]))}}
 	qa=[];for(i=0;i<rd3.length;i++){qa.push(window.ethereum.selectedAddress)}
-	bq=await p1.balanceOfBatch(qa,rd3);
+	let _pn = new ethers.Contract(POOLADDR,["function balanceOfBatch(address[],uint256[]) public view returns(uint256[])"],signer);
+	R = new ethers.Contract(ROUTER.address, ROUTER.ABI, signer);
+	bq=await _pn.balanceOfBatch(qa,rd3);
 	notice(`
-		<h3>Closing All Positions</h3>
-		Total Asks: ${_t[0]/10**T_X.decimals} ${T_X.symbol} <br>
-		Total Bids: ${_t[1]/10**T_Y.decimals} ${T_Y.symbol}<br>
-		<br><b>Slippage Tolerance</b> : ±0.1%
-		<br><b>Minimum Received</b>
-		<img style="vertical-align: bottom;" height="32px" src="${T_X.logo}"> ${_t[0]/10**T_X.decimals*SLIPBPS/1e4} ${T_X.symbol} <br>
-		<img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}"> ${_t[1]/10**T_Y.decimals*SLIPBPS/1e4} ${T_Y.symbol} <br>
+		<h2>Closing All Positions</h2>
+		<h3>Total Asks</h3>
+		<img style="vertical-align: bottom;" height="24px" width="24px" src="${T_X.logo}"> ${_t[0]/10**T_X.decimals} ${T_X.symbol} <br>
+		<h3>Total Bids</h3>
+		<img style="vertical-align: bottom;" height="24px" width="24px" src="${T_Y.logo}"> ${_t[1]/10**T_Y.decimals} ${T_Y.symbol}<br>
+		<h3>Minimum Received</h3>
+		<img style="vertical-align: bottom;" height="24px" width="24px" src="${T_X.logo}"> ${_t[0]/10**T_X.decimals*SLIPBPS/1e4} ${T_X.symbol} <br>
+		<img style="vertical-align: bottom;" height="24px" width="24px" src="${T_Y.logo}"> ${_t[1]/10**T_Y.decimals*SLIPBPS/1e4} ${T_Y.symbol} <br>
+		<i>Slippage Tolerance : ±0.1%)</i>
 	`);
 	R.removeLiquidity(T_X.address,T_Y.address,BUCKET,BigInt(Math.floor(_t[0]*SLIPBPS/1e4)),BigInt(Math.floor(_t[1]*SLIPBPS/1e4)),rd3,bq,window.ethereum.selectedAddress,Math.floor(Date.now()/1000+1337));
 }
