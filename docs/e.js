@@ -586,7 +586,7 @@ async function paintBook() {
 
 		_upaby =
 			_uy >= 0
-			? ` ${_uy.toFixed(4)} <img src="${T_Y.logo}"><button onclick="closePositionAt(${rd[0][i]},${rd[1][i]},${rd[2][i]},${rd[3][i]},'y')"><img src="img/cross.svg"></button>`
+			? ` ${_uy.toFixed(4)} <img src="${T_Y.logo}"> <button onclick="closePositionAt(${rd[0][i]},${rd[1][i]},${rd[2][i]},${rd[3][i]},'y')"><img src="img/cross.svg"></button>`
 			: ""
 		;
 
@@ -681,9 +681,9 @@ async function paintBook() {
 		if(_ux > 0) {
 			$("mp-list").innerHTML += `
 				<div class="OBR_A">
-					<div><img style="vertical-align: top;width: 24px;" src="${T_Y.logo}"> ${_p.toFixed(6)}</div>
-					<div><img style="vertical-align: top;width: 24px;" src="${T_Y.logo}"> ${(_ux*_p).toFixed(4)}</div>
-					<div><img style="vertical-align: top;width: 24px;" src="${T_Y.logo}"> ${(_uy).toFixed(4)}</div>
+					<div> ${_p.toFixed(6)} <img style="vertical-align: top;width: 16px;" src="${T_Y.logo}"></div>
+					<div> ${(_ux*_p).toFixed(4)} <img style="vertical-align: top;width: 16px;" src="${T_Y.logo}"></div>
+					<div> ${(_uy).toFixed(4)} <img style="vertical-align: top;width: 16px;" src="${T_Y.logo}"></div>
 					<div>${(_upabx)}</div>
 				</div>
 			`;
@@ -691,9 +691,9 @@ async function paintBook() {
 		if(_uy > 0) {
 			$("mp-list").innerHTML +=  `
 				<div class="OBR_B">
-					<div><img style="vertical-align: top;width: 24px;" src="${T_Y.logo}"> ${_p.toFixed(6)}</div>
-					<div><img style="vertical-align: top;width: 24px;" src="${T_X.logo}"> ${(_uy/_p).toFixed(4)}</div>
-					<div><img style="vertical-align: top;width: 24px;" src="${T_X.logo}"> ${(_ux).toFixed(4)}</div>
+					<div> ${_p.toFixed(6)} <img style="vertical-align: top;width: 16px;" src="${T_Y.logo}"></div>
+					<div> ${(_uy/_p).toFixed(4)} <img style="vertical-align: top;width: 16px;" src="${T_X.logo}"></div>
+					<div> ${(_ux).toFixed(4)} <img style="vertical-align: top;width: 16px;" src="${T_X.logo}"></div>
 					<div>${(_upaby)}</div>
 				</div>
 			`;
