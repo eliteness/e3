@@ -684,7 +684,7 @@ async function paintBook() {
 					<div><img style="vertical-align: top;width: 24px;" src="${T_Y.logo}"> ${_p.toFixed(6)}</div>
 					<div><img style="vertical-align: top;width: 24px;" src="${T_Y.logo}"> ${(_ux*_p).toFixed(4)}</div>
 					<div><img style="vertical-align: top;width: 24px;" src="${T_Y.logo}"> ${(_uy).toFixed(4)}</div>
-					<div>${(_upabx).toFixed(4)}</div>
+					<div>${(_upabx)}</div>
 				</div>
 			`;
 		}
@@ -694,7 +694,7 @@ async function paintBook() {
 					<div><img style="vertical-align: top;width: 24px;" src="${T_Y.logo}"> ${_p.toFixed(6)}</div>
 					<div><img style="vertical-align: top;width: 24px;" src="${T_X.logo}"> ${(_uy/_p).toFixed(4)}</div>
 					<div><img style="vertical-align: top;width: 24px;" src="${T_X.logo}"> ${(_ux).toFixed(4)}</div>
-					<div>${(_upaby).toFixed(4)}</div>
+					<div>${(_upaby)}</div>
 				</div>
 			`;
 		}
