@@ -675,10 +675,10 @@ async function paintBook() {
 		sortit(0,"OBB","OBR_B","div");
 		sortit(0,"OBB","OBR_B","div");
 
-		if(ux_ > 0) {
+		if(_ux > 0) {
 			$("mp-list").innerHTML += _upabx;
 		}
-		if(uy_ > 0) {
+		if(_uy > 0) {
 			$("mp-list").innerHTML += _upaby;
 		}
 
