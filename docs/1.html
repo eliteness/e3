@@ -133,9 +133,8 @@
 
 		<div class="OBH" style="display:none">
 			<div>Spot Price <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdc.svg"></div>
-			<div>Quantity <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/ftm.svg"></div>
-			<div>Aggregate<img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdc.svg"></div>
-			<div>My Position</div>
+			<div>Amount <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/ftm.svg"></div>
+			<div>Total <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdc.svg"></div>
 			<div>Add New Order</div>
 		</div>
 
@@ -147,26 +146,34 @@
 
 			<div class="OBH" id="OBH_A">
 				<div>Spot Price <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdc.svg"></div>
-			<div>Quantity <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/ftm.svg"></div>
-				<div>Aggregate<img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdc.svg"></div>
-				<div>My Position</div>
+				<div>Amount <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/ftm.svg"></div>
+				<div>Total <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdc.svg"></div>
 				<div>Add New Order</div>
 			</div>
 			<div class="OBH" id="OBH_B">
 				<div>Spot Price <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdc.svg"></div>
-			<div>Quantity <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/ftm.svg"></div>
-				<div>Aggregate<img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdc.svg"></div>
-				<div>My Position</div>
+				<div>Amount <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/ftm.svg"></div>
+				<div>Total <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdc.svg"></div>
 				<div>Add New Order</div>
 			</div>
 
-			<div id="OBA" style="display:">
-				<h2>Loading Asks ...</h2>
-			</div>
 			<div id="OBB">
 				<h2>Loading Bids ...</h2>
 			</div>
+			<div id="OBA" style="display:">
+				<h2>Loading Asks ...</h2>
+			</div>
 
+		</div>
+
+		<div align="center">
+			<br><br>
+			<h2>My Positions</h2>
+
+			<div id="mp-utab">-</div>
+
+			<br>
+			<button onclick="closeAll()"><img src="img/cross.svg"></button> Close all positions</button>
 		</div>
 
 

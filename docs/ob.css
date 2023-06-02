@@ -10,7 +10,7 @@
 
 .OBH, .OBR_A, .OBR_B, .OBR_AB {
 	display:grid;
-	grid-template-columns: 20% 20% 20% 20% 20%;
+	grid-template-columns: 25% 25% 25% 25%;
 }
 
 .OBH div {
@@ -18,7 +18,7 @@
 	margin-bottom: 10px;
 }
 .OBH div:nth-child(1), .OBH div:nth-child(2), .OBH div:nth-child(3) {
-	text-align:right;
+	text-align:center;
 }
 
 #OBP span {
@@ -92,6 +92,7 @@
 }
 
 #OBOOK {
+	font-size: 0.8em;
 }
 
 #OBH_B {

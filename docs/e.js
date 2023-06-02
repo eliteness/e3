@@ -544,8 +544,15 @@ async function paintBook() {
 	$("OBA").innerHTML = "";
 	$("OBB").innerHTML = "";
 	$("OBAB").innerHTML = "";
+	$("mp-list").innerHTML = "";
 	let _tliq = 0;let _tliqMax = 0;
 	for(let i=0;i<rd[0].length;i++){_cliq=Number(rd[6][i])/10**T_Y.decimals;_tliq+=_cliq;_tliqMax=_tliqMax<_cliq?_cliq:_tliqMax;}
+	let _t=[0,0];for(i=0;i<rd[0].length;i++){_t[0]+=Number(rd[1][i]);_t[1]+=Number(rd[2][i]);}
+
+	$("mp-utab").innerHTML = `
+		<img style="vertical-align: bottom;" height="20px" src="${T_X.logo}"> My Total Bids: ${_t[1]/10**T_Y.decimals} ${T_Y.symbol} <br>
+		<img style="vertical-align: bottom;" height="20px" src="${T_Y.logo}"> My Total Asks: ${_t[0]/10**T_X.decimals} ${T_X.symbol} <br>
+	`;
 
 	for(let i=0;i<rd[0].length;i++) {
 		//POW(CAST(1.0020 AS DOUBLE),CAST(CAST(AVG(Bucket) AS DOUBLE)-8388608 AS DOUBLE)) * 1e12 as Price;
@@ -596,7 +603,6 @@ async function paintBook() {
 					<div>${_p.toFixed(6)}</div>
 					<div>${(_pl/_p).toFixed(4)}</div>
 					<div>${_pl.toFixed(4)}</div>
-					<div>${_upabx}</div>
 					<div><input placeholder="0.00" id="op_${rd[0][i]}" value="${ _oldinp }"> <button onclick="openPositionAt(${rd[0][i]},${rd[1][i]},${rd[2][i]},${rd[3][i]},${rd[4][i]},${rd[5][i]},${rd[6][i]},'x')"><img src="img/check.svg"></button></div>
 				</div>
 			` + $("OBA").innerHTML;
@@ -613,7 +619,6 @@ async function paintBook() {
 					<div>${_p.toFixed(6)}</div>
 					<div>${(_pl/_p).toFixed(4)}</div>
 					<div>${_pl.toFixed(4)}</div>
-					<div>${_upaby}</div>
 					<div><input placeholder="0.00" id="op_${rd[0][i]}" value="${ _oldinp }"> <button onclick="openPositionAt(${rd[0][i]},${rd[1][i]},${rd[2][i]},${rd[3][i]},${rd[4][i]},${rd[5][i]},${rd[6][i]},'y')"><img src="img/check.svg"></button></div>
 				</div>
 			` + $("OBB").innerHTML;
@@ -630,7 +635,6 @@ async function paintBook() {
 					<div>${_p.toFixed(6)}</div>
 					<div>${(_px).toFixed(4)}</div>
 					<div>${(_px*_p).toFixed(4)}</div>
-					<div>${_upabx}</div>
 					<div><input placeholder="0.00" id="op_${rd[0][i]}" value="${ _oldinp }"> <button onclick="openPositionAt(${rd[0][i]},${rd[1][i]},${rd[2][i]},${rd[3][i]},${rd[4][i]},${rd[5][i]},${rd[6][i]},'x')"><img src="img/check.svg"></button></div>
 				</div>
 			` + $("OBA").innerHTML;
@@ -644,7 +648,6 @@ async function paintBook() {
 					<div>${_p.toFixed(6)}</div>
 					<div>${(_py/_p).toFixed(4)}</div>
 					<div>${(_py).toFixed(4)}</div>
-					<div>${_upaby}</div>
 					<div><input placeholder="0.00" id="op_${rd[0][i]}" value="${ _oldinp }"> <button onclick="openPositionAt(${rd[0][i]},${rd[1][i]},${rd[2][i]},${rd[3][i]},${rd[4][i]},${rd[5][i]},${rd[6][i]},'y')"><img src="img/check.svg"></button></div>
 				</div>
 			` + $("OBB").innerHTML;
@@ -672,7 +675,16 @@ async function paintBook() {
 		sortit(0,"OBB","OBR_B","div");
 		sortit(0,"OBB","OBR_B","div");
 
+		if(ux_ > 0) {
+			$("mp-list").innerHTML += _upabx;
+		}
+		if(uy_ > 0) {
+			$("mp-list").innerHTML += _upaby;
+		}
+
 	}
+
+
 }
 
 PAIRABI =
@@ -910,4 +922,24 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl,_kind) {
 
 	paintBook();
 
+}
+
+
+async function closeAll() {
+	BL=new ethers.Contract("0x5a054233e59323e7a58f6b7dae86e6992f1f92e2",[{"inputs": [],"name": "LA","outputs": [{"internalType": "contract ILA","name": "","type": "address"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "contract IP","name": "p","type": "address"}],"name": "bucketList","outputs": [{"internalType": "uint24[]","name": "","type": "uint24[]"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint24[]","name": "inp","type": "uint24[]"}],"name": "cast_24_256","outputs": [{"internalType": "uint256[]","name": "","type": "uint256[]"}],"stateMutability": "pure","type": "function"},{"inputs": [{"internalType": "address","name": "user","type": "address"},{"internalType": "address","name": "_pair","type": "address"}],"name": "poolInfo","outputs": [{"internalType": "uint256[]","name": "bIds","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsX","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsY","type": "uint256[]"},{"internalType": "uint256[]","name": "liquidities","type": "uint256[]"},{"internalType": "uint256[]","name": "TamountsX","type": "uint256[]"},{"internalType": "uint256[]","name": "TamountsY","type": "uint256[]"},{"internalType": "uint256[]","name": "Tliquidities","type": "uint256[]"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "address","name": "user","type": "address"},{"internalType": "address","name": "_pair","type": "address"}],"name": "positionOf","outputs": [{"internalType": "uint256[]","name": "bIds","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsX","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsY","type": "uint256[]"},{"internalType": "uint256[]","name": "liquidities","type": "uint256[]"}],"stateMutability": "view","type": "function"}],provider);
+	rd2 = await BL.poolInfo(window.ethereum.selectedAddress, POOLADDR);
+	_t=[0,0];for(i=0;i<rd2[0].length;i++){_t[0]+=Number(rd2[1][i]);_t[1]+=Number(rd2[2][i]);}
+	rd3=[];for(i=0;i<rd2[0].length;i++){if(Number(rd2[3][i])>0){rd3.push(Number(rd2[0][i]))}}
+	qa=[];for(i=0;i<rd3.length;i++){qa.push(window.ethereum.selectedAddress)}
+	bq=await p1.balanceOfBatch(qa,rd3);
+	notice(`
+		<h3>Closing All Positions</h3>
+		Total Asks: ${_t[0]/10**T_X.decimals} ${T_X.symbol} <br>
+		Total Bids: ${_t[1]/10**T_Y.decimals} ${T_Y.symbol}<br>
+		<br><b>Slippage Tolerance</b> : ±0.1%
+		<br><b>Minimum Received</b>
+		<img style="vertical-align: bottom;" height="32px" src="${T_X.logo}"> ${_t[0]/10**T_X.decimals*SLIPBPS/1e4} ${T_X.symbol} <br>
+		<img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}"> ${_t[1]/10**T_Y.decimals*SLIPBPS/1e4} ${T_Y.symbol} <br>
+	`);
+	R.removeLiquidity(T_X.address,T_Y.address,BUCKET,BigInt(Math.floor(_t[0]*SLIPBPS/1e4)),BigInt(Math.floor(_t[1]*SLIPBPS/1e4)),rd3,bq,window.ethereum.selectedAddress,Math.floor(Date.now()/1000+1337));
 }
