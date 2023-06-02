@@ -550,8 +550,11 @@ async function paintBook() {
 	let _t=[0,0];for(i=0;i<rd[0].length;i++){_t[0]+=Number(rd[1][i]);_t[1]+=Number(rd[2][i]);}
 
 	$("mp-utab").innerHTML = `
-		<img style="vertical-align: bottom;" height="20px" src="${T_X.logo}"> My Total Bids: ${_t[1]/10**T_Y.decimals} ${T_Y.symbol} <br>
-		<img style="vertical-align: bottom;" height="20px" src="${T_Y.logo}"> My Total Asks: ${_t[0]/10**T_X.decimals} ${T_X.symbol} <br>
+		<img style="vertical-align: bottom;" height="20px" src="${T_X.logo}"> My Total Bids
+		<br>${_t[1]/10**T_Y.decimals} ${T_Y.symbol} <br>
+		<br>
+		<img style="vertical-align: bottom;" height="20px" src="${T_Y.logo}"> My Total Asks
+		<br>${_t[0]/10**T_X.decimals} ${T_X.symbol} <br>
 	`;
 
 	for(let i=0;i<rd[0].length;i++) {
@@ -676,10 +679,24 @@ async function paintBook() {
 		sortit(0,"OBB","OBR_B","div");
 
 		if(_ux > 0) {
-			$("mp-list").innerHTML += _upabx;
+			$("mp-list").innerHTML += `
+				<div class="OBR_A">
+					<div><img style="vertical-align: top;width: 24px;" src="${T_Y.logo}"> ${_p.toFixed(6)}</div>
+					<div><img style="vertical-align: top;width: 24px;" src="${T_Y.logo}"> ${(_ux*_p).toFixed(4)}</div>
+					<div><img style="vertical-align: top;width: 24px;" src="${T_Y.logo}"> ${(_uy).toFixed(4)}</div>
+					<div>${(_upabx).toFixed(4)}</div>
+				</div>
+			`;
 		}
 		if(_uy > 0) {
-			$("mp-list").innerHTML += _upaby;
+			$("mp-list").innerHTML +=  `
+				<div class="OBR_B">
+					<div><img style="vertical-align: top;width: 24px;" src="${T_Y.logo}"> ${_p.toFixed(6)}</div>
+					<div><img style="vertical-align: top;width: 24px;" src="${T_X.logo}"> ${(_uy/_p).toFixed(4)}</div>
+					<div><img style="vertical-align: top;width: 24px;" src="${T_X.logo}"> ${(_ux).toFixed(4)}</div>
+					<div>${(_upaby).toFixed(4)}</div>
+				</div>
+			`;
 		}
 
 	}
