@@ -15,8 +15,15 @@ window.addEventListener('load',async function() {
 	arf();
 }, false);
 
+BL = {
+	250:	"0x5a054233e59323e7a58f6b7dae86e6992f1f92e2",
+	42161:	"0xc4c807aee35f75c891cb51ef982c98371b1362b4"
+}
 
-
+BUCKETDECIMALS = {
+	250: { 0:6, 1:12 },
+	42161: { 0:12 }
+}
 
 async function basetrip() {
 	//PRE
@@ -402,7 +409,7 @@ async function sell() {
 		<br><b>Minimum Received</b> : <img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"> ${(bmin/10**buydeci).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol}</i>
 		<br>
 		<br><br><b><u>Please wait till this transaction is confirmed by the ${CHAIN_NAME} Network.</u></b>
-		<h4><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
+		<h4><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 	`);
 	txr = await txh.wait();
 	console.log(txr);
@@ -411,7 +418,7 @@ async function sell() {
 		Sold <img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"> ${(Number(ain)/10**selldeci).toFixed(selldeci)} ${(dir?T_X:T_Y).symbol}
 		<br>Bought <img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"> ${(Number(sod[1])/10**buydeci).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol}.
 		<br>
-		<h4><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
+		<h4><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 	`);
 }
 
@@ -464,15 +471,20 @@ function pairSelectionMenu() {
 		<h2>Select a Pair to Trade</h2>
 		<div style="overflow:auto;max-height:60vh">
 			<h2 class="pairSelectionMenu">
-				<a href="0">
+				<a href="250-0">
 					<div><img src="https://ftm.guru/icons/usdc.svg"><img src="https://ftm.guru/icons/usdt.svg"></div>
 					<div>USDC/fUSDT</div>
-					<div>#0</div>
+					<div>Fantom #0</div>
 				</a>
-				<a href="1">
+				<a href="250-1">
 					<div><img src="https://ftm.guru/icons/ftm.svg"><img src="https://ftm.guru/icons/usdc.svg"></div>
 					<div>WFTM/USDC</div>
-					<div>#1</div>
+					<div>Fantom #1</div>
+				</a>
+				<a href="42161-0">
+					<div><img src="https://ftm.guru/icons/eth.svg"><img src="https://ftm.guru/icons/usdc.svg"></div>
+					<div>WETH/USDC</div>
+					<div>Arbitrum #0</div>
 				</a>
 			</h2>
 		</div>
@@ -539,7 +551,7 @@ async function paintBook() {
 		ua = window.ethereum.selectedAddress;
 		ua=ua==null?"0x0000000000000000000000000000000000000000":ua;
 	} catch(e) { ua="0x0000000000000000000000000000000000000000";}
-	BL=new ethers.Contract("0x5a054233e59323e7a58f6b7dae86e6992f1f92e2",[{"inputs": [],"name": "LA","outputs": [{"internalType": "contract ILA","name": "","type": "address"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "contract IP","name": "p","type": "address"}],"name": "bucketList","outputs": [{"internalType": "uint24[]","name": "","type": "uint24[]"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint24[]","name": "inp","type": "uint24[]"}],"name": "cast_24_256","outputs": [{"internalType": "uint256[]","name": "","type": "uint256[]"}],"stateMutability": "pure","type": "function"},{"inputs": [{"internalType": "address","name": "user","type": "address"},{"internalType": "address","name": "_pair","type": "address"}],"name": "poolInfo","outputs": [{"internalType": "uint256[]","name": "bIds","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsX","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsY","type": "uint256[]"},{"internalType": "uint256[]","name": "liquidities","type": "uint256[]"},{"internalType": "uint256[]","name": "TamountsX","type": "uint256[]"},{"internalType": "uint256[]","name": "TamountsY","type": "uint256[]"},{"internalType": "uint256[]","name": "Tliquidities","type": "uint256[]"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "address","name": "user","type": "address"},{"internalType": "address","name": "_pair","type": "address"}],"name": "positionOf","outputs": [{"internalType": "uint256[]","name": "bIds","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsX","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsY","type": "uint256[]"},{"internalType": "uint256[]","name": "liquidities","type": "uint256[]"}],"stateMutability": "view","type": "function"}],provider)
+	BL=new ethers.Contract(BL[CHAINID],[{"inputs": [],"name": "LA","outputs": [{"internalType": "contract ILA","name": "","type": "address"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "contract IP","name": "p","type": "address"}],"name": "bucketList","outputs": [{"internalType": "uint24[]","name": "","type": "uint24[]"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint24[]","name": "inp","type": "uint24[]"}],"name": "cast_24_256","outputs": [{"internalType": "uint256[]","name": "","type": "uint256[]"}],"stateMutability": "pure","type": "function"},{"inputs": [{"internalType": "address","name": "user","type": "address"},{"internalType": "address","name": "_pair","type": "address"}],"name": "poolInfo","outputs": [{"internalType": "uint256[]","name": "bIds","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsX","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsY","type": "uint256[]"},{"internalType": "uint256[]","name": "liquidities","type": "uint256[]"},{"internalType": "uint256[]","name": "TamountsX","type": "uint256[]"},{"internalType": "uint256[]","name": "TamountsY","type": "uint256[]"},{"internalType": "uint256[]","name": "Tliquidities","type": "uint256[]"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "address","name": "user","type": "address"},{"internalType": "address","name": "_pair","type": "address"}],"name": "positionOf","outputs": [{"internalType": "uint256[]","name": "bIds","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsX","type": "uint256[]"},{"internalType": "uint256[]","name": "amountsY","type": "uint256[]"},{"internalType": "uint256[]","name": "liquidities","type": "uint256[]"}],"stateMutability": "view","type": "function"}],provider)
 	rd = await BL.poolInfo(ua, POOLADDR);
 	$("OBA").innerHTML = "";
 	$("OBB").innerHTML = "";
@@ -711,7 +723,7 @@ PAIRABI =
 async function closePositionAt(_bId,_upx,_upy,_upl,_kind) {
 	notice(`
 		<h3>Closing Old Position</h3>
-		Limit Price: ${(1+BUCKET/1e4) ** (_bId - BUCK_1) * 10**(POOLID==0?6:12)} ${T_Y.symbol}S<br>
+		Limit Price: ${(1+BUCKET/1e4) ** (_bId - BUCK_1) * 10**(BUCKETDECIMALS[CHAINID][POOLID])} ${T_Y.symbol}S<br>
 		Ask: ${_upx/10**T_X.decimals} ${T_X.symbol} <br>
 		Bid: ${_upy/10**T_Y.decimals} ${T_Y.symbol}<br>
 		Net Position: ${_upl/10**T_Y.decimals} ${T_Y.symbol}<br>
@@ -726,7 +738,7 @@ async function closePositionAt(_bId,_upx,_upy,_upl,_kind) {
 	if( Number(_ulpal[0]) == 0) {
 		notice(`
 			<h3>Position Closed</h3>
-			Limit Price: ${(1+BUCKET/1e4) ** (_bId - BUCK_1) * 10**(POOLID==0?6:12)} ${T_Y.symbol}S<br>
+			Limit Price: ${(1+BUCKET/1e4) ** (_bId - BUCK_1) * 10**(BUCKETDECIMALS[CHAINID][POOLID])} ${T_Y.symbol}S<br>
 			Ask: ${_upx/10**T_X.decimals} ${T_X.symbol} <br>
 			Bid: ${_upy/10**T_Y.decimals} ${T_Y.symbol}<br>
 			Net Position: ${_upl/10**T_Y.decimals} ${T_Y.symbol}<br>
@@ -759,7 +771,7 @@ async function closePositionAt(_bId,_upx,_upy,_upl,_kind) {
 
 	notice(`
 		<h3>Closing your Position</h3>
-		Limit Price: ${(1+BUCKET/1e4) ** (_bId - BUCK_1) * 10**(POOLID==0?6:12)} ${T_Y.symbol}S<br>
+		Limit Price: ${(1+BUCKET/1e4) ** (_bId - BUCK_1) * 10**(BUCKETDECIMALS[CHAINID][POOLID])} ${T_Y.symbol}S<br>
 		Ask: ${_upx/10**T_X.decimals} ${T_X.symbol}<br>
 		Bid: ${_upy/10**T_Y.decimals} ${T_Y.symbol}<br>
 		Net Position: ${_upl/10**T_Y.decimals} ${T_Y.symbol}<br><br>
@@ -779,13 +791,13 @@ async function closePositionAt(_bId,_upx,_upy,_upl,_kind) {
 	notice(`
 		<h2> Closing your Position...</h2>
 		<u>Please wait till this transaction is confirmed by the ${CHAIN_NAME} Network.</u></b>
-		<h4><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
+		<h4><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 	`);
 	txr = await txh.wait();
 
 	notice(`
 		<h2>Position Closed successfully</h2>
-		<h4 align="center"><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
+		<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 		<br><br>
 		EⅢ is glad to have served you. Best of luck for your next trade!
 	`);
@@ -857,7 +869,7 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl,_kind) {
 			<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}">Opening a Sell position</h2>
 			<b>Awaiting confirmation from the network . . ..</b>
 			<br><br><i>Please wait.</i>
-			<h4 align="center"><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
+			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
 		txr = await txh.wait();
 		notice(`
@@ -866,7 +878,7 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl,_kind) {
 			Quantity: ${(_ops / 10**T_Y.decimals).toFixed(6)} ${T_X.symbol}<br>
 			Price: ${_price.toFixed(6)} ${T_Y.symbol}<br>
 			Size: ${ ((_ops / 10**T_Y.decimals)/_price).toFixed(6) } ${T_Y.symbol}<br>
-			<h4 align="center"><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
+			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
 	}
 
@@ -924,7 +936,7 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl,_kind) {
 			<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}"> Opening a Buy position</h2>
 			<b>Awaiting confirmation from the network . . ..</b>
 			<br><br><i>Please wait.</i>
-			<h4 align="center"><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
+			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
 		txr = await txh.wait();
 		notice(`
@@ -933,7 +945,7 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl,_kind) {
 			Quantity: ${(_ops / 10**T_Y.decimals)/_price} ${T_X.symbol}<br>
 			Price: ${_price.toFixed(6)} ${T_Y.symbol}<br>
 			Size: ${ ((_ops / 10**T_Y.decimals).toFixed(6)) } ${T_Y.symbol}<br>
-			<h4 align="center"><a target="_blank" href="https://ftmscan.com/tx/${txh.hash}">View on Explorer</a></h4>
+			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
 	}
 
