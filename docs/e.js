@@ -562,11 +562,10 @@ async function paintBook() {
 	let _t=[0,0];for(i=0;i<rd[0].length;i++){_t[0]+=Number(rd[1][i]);_t[1]+=Number(rd[2][i]);}
 
 	$("mp-utab").innerHTML = `
-		<h3><img style="vertical-align: bottom;" height="20px" width="20px" src="${T_Y.logo}"> My Total Bids</h3>
-		${_t[1]/10**T_Y.decimals} ${T_Y.symbol}
+		<span style="font-size:1.5em"><img style="vertical-align: bottom; height:24px; width:24px;" src="${T_X.logo}"> ${_t[0]/10**T_X.decimals} ${T_X.symbol}</span>
 		<br><br>
-		<h3><img style="vertical-align: bottom;" height="20px" width="20px" src="${T_X.logo}"> My Total Asks</h3>
-		<br>${_t[0]/10**T_X.decimals} ${T_X.symbol}
+		<span style="font-size:1.5em"><img style="vertical-align: bottom; height:24px; width:24px;" src="${T_Y.logo}"> ${_t[1]/10**T_Y.decimals} ${T_Y.symbol}</span>
+		<br><br>
 	`;
 
 	for(let i=0;i<rd[0].length;i++) {
