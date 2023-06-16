@@ -644,7 +644,7 @@ async function paintBook() {
 				<div
 					id="OBR_${rd[0][i]}"
 					class="OBR_A"
-					style="background:linear-gradient(to right, #ff00003f 0 ${_pl/_tliqMax*100}%, #ff000017 0 100%)"
+					style="background:linear-gradient(to right, #ff00003f 0 ${_px*_p/_tliqMax*100}%, #ff000017 0 100%)"
 				>
 					<div>${_p.toFixed(6)}</div>
 					<div>${(_px).toFixed(4)}</div>
@@ -657,7 +657,7 @@ async function paintBook() {
 				<div
 					id="OBR_${rd[0][i]}"
 					class="OBR_B"
-					style="background:linear-gradient(to right, #00cc003f 0 ${_pl/_tliqMax*100}%, #00cc0017 0 100%)"
+					style="background:linear-gradient(to right, #00cc003f 0 ${_py/_tliqMax*100}%, #00cc0017 0 100%)"
 				>
 					<div>${_p.toFixed(6)}</div>
 					<div>${(_py/_p).toFixed(4)}</div>
