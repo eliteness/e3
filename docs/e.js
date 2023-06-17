@@ -1045,6 +1045,8 @@ async function onp_create() {
 		_T_Y.allowance(window.ethereum.selectedAddress, ROUTER.address),
 	]);
 
+	console.log("onp-create",_aamt,_bamt,_usernums);
+
 	if( _usernums[1] < (_aamt*10**T_X.decimals) || _usernums[3] < (_bamt*10**T_Y.decimals) ) {
 		notice(`
 			<h3>Insufficient Balance!</h3>
