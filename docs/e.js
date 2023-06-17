@@ -1090,7 +1090,7 @@ async function onp_create() {
 
 	if( $("onp-uwf").checked ){
 		if(_aamt<T_X.minimum/10**T_X.decimals) { notice(`<h3>Amount of ${T_X.symbol} low!</h3>Minimum order size: ${T_X.minimum/10**T_X.decimals}`); return;}
-		if(_aamt<T_Y.minimum/10**T_Y.decimals) { notice(`<h3>Amount of ${T_Y.symbol} low!</h3>Minimum order size: ${T_Y.minimum/10**T_Y.decimals}`); return;}
+		if(_bamt<T_Y.minimum/10**T_Y.decimals) { notice(`<h3>Amount of ${T_Y.symbol} low!</h3>Minimum order size: ${T_Y.minimum/10**T_Y.decimals}`); return;}
 		notice(`
 			<h3>Creating New EⅢ Position</h3>
 			Using <b>Ultra-Wide Flat</b> strategy..
@@ -1104,9 +1104,9 @@ async function onp_create() {
 			"tokenY": T_Y.address,
 			"binStep": BUCKET,
 			"amountX": BigInt(Math.floor(_aamt*10**T_X.decimals)),
-			"amountY": BigInt(Math.floor(_aamt*10**T_Y.decimals)),
+			"amountY": BigInt(Math.floor(_bamt*10**T_Y.decimals)),
 			"amountXMin": BigInt(Math.floor(_aamt*10**T_X.decimals*SLIPBPS/1e4)),
-			"amountYMin": BigInt(Math.floor(_aamt*10**T_Y.decimals*SLIPBPS/1e4)),
+			"amountYMin": BigInt(Math.floor(_bamt*10**T_Y.decimals*SLIPBPS/1e4)),
 			"activeIdDesired": _usernums[0],//CACHE.ACTIVEI,
 			"idSlippage": 10,
 			"deltaIds": e3lib_gen_ids(-50,50),
