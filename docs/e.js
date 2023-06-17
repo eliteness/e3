@@ -6,7 +6,8 @@ let STATE = {
 	tb: T_Y
 };
 let CACHE = {
-	oldinp: [,]
+	oldinp: [,],
+	ACTIVEI: 0
 }
 window.addEventListener('load',async function() {
 	console.log("waitin for 3 secs..");
@@ -24,6 +25,8 @@ BUCKETDECIMALS = {
 	250: { 0:6, 1:12 },
 	42161: { 0:12 }
 }
+
+MAXORDERBOOKSIZE = 25;
 
 async function basetrip() {
 	//PRE
@@ -542,6 +545,35 @@ function e3lib_spread_uniform(n) {
 	return {x:x,y:y}
 }
 
+function e3lib_gen_ids(_start,_end) {
+	let _rarr=[];
+	for (let i=_start;i<=_end;i++) {
+		_rarr.push(i);
+	}
+	return _rarr;
+}
+
+function e3lib_gen_dist(_isx, _kind, _size, _zeros) {
+	_rarr=[];
+	if(_kind=='flat') {
+		if(_isx){
+			for(let i=0;i<_size;i++){
+				i < _zeros
+				? _rarr.push(0)
+				: _rarr.push(BigInt(Math.floor( 1e18 / Math.ceil(_size-_zeros) )));
+			}
+		}
+		else {
+			for(let i=0;i<_size;i++){
+				i < _size - _zeros
+				? _rarr.push(BigInt(Math.floor( 1e18 / Math.ceil(_size-_zeros) )))
+				: _rarr.push(0) ;
+			}
+		}
+	}
+	return _rarr;
+}
+
 
 //////
 
@@ -560,6 +592,14 @@ async function paintBook() {
 	let _tliq = 0;let _tliqMax = 0;
 	for(let i=0;i<rd[0].length;i++){_cliq=Number(rd[6][i])/10**T_Y.decimals;_tliq+=_cliq;_tliqMax=_tliqMax<_cliq?_cliq:_tliqMax;}
 	let _t=[0,0];for(i=0;i<rd[0].length;i++){_t[0]+=Number(rd[1][i]);_t[1]+=Number(rd[2][i]);}
+	let activebucketi=0;
+	for(let i=0;i<rd[0].length;i++){
+		if(Number(rd[4][i])>0&&Number(rd[5][i])>0){
+			activebucketi=i;
+		}
+	}
+	CACHE.ACTIVEI = Number(rd[0][activebucketi]);
+	console.log("activebucketi, i",activebucketi,i,Number(rd[0][activebucketi]));
 
 	$("mp-utab").innerHTML = `
 		<span style="font-size:1.5em"><img style="vertical-align: bottom; height:24px; width:24px;" src="${T_X.logo}"> ${_t[0]/10**T_X.decimals} ${T_X.symbol}</span>
@@ -607,7 +647,11 @@ async function paintBook() {
 
 		//_qt =
 
-		if(_px!=0 && _py==0) {
+		if(
+			//_px!=0 && _py==0 &&
+			i > activebucketi
+			&& i - activebucketi < MAXORDERBOOKSIZE
+		) {
 			$("OBA").innerHTML = `
 				<div
 					id="OBR_${rd[0][i]}"
@@ -617,13 +661,17 @@ async function paintBook() {
 					<div>${_p.toFixed(6)}</div>
 					<div>${(_pl/_p).toFixed(4)}</div>
 					<div>${_pl.toFixed(4)}</div>
-					<div><input placeholder="0.00" id="op_${rd[0][i]}" value="${ _oldinp }"> <button onclick="openPositionAt(${rd[0][i]},${rd[1][i]},${rd[2][i]},${rd[3][i]},${rd[4][i]},${rd[5][i]},${rd[6][i]},'x')"><img src="img/check.svg"></button></div>
 				</div>
 			` + $("OBA").innerHTML;
+					//<div><input placeholder="0.00" id="op_${rd[0][i]}" value="${ _oldinp }"> <button onclick="openPositionAt(${rd[0][i]},${rd[1][i]},${rd[2][i]},${rd[3][i]},${rd[4][i]},${rd[5][i]},${rd[6][i]},'x')"><img src="img/check.svg"></button></div>
 		}
 
 
-		else if(_px==0 && _py!=0) {
+		else if(
+			//_px==0 && _py!=0
+			activebucketi > i
+			&& activebucketi - i < MAXORDERBOOKSIZE
+		) {
 			$("OBB").innerHTML = `
 				<div
 					id="OBR_${rd[0][i]}"
@@ -633,9 +681,9 @@ async function paintBook() {
 					<div>${_p.toFixed(6)}</div>
 					<div>${(_pl/_p).toFixed(4)}</div>
 					<div>${_pl.toFixed(4)}</div>
-					<div><input placeholder="0.00" id="op_${rd[0][i]}" value="${ _oldinp }"> <button onclick="openPositionAt(${rd[0][i]},${rd[1][i]},${rd[2][i]},${rd[3][i]},${rd[4][i]},${rd[5][i]},${rd[6][i]},'y')"><img src="img/check.svg"></button></div>
 				</div>
 			` + $("OBB").innerHTML;
+					//<div><input placeholder="0.00" id="op_${rd[0][i]}" value="${ _oldinp }"> <button onclick="openPositionAt(${rd[0][i]},${rd[1][i]},${rd[2][i]},${rd[3][i]},${rd[4][i]},${rd[5][i]},${rd[6][i]},'y')"><img src="img/check.svg"></button></div>
 		}
 
 		else if(_px!=0 && _py!=0) {
@@ -649,9 +697,9 @@ async function paintBook() {
 					<div>${_p.toFixed(6)}</div>
 					<div>${(_px).toFixed(4)}</div>
 					<div>${(_px*_p).toFixed(4)}</div>
-					<div><input placeholder="0.00" id="op_${rd[0][i]}" value="${ _oldinp }"> <button onclick="openPositionAt(${rd[0][i]},${rd[1][i]},${rd[2][i]},${rd[3][i]},${rd[4][i]},${rd[5][i]},${rd[6][i]},'x')"><img src="img/check.svg"></button></div>
 				</div>
 			` + $("OBA").innerHTML;
+					//<div><input placeholder="0.00" id="op_${rd[0][i]}" value="${ _oldinp }"> <button onclick="openPositionAt(${rd[0][i]},${rd[1][i]},${rd[2][i]},${rd[3][i]},${rd[4][i]},${rd[5][i]},${rd[6][i]},'x')"><img src="img/check.svg"></button></div>
 
 			$("OBB").innerHTML = `
 				<div
@@ -662,9 +710,9 @@ async function paintBook() {
 					<div>${_p.toFixed(6)}</div>
 					<div>${(_py/_p).toFixed(4)}</div>
 					<div>${(_py).toFixed(4)}</div>
-					<div><input placeholder="0.00" id="op_${rd[0][i]}" value="${ _oldinp }"> <button onclick="openPositionAt(${rd[0][i]},${rd[1][i]},${rd[2][i]},${rd[3][i]},${rd[4][i]},${rd[5][i]},${rd[6][i]},'y')"><img src="img/check.svg"></button></div>
 				</div>
 			` + $("OBB").innerHTML;
+					//<div><input placeholder="0.00" id="op_${rd[0][i]}" value="${ _oldinp }"> <button onclick="openPositionAt(${rd[0][i]},${rd[1][i]},${rd[2][i]},${rd[3][i]},${rd[4][i]},${rd[5][i]},${rd[6][i]},'y')"><img src="img/check.svg"></button></div>
 
 		/*
 			$("OBAB").innerHTML = `
@@ -975,3 +1023,127 @@ async function closeAll() {
 	`);
 	R.removeLiquidity(T_X.address,T_Y.address,BUCKET,BigInt(Math.floor(_t[0]*SLIPBPS/1e4)),BigInt(Math.floor(_t[1]*SLIPBPS/1e4)),rd3,bq,window.ethereum.selectedAddress,Math.floor(Date.now()/1000+1337));
 }
+
+
+async function onp_create() {
+	let _aamt = $("onp-ask").value;
+	let _bamt = $("onp-bid").value;
+	if(!isFinite(_aamt)) { notice(`<h3>Invalid amount of ${T_X.symbol} input!</h3>`); return;}
+	if(!isFinite(_bamt)) { notice(`<h3>Invalid amount of ${T_Y.symbol} input!</h3>`); return;}
+	_T_X = new ethers.Contract(T_X.address, ["function balanceOf(address) public view returns(uint256)","function allowance(address,address) public view returns(uint256)","function approve(address,uint256)"], signer);
+	_T_Y = new ethers.Contract(T_Y.address, ["function balanceOf(address) public view returns(uint256)","function allowance(address,address) public view returns(uint256)","function approve(address,uint256)"], signer);
+
+	notice(`Validating your request...<br><br>Please wait.`);
+
+	let _usernums = await Promise.all([
+		_POOL.getActiveId(),
+		_T_X.balanceOf(window.ethereum.selectedAddress),
+		_T_X.allowance(window.ethereum.selectedAddress, ROUTER.address),
+		_T_Y.balanceOf(window.ethereum.selectedAddress),
+		_T_Y.allowance(window.ethereum.selectedAddress, ROUTER.address),
+	]);
+
+	if( _usernums[1] < (_aamt*10**T_X.decimals) || _usernums[3] < (_bamt*10**T_Y.decimals) ) {
+		notice(`
+			<h3>Insufficient Balance!</h3>
+			<br>Desired ${T_X.symbol}: ${(_aamt).toFixed(6)}
+			<br>Available ${T_X.symbol}: ${_usernums[1]/10**T_X.decimals}
+			<br>
+			<br>Desired ${T_Y.symbol}: ${(_bamt).toFixed(6)}
+			<br>Available ${T_Y.symbol}: ${_usernums[3]/10**T_Y.decimals}
+		`);
+		return;
+	};
+
+
+	if( _usernums[2] < (_aamt*10**T_X.decimals) || _usernums[4] < (_bamt*10**T_Y.decimals) ) {
+		notice(`
+			<h3>Insufficient Allowances!</h3>
+			<br>Desired ${T_X.symbol}: ${(_aamt).toFixed(6)}
+			<br>Allowed ${T_X.symbol}: ${_usernums[2]/10**T_X.decimals}
+			<br>
+			<br>Desired ${T_Y.symbol}: ${(_bamt).toFixed(6)}
+			<br>Allowed ${T_Y.symbol}: ${_usernums[4]/10**T_Y.decimals}
+			<br><br>E3 Engine needs your approval to open a new	position.
+			<br><i>Please confirm approval transactions in your wallet.</i>
+		`);
+
+		txh = await Promise.all([
+			_usernums[2] < (_aamt*10**T_X.decimals) ? _T_X.approve(ROUTER.address, BigInt(Math.floor(_aamt*10**T_X.decimals))) : true,
+			_usernums[4] < (_bamt*10**T_Y.decimals) ? _T_Y.approve(ROUTER.address, BigInt(Math.floor(_bamt*10**T_Y.decimals))) : true,
+		]);
+		txr = await Promise.all([
+			txh[0] == true ? true : txh[0].wait(),
+			txh[1] == true ? true : txh[1].wait()
+		]);
+
+		notice(`
+			<h2>Approvals Granted!</h2>
+			<br>Starting Order Creation...
+		`);
+	};
+
+
+	if( $("onp-uwf").checked ){
+		if(_aamt<T_X.minimum/10**T_X.decimals) { notice(`<h3>Amount of ${T_X.symbol} low!</h3>Minimum order size: ${T_X.minimum/10**T_X.decimals}`); return;}
+		if(_aamt<T_Y.minimum/10**T_Y.decimals) { notice(`<h3>Amount of ${T_Y.symbol} low!</h3>Minimum order size: ${T_Y.minimum/10**T_Y.decimals}`); return;}
+		notice(`
+			<h3>Creating New EⅢ Position</h3>
+			Using <b>Ultra-Wide Flat</b> strategy..
+			<br><br>
+			Asks: ${_aamt} ${T_X.symbol}
+			Bids: ${_bamt} ${T_Y.symbol}
+		`);
+
+		let _op_obj = {
+			"tokenX": T_X.address,
+			"tokenY": T_Y.address,
+			"binStep": BUCKET,
+			"amountX": BigInt(Math.floor(_aamt*10**T_X.decimals)),
+			"amountY": BigInt(Math.floor(_aamt*10**T_Y.decimals)),
+			"amountXMin": BigInt(Math.floor(_aamt*10**T_X.decimals*SLIPBPS/1e4)),
+			"amountYMin": BigInt(Math.floor(_aamt*10**T_Y.decimals*SLIPBPS/1e4)),
+			"activeIdDesired": _usernums[0],//CACHE.ACTIVEI,
+			"idSlippage": 10,
+			"deltaIds": e3lib_gen_ids(-50,50),
+			"distributionX": e3lib_gen_dist(true,'flat',101,50),
+			"distributionY": e3lib_gen_dist(false,'flat',101,50),
+			"to": window.ethereum.selectedAddress,
+			"refundTo": window.ethereum.selectedAddress,
+			"deadline": Math.floor(Date.now()/999.999)
+		};
+		console.log("_op_obj",_op_obj);
+
+		txh = await R.addLiquidity(_op_obj);
+		notice(`
+			<h2>Opening a new position</h2>
+			<b>Awaiting confirmation from the network . . ..</b>
+			<br><br><i>Please wait.</i>
+			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
+		`);
+		txr = await txh.wait();
+		notice(`
+			<h2>New Position Opened!</h2>
+			Using <b>Ultra-Wide Flat</b> strategy..
+			<br><br>
+			Asks: ${_aamt} ${T_X.symbol}
+			Bids: ${_bamt} ${T_Y.symbol}
+			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
+		`);
+
+
+	}
+	else if( $("onp-cbd").checked ){}
+	else if( $("onp-bp").checked ){}
+	else if( $("onp-rr").checked ){}
+	else { notice(`<h3>Please select a Strategy</h3>`); }
+}
+
+
+
+
+
+
+
+
+
