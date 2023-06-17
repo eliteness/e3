@@ -1035,7 +1035,12 @@ async function onp_create() {
 	_POOL = new ethers.Contract(POOLADDR,PAIRABI,signer);
 	R = new ethers.Contract(ROUTER.address, ROUTER.ABI, signer);
 
-	notice(`Validating your request...<br><br>Please wait.`);
+	notice(`
+		Validating your request...<br>
+		<br><img style="vertical-align: bottom;" height="20px" src="${T_X.logo}"> Asks: ${_aamt} ${T_X.symbol}
+		<br><img style="vertical-align: bottom;" height="20px" src="${T_Y.logo}"> Bids: ${_bamt} ${T_Y.symbol}
+		<br><br>Please wait..
+	`);
 
 	let _usernums = await Promise.all([
 		_POOL.getActiveId(),
@@ -1095,8 +1100,8 @@ async function onp_create() {
 			<h3>Creating New EⅢ Position</h3>
 			Using <b>Ultra-Wide Flat</b> strategy..
 			<br>
-			<br>Asks: ${_aamt} ${T_X.symbol}
-			<br>Bids: ${_bamt} ${T_Y.symbol}
+			<br><img style="vertical-align: bottom;" height="20px" src="${T_X.logo}"> Asks: ${_aamt} ${T_X.symbol}
+			<br><img style="vertical-align: bottom;" height="20px" src="${T_Y.logo}"> Bids: ${_bamt} ${T_Y.symbol}
 		`);
 
 		let _op_obj = {
@@ -1130,8 +1135,8 @@ async function onp_create() {
 			<h2>New Position Opened!</h2>
 			Using <b>Ultra-Wide Flat</b> strategy..
 			<br>
-			<br>Asks: ${_aamt} ${T_X.symbol}
-			<br>Bids: ${_bamt} ${T_Y.symbol}
+			<br><img style="vertical-align: bottom;" height="20px" src="${T_X.logo}"> Asks: ${_aamt} ${T_X.symbol}
+			<br><img style="vertical-align: bottom;" height="20px" src="${T_Y.logo}"> Bids: ${_bamt} ${T_Y.symbol}
 			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
 
