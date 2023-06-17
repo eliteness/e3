@@ -13,6 +13,11 @@
 	grid-template-columns: 33% auto 33%;
 }
 
+#mp-list .OBR_A, #mp-list .OBR_B, #mp-list .OBR_AB {
+	display:grid;
+	grid-template-columns: 25% 25% 25% 25%;
+}
+
 #OBH_UP {
 	display:grid;
 	grid-template-columns: 25% 25% 25% 25%;
