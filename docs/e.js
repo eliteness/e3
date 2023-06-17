@@ -1032,6 +1032,8 @@ async function onp_create() {
 	if(!isFinite(_bamt)) { notice(`<h3>Invalid amount of ${T_Y.symbol} input!</h3>`); return;}
 	_T_X = new ethers.Contract(T_X.address, ["function balanceOf(address) public view returns(uint256)","function allowance(address,address) public view returns(uint256)","function approve(address,uint256)"], signer);
 	_T_Y = new ethers.Contract(T_Y.address, ["function balanceOf(address) public view returns(uint256)","function allowance(address,address) public view returns(uint256)","function approve(address,uint256)"], signer);
+	_POOL = new ethers.Contract(POOLADDR,PAIRABI,signer);
+	R = new ethers.Contract(ROUTER.address, ROUTER.ABI, signer);
 
 	notice(`Validating your request...<br><br>Please wait.`);
 
@@ -1090,9 +1092,9 @@ async function onp_create() {
 		notice(`
 			<h3>Creating New EⅢ Position</h3>
 			Using <b>Ultra-Wide Flat</b> strategy..
-			<br><br>
-			Asks: ${_aamt} ${T_X.symbol}
-			Bids: ${_bamt} ${T_Y.symbol}
+			<br>
+			<br>Asks: ${_aamt} ${T_X.symbol}
+			<br>Bids: ${_bamt} ${T_Y.symbol}
 		`);
 
 		let _op_obj = {
@@ -1125,9 +1127,9 @@ async function onp_create() {
 		notice(`
 			<h2>New Position Opened!</h2>
 			Using <b>Ultra-Wide Flat</b> strategy..
-			<br><br>
-			Asks: ${_aamt} ${T_X.symbol}
-			Bids: ${_bamt} ${T_Y.symbol}
+			<br>
+			<br>Asks: ${_aamt} ${T_X.symbol}
+			<br>Bids: ${_bamt} ${T_Y.symbol}
 			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
 

@@ -135,7 +135,7 @@
 			<div>Spot Price <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdc.svg"></div>
 			<div>Amount <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/ftm.svg"></div>
 			<div>Total <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdc.svg"></div>
-			<div>Add New Order</div>
+			<!--<div>Add New Order</div>-->
 		</div>
 
 		<div id="OBAB" style="display:">
@@ -148,13 +148,13 @@
 				<div>Spot Price <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdc.svg"></div>
 				<div>Amount <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/ftm.svg"></div>
 				<div>Total <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdc.svg"></div>
-				<div>Add New Order</div>
+				<!--<div>Add New Order</div>-->
 			</div>
 			<div class="OBH" id="OBH_B">
 				<div>Spot Price <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdc.svg"></div>
 				<div>Amount <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/ftm.svg"></div>
 				<div>Total <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdc.svg"></div>
-				<div>Add New Order</div>
+				<!--<div>Add New Order</div>-->
 			</div>
 
 			<div id="OBB">
@@ -166,17 +166,82 @@
 
 		</div>
 
+		<div align="center" id="ONP">
+			<br><br>
+			<h2 style="font-size: 1.75rem !important;">Open New Positions</h2>
+
+			<b>Step 1:</b> Enter the amount of tokens you wish to make the market with:
+			<br><br>
+			<input id="onp-ask" placeholder="WFTM Amount">
+			<br><br><input id="onp-bid" placeholder="USDC Amount">
+
+			<br><br><br><br>
+			<b>Step 2:</b> Choose the market-making strategy:
+			<br><br>
+
+			<fieldset id="infodesc-strats">
+				<legend>Available Strategies:</legend><br>
+
+				<div>
+					<h3>
+						<input type="radio" id="onp-uwf" name="infodesc-strats" value="uwf">
+						<label for="dewey">Ultra-Wide Flat</label>
+					</h3>
+					Spread out liquidity over 101 Bins, 50 as Asks & 50 as Bids. Ideal for new users with no prior experience. This opens 101 individual positions, with all of the same-side positions worth the same at current spot market price. Ideal for Top 50 Cryptocurrenices using a Stablecoin pairing.
+					<br><br>
+				</div>
+
+				<div>
+					<h3>
+						<input type="radio" id="onp-cbd" name="infodesc-strats" value="cbd" disabled>
+						<label for="dewey">Casual Basement Degen</label>
+					</h3>
+					69 Bucket-wide. Pointy at the center, tapering towards the sides. Looks like the Empire-State building, but way fatter. Requires regular monitoring to satisfy the Shiny Object Syndrome.
+					<br><br>
+				</div>
+
+				<div>
+					<h3>
+						<input type="radio" id="onp-bp" name="infodesc-strats" value="bp" disabled>
+						<label for="dewey">Bogdanoff Pro™</label>
+					</h3>
+					For Professional Market-Makers only. Highly concentrated Gaussian Distribution around mean, skewed in the direction of local price-action trend. Requires active maintenance. Spread over 14 Asks & 14 Bids focused around 1 heated bucket.
+					<br><br>
+				</div>
+
+				<div>
+					<h3>
+						<input type="radio" id="onp-rr" name="infodesc-strats" value="rr" disabled>
+						<label for="dewey">Range Rover</label>
+					</h3>
+					Single-sided Order for Dollar-Cost-Averaging into the other side. 75-Buckets wide to ease in slowly into the counterparty during a shift in the Market Trend. With Parabolic-tails loved by Cex bots and Knife-Catchers.
+					<br><br>
+				</div>
+
+			</fieldset>
+			<br><br><br><br>
+
+			<b>Step 3</b>
+			<br><br>
+			<button class="submit equal-gradient" style="width:200px;margin:auto;" onclick="onp_create()">Create</button>
+
+		</div>
+
+		<br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br>
+
 		<div align="center">
 			<br><br>
-			<h2 style="font-size: 1.5rem !important;">My Positions</h2>
+			<h2 style="font-size: 1.75rem !important;">My Positions</h2>
 
 			<div id="mp-utab">-</div>
 
 			<br>
 			<button onclick="closeAll()"><img src="img/cross.svg"></button> Close all positions</button>
 
-			<br>
-			<div class="OBH" id="OBH_A">
+			<br><br><br><br>
+
+			<div class="OBH" id="OBH_UP">
 				<div>Price </div>
 				<div>Open </div>
 				<div>Filled </div>
@@ -239,13 +304,15 @@
 				symbol: "WFTM",
 				address: WFTM,
 				decimals: 18,
-				logo: "https://ftm.guru/icons/ftm.svg"
+				logo: "https://ftm.guru/icons/ftm.svg",
+				minimum: 2e6
 			}
 			T_Y = {
 				symbol: "USDC",
 				address: USDC,
 				decimals: 6,
-				logo: "https://ftm.guru/icons/usdc.svg"
+				logo: "https://ftm.guru/icons/usdc.svg",
+				minimum: 2e6
 			}
 
 			INITIAL = "1";
