@@ -1028,8 +1028,8 @@ async function closeAll() {
 async function onp_create() {
 	let _aamt = $("onp-ask").value;
 	let _bamt = $("onp-bid").value;
-	if(!isFinite(_aamt)) { notice(`<h3>Invalid amount of ${T_X.symbol} input!</h3>`); return;}
-	if(!isFinite(_bamt)) { notice(`<h3>Invalid amount of ${T_Y.symbol} input!</h3>`); return;}
+	if(!isFinite(_aamt)) { notice(`<h3>Invalid amount of ${T_X.symbol} input!</h3>`); return;}	_aamt=Number(_aamt);
+	if(!isFinite(_bamt)) { notice(`<h3>Invalid amount of ${T_Y.symbol} input!</h3>`); return;}	_bamt=Number(_bamt);
 	_T_X = new ethers.Contract(T_X.address, ["function balanceOf(address) public view returns(uint256)","function allowance(address,address) public view returns(uint256)","function approve(address,uint256)"], signer);
 	_T_Y = new ethers.Contract(T_Y.address, ["function balanceOf(address) public view returns(uint256)","function allowance(address,address) public view returns(uint256)","function approve(address,uint256)"], signer);
 	_POOL = new ethers.Contract(POOLADDR,PAIRABI,signer);
