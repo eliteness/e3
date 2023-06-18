@@ -1187,7 +1187,7 @@ async function onp_create() {
 		if(_bamt<T_Y.minimum/10**T_Y.decimals) { notice(`<h3>Amount of ${T_Y.symbol} low!</h3>Minimum order size: ${T_Y.minimum/10**T_Y.decimals}`); return;}
 		notice(`
 			<h3>Creating New EⅢ Position</h3>
-			Using <b>Bogdanoff Pro™</b> strategy..
+			Using <b><i>Casual Basement Degen</i></b> strategy..
 			<br>
 			<br><img style="vertical-align: bottom;" height="20px" src="${T_X.logo}"> Asks: ${_aamt} ${T_X.symbol}
 			<br><img style="vertical-align: bottom;" height="20px" src="${T_Y.logo}"> Bids: ${_bamt} ${T_Y.symbol}
@@ -1222,7 +1222,7 @@ async function onp_create() {
 		txr = await txh.wait();
 		notice(`
 			<h2>New Position Opened!</h2>
-			Using <b>Bogdanoff Pro™</b> strategy..
+			Using <b><i>Casual Basement Degen</i></b> strategy..
 			<br>
 			<br><img style="vertical-align: bottom;" height="20px" src="${T_X.logo}"> Asks: ${_aamt} ${T_X.symbol}
 			<br><img style="vertical-align: bottom;" height="20px" src="${T_Y.logo}"> Bids: ${_bamt} ${T_Y.symbol}
