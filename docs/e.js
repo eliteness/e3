@@ -26,7 +26,7 @@ BUCKETDECIMALS = {
 	42161: { 0:12 }
 }
 
-MAXORDERBOOKSIZE = 25;
+MAXORDERBOOKSIZE = 2500;
 
 async function basetrip() {
 	//PRE
@@ -267,7 +267,7 @@ async function arf(){
 				try { if( ethers.utils.isAddress(window.ethereum.selectedAddress) ) {/*await*/ gubs();} }
 				catch(e) { console.log('No web3 wallet found!'); }
 			}
-			if(c%17==0){/*await*/ paintBook()}
+			if(c%41==0){/*await*/ paintBook()}
 			o = $('amount-sold-input').value;
 			t = STATE.ts.address;
 			c++;

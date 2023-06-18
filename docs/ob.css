@@ -23,6 +23,12 @@
 	grid-template-columns: 25% 25% 25% 25%;
 }
 
+#OBA, #OBB {
+    min-height: 400px;
+    max-height: 70vh;
+    overflow: auto;
+}
+
 .OBH div {
 	font-size:1.25em;
 	margin-bottom: 10px;
