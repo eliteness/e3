@@ -571,13 +571,13 @@ function e3lib_gen_dist(_isx, _kind, _size, _zeros) {
 			}
 		}
 	}
-	else if(kind == 'cbd') {
+	else if(_kind == 'bogpro') {
 		_rarr = _isx
 			? ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","41211048977914000","82422097955828100","81733364405671000","80598240676066400","79035503085190000","77070709389239300","74735503559369100","72066768416207000","69105657812196500","65896543800024600","62485916310631600","58921273239094500","55250037548078800","51518535181979400","47771063452128600"]
 			: ["47771063452128600","51518535181979400","55250037548078800","58921273239094500","62485916310631600","65896543800024600","69105657812196500","72066768416207000","74735503559369100","77070709389239300","79035503085190000","80598240676066400","81733364405671000","82422097955828100","41211048977914000","0","0","0","0","0","0","0","0","0","0","0","0","0","0"]
 		;
 	}
-	else if(kind == 'bogpro') {
+	else if(_kind == 'cbd') {
 		_rarr = _isx
 			? ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","29755270020154500","59510540040309100","59013259498679400","58193675578387300","57065345187862800","55646721580678200","53960652389436200","52033767809535700","49895781813860300","47578731985577300","45116185061827900","42542435551692800","39891723861428700","37197498326338900","34491742564713800","31804385831372300","29162809782220400","26591460507005900","24111570084459900","21740987486925100","19494114608220600","17381939670544900","15412157402808900","13589363247419300","11915307473221600","10389194434459100","9008012267419790","7766878975915517","6659392019927108","5677970071259770","4814177413491765","4059023421017415","3403231542769610","2837474143462068","2352571339581980"]
 			: ["2352571339581980","2837474143462068","3403231542769610","4059023421017415","4814177413491765","5677970071259770","6659392019927108","7766878975915517","9008012267419790","10389194434459100","11915307473221600","13589363247419300","15412157402808900","17381939670544900","19494114608220600","21740987486925100","24111570084459900","26591460507005900","29162809782220400","31804385831372300","34491742564713800","37197498326338900","39891723861428700","42542435551692800","45116185061827900","47578731985577300","49895781813860300","52033767809535700","53960652389436200","55646721580678200","57065345187862800","58193675578387300","59013259498679400","59510540040309100","29755270020154500","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"]
@@ -860,7 +860,7 @@ async function closePositionAt(_bId,_upx,_upy,_upl,_kind) {
 		<br><br>
 		EⅢ is glad to have served you. Best of luck for your next trade!
 	`);
-	paintBook();
+	gubs();paintBook();
 }
 
 async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl,_kind) {
@@ -1008,7 +1008,7 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl,_kind) {
 		`);
 	}
 
-	paintBook();
+	gubs();paintBook();
 
 }
 
@@ -1034,6 +1034,32 @@ async function closeAll() {
 		<i>Slippage Tolerance : ±0.1%)</i>
 	`);
 	R.removeLiquidity(T_X.address,T_Y.address,BUCKET,BigInt(Math.floor(_t[0]*SLIPBPS/1e4)),BigInt(Math.floor(_t[1]*SLIPBPS/1e4)),rd3,bq,window.ethereum.selectedAddress,Math.floor(Date.now()/1000+1337));
+	notice(`
+		<h2>Closing All Positions</h2>
+		<h3>Total Asks</h3>
+		<img style="vertical-align: bottom;" height="24px" width="24px" src="${T_X.logo}"> ${_t[0]/10**T_X.decimals} ${T_X.symbol} <br>
+		<h3>Total Bids</h3>
+		<img style="vertical-align: bottom;" height="24px" width="24px" src="${T_Y.logo}"> ${_t[1]/10**T_Y.decimals} ${T_Y.symbol}<br>
+		<h3>Minimum Received</h3>
+		<img style="vertical-align: bottom;" height="24px" width="24px" src="${T_X.logo}"> ${_t[0]/10**T_X.decimals*SLIPBPS/1e4} ${T_X.symbol} <br>
+		<img style="vertical-align: bottom;" height="24px" width="24px" src="${T_Y.logo}"> ${_t[1]/10**T_Y.decimals*SLIPBPS/1e4} ${T_Y.symbol} <br>
+		<i>Slippage Tolerance : ±0.1%)</i>
+		<br><br>
+		<b>Awaiting confirmation from the network . . ..</b>
+		<br><br><i>Please wait.</i>
+		<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
+	`);
+	txr = await txh.wait();
+	notice(`
+		<h2>Closed All Positions!</h2>
+		<h3>Total Asks</h3>
+		<img style="vertical-align: bottom;" height="24px" width="24px" src="${T_X.logo}"> ${_t[0]/10**T_X.decimals} ${T_X.symbol} <br>
+		<h3>Total Bids</h3>
+		<img style="vertical-align: bottom;" height="24px" width="24px" src="${T_Y.logo}"> ${_t[1]/10**T_Y.decimals} ${T_Y.symbol}<br>
+		<br>
+		<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
+	`);
+	gubs();paintBook();
 }
 
 
@@ -1151,6 +1177,7 @@ async function onp_create() {
 			<br><img style="vertical-align: bottom;" height="20px" src="${T_Y.logo}"> Bids: ${_bamt} ${T_Y.symbol}
 			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
+		gubs();paintBook();
 
 
 	}
@@ -1200,6 +1227,7 @@ async function onp_create() {
 			<br><img style="vertical-align: bottom;" height="20px" src="${T_Y.logo}"> Bids: ${_bamt} ${T_Y.symbol}
 			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
+		gubs();paintBook();
 	}
 
 
@@ -1249,6 +1277,7 @@ async function onp_create() {
 			<br><img style="vertical-align: bottom;" height="20px" src="${T_Y.logo}"> Bids: ${_bamt} ${T_Y.symbol}
 			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
+		gubs();paintBook();
 	}
 
 	else if( $("onp-rr").checked ){}
