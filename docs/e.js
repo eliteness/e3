@@ -267,7 +267,7 @@ async function arf(){
 				try { if( ethers.utils.isAddress(window.ethereum.selectedAddress) ) {/*await*/ gubs();} }
 				catch(e) { console.log('No web3 wallet found!'); }
 			}
-			if(c%41==0){/*await*/ paintBook()}
+			//if(c%41==0){/*await*/ paintBook()}
 			o = $('amount-sold-input').value;
 			t = STATE.ts.address;
 			c++;

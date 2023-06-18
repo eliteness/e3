@@ -24,8 +24,8 @@
 }
 
 #OBA, #OBB {
-    min-height: 400px;
-    max-height: 70vh;
+    min-height: 100px;
+    max-height: 35vh;
     overflow: auto;
 }
 
@@ -145,5 +145,11 @@
 
 	#OBH_B {
 		display:grid;
+	}
+
+	#OBA, #OBB {
+    	min-height: 400px;
+    	max-height: 70vh;
+    	overflow: auto;
 	}
 }
