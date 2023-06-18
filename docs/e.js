@@ -326,7 +326,7 @@ async function priceFinder() {
 	let dir = T_X.address == _nam ? true : false;
 	let selldeci = ( dir ? T_X.decimals : T_Y.decimals);
 	let buydeci = ( dir ? T_Y.decimals : T_X.decimals);
-	let ain = BigInt(Number($("amount-sold-input").value) * 10**selldeci);
+	let ain = BigInt(Math.floor(Number($("amount-sold-input").value) * 10**selldeci));
 	let sod = await R.getSwapOut(POOLADDR, ain, dir);
 	//$("amount-sold-input").value = ((Number(ain)-Number(sod[0]))/10**selldeci).toFixed(selldeci);
 	let aout = (Number(sod[1])/10**buydeci).toFixed(buydeci);
@@ -423,6 +423,7 @@ async function sell() {
 		<br>
 		<h4><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 	`);
+	gubs();paintBook();
 }
 
 
@@ -1033,7 +1034,7 @@ async function closeAll() {
 		<img style="vertical-align: bottom;" height="24px" width="24px" src="${T_Y.logo}"> ${_t[1]/10**T_Y.decimals*SLIPBPS/1e4} ${T_Y.symbol} <br>
 		<i>Slippage Tolerance : ±0.1%)</i>
 	`);
-	R.removeLiquidity(T_X.address,T_Y.address,BUCKET,BigInt(Math.floor(_t[0]*SLIPBPS/1e4)),BigInt(Math.floor(_t[1]*SLIPBPS/1e4)),rd3,bq,window.ethereum.selectedAddress,Math.floor(Date.now()/1000+1337));
+	txh = await R.removeLiquidity(T_X.address,T_Y.address,BUCKET,BigInt(Math.floor(_t[0]*SLIPBPS/1e4)),BigInt(Math.floor(_t[1]*SLIPBPS/1e4)),rd3,bq,window.ethereum.selectedAddress,Math.floor(Date.now()/1000+1337));
 	notice(`
 		<h2>Closing All Positions</h2>
 		<h3>Total Asks</h3>
