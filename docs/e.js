@@ -342,7 +342,7 @@ async function sell() {
 	let dir = T_X.address == _nam ? true : false;
 	let selldeci = ( dir ? T_X.decimals : T_Y.decimals);
 	let buydeci = ( dir ? T_Y.decimals : T_X.decimals);
-	let ain = BigInt(Number($("amount-sold-input").value) * 10**selldeci);
+	let ain = BigInt(Math.floor(Number($("amount-sold-input").value) * 10**selldeci));
 	let TCS = new ethers.Contract(_nam,["function balanceOf(address) public view returns(uint)","function allowance(address,address) public view returns(uint)","function approve(address,uint)"],signer);
 	let ubs = await Promise.all([
 		TCS.balanceOf(window.ethereum.selectedAddress),
