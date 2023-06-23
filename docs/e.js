@@ -12,7 +12,7 @@ let CACHE = {
 window.addEventListener('load',async function() {
 	console.log("waitin for 3 secs..");
 	$("cw_m").innerHTML = "Connecting.. Please wait."
-	setTimeout(async () => { await basetrip(); await paintBook();}, 3000);
+	setTimeout(async () => { basetrip(); paintBook();}, 3000);
 	arf();
 }, false);
 
@@ -1032,7 +1032,7 @@ async function closeAll() {
 		<h3>Minimum Received</h3>
 		<img style="vertical-align: bottom;" height="24px" width="24px" src="${T_X.logo}"> ${_t[0]/10**T_X.decimals*SLIPBPS/1e4} ${T_X.symbol} <br>
 		<img style="vertical-align: bottom;" height="24px" width="24px" src="${T_Y.logo}"> ${_t[1]/10**T_Y.decimals*SLIPBPS/1e4} ${T_Y.symbol} <br>
-		<i>Slippage Tolerance : ±0.1%)</i>
+		<i>Slippage Tolerance : ±0.1%</i>
 	`);
 	txh = await R.removeLiquidity(T_X.address,T_Y.address,BUCKET,BigInt(Math.floor(_t[0]*SLIPBPS/1e4)),BigInt(Math.floor(_t[1]*SLIPBPS/1e4)),rd3,bq,window.ethereum.selectedAddress,Math.floor(Date.now()/1000+1337));
 	notice(`
