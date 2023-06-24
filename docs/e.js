@@ -33,7 +33,7 @@ async function basetrip() {
 	pre_stats();
 	//MAIN
 	if(!(window.ethereum)){$("cw_m").innerHTML = "Wallet wasn't detected!";console.log("Wallet wasn't detected!");notice("<h3>Wallet wasn't detected!</h3>Please make sure that your device and browser have an active Web3 wallet like MetaMask installed and running.<br><br>Visit <a href='https://metamask.io' target='_blank'>metamask.io</a> to install MetaMask wallet.");provider = new ethers.providers.JsonRpcProvider(RPC_URL); dexstats();paintBook();return}
-	else if(!Number(window.ethereum.chainId)==CHAINID){$("cw_m").innerHTML = "Wrong network! Please Switch to "+CHAINID;provider = new ethers.providers.JsonRpcProvider(RPC_URL);await dexstats();notice("<h3>Wrong network!</h3>Please Switch to Chain #"+CHAINID+"<btr"+ CHAIN_NAME+ "</u> Blockchain.");}
+	else if(!Number(window.ethereum.chainId)==CHAINID){$("cw_m").innerHTML = "Wrong network! Please Switch to "+CHAINID;provider = new ethers.providers.JsonRpcProvider(RPC_URL); dexstats();notice("<h3>Wrong network!</h3>Please Switch to Chain #"+CHAINID+"<btr"+ CHAIN_NAME+ "</u> Blockchain.");}
 	else if(//typeOf window.ethereum == Object &&Number(window.ethereum.chainId)
 		Number(window.ethereum.chainId)==CHAINID)
 	{
@@ -51,7 +51,7 @@ async function basetrip() {
 		if((typeof Number(window.ethereum.chainId) == "number")){$("cw_m").innerHTML = "Wrong network! Switch from " + Number(window.ethereum.chainId)+" to "+CHAINID}
 		provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 		//signer = provider.getSigner()
-		await dexstats();
+		dexstats();
 		$("connect").innerHTML=`Wallet not found.<br><br><button onclick="window.location.reload()" id="btn-connect">Retry?</button>`;
 	}
 	if(Number(window.ethereum.chainId) != null &&(window.ethereum.chainId!=CHAINID))
@@ -665,6 +665,23 @@ async function paintBook() {
 			i > activebucketi
 			&& i - activebucketi < MAXORDERBOOKSIZE
 		) {
+
+			let __r = document.createElement('div');
+			__r.setAttribute('id',`OBR_${rd[0][i]}`);
+			__r.setAttribute('class','OBR_A');
+			__r.setAttribute('style', `background:linear-gradient(to right, #ff00003f 0 ${_pl/_tliqMax*100}%, #ff000017 0 100%)`);
+			let __r1 = document.createElement('div');
+			__r1.appendChild(document.createTextNode(`${_p.toFixed(6)}`));
+			__r.appendChild(__r1);
+			let __r2 = document.createElement('div');
+			__r2.appendChild(document.createTextNode(`${(_pl/_p).toFixed(4)}`));
+			__r.appendChild(__r2);
+			let __r3 = document.createElement('div');
+			__r3.appendChild(document.createTextNode(`${_pl.toFixed(4)}`));
+			__r.appendChild(__r3);
+			$("OBA").appendChild(__r);
+
+			/*
 			$("OBA").innerHTML = `
 				<div
 					id="OBR_${rd[0][i]}"
@@ -677,6 +694,7 @@ async function paintBook() {
 				</div>
 			` + $("OBA").innerHTML;
 					//<div><input placeholder="0.00" id="op_${rd[0][i]}" value="${ _oldinp }"> <button onclick="openPositionAt(${rd[0][i]},${rd[1][i]},${rd[2][i]},${rd[3][i]},${rd[4][i]},${rd[5][i]},${rd[6][i]},'x')"><img src="img/check.svg"></button></div>
+			*/
 		}
 
 
@@ -685,6 +703,27 @@ async function paintBook() {
 			activebucketi > i
 			&& activebucketi - i < MAXORDERBOOKSIZE
 		) {
+			let __r = document.createElement('div');
+			__r.setAttribute('id',`OBR_${rd[0][i]}`);
+			__r.setAttribute('class','OBR_B');
+			__r.setAttribute('style', `background:linear-gradient(to right, #00cc003f 0 ${_pl/_tliqMax*100}%, #00cc0017 0 100%)`);
+			let __r1 = document.createElement('div');
+			__r1.appendChild(document.createTextNode(`${_p.toFixed(6)}`));
+			__r.appendChild(__r1);
+			let __r2 = document.createElement('div');
+			__r2.appendChild(document.createTextNode(`${(_pl/_p).toFixed(4)}`));
+			__r.appendChild(__r2);
+			let __r3 = document.createElement('div');
+			__r3.appendChild(document.createTextNode(`${_pl.toFixed(4)}`));
+			__r.appendChild(__r3);
+			$("OBB").appendChild(__r);
+
+			//__r.appendChild( document.createElement('div').appendChild(document.createTextNode(`${_p.toFixed(6)}`)) );
+			//__r.appendChild( document.createElement('div').appendChild(document.createTextNode(`${(_pl/_p).toFixed(4)}`)) );
+			//__r.appendChild( document.createElement('div').appendChild(document.createTextNode(`${_pl.toFixed(4)}`)) );
+
+
+			/*
 			$("OBB").innerHTML = `
 				<div
 					id="OBR_${rd[0][i]}"
@@ -697,9 +736,44 @@ async function paintBook() {
 				</div>
 			` + $("OBB").innerHTML;
 					//<div><input placeholder="0.00" id="op_${rd[0][i]}" value="${ _oldinp }"> <button onclick="openPositionAt(${rd[0][i]},${rd[1][i]},${rd[2][i]},${rd[3][i]},${rd[4][i]},${rd[5][i]},${rd[6][i]},'y')"><img src="img/check.svg"></button></div>
+			*/
 		}
 
 		else if(_px!=0 && _py!=0) {
+
+
+			let __ra = document.createElement('div');
+			__ra.setAttribute('id',`OBR_${rd[0][i]}`);
+			__ra.setAttribute('class','OBR_A');
+			__ra.setAttribute('style', `background:linear-gradient(to right, #ff00003f 0 ${_pl/_tliqMax*100}%, #ff000017 0 100%)`);
+			let __ra1 = document.createElement('div');
+			__ra1.appendChild(document.createTextNode(`${(_p).toFixed(6)}`));
+			__ra.appendChild(__ra1);
+			let __ra2 = document.createElement('div');
+			__ra2.appendChild(document.createTextNode(`${(_px).toFixed(4)}`));
+			__ra.appendChild(__ra2);
+			let __ra3 = document.createElement('div');
+			__ra3.appendChild(document.createTextNode(`${(_px*_p).toFixed(4)}`));
+			__ra.appendChild(__ra3);
+			$("OBA").appendChild(__ra);
+
+
+			let __rb = document.createElement('div');
+			__rb.setAttribute('id',`OBR_${rd[0][i]}`);
+			__rb.setAttribute('class','OBR_B');
+			__rb.setAttribute('style', `background:linear-gradient(to right, #00cc003f 0 ${_pl/_tliqMax*100}%, #00cc0017 0 100%)`);
+			let __rb1 = document.createElement('div');
+			__rb1.appendChild(document.createTextNode(`${_p.toFixed(6)}`));
+			__rb.appendChild(__rb1);
+			let __rb2 = document.createElement('div');
+			__rb2.appendChild(document.createTextNode(`${(_pl/_p).toFixed(4)}`));
+			__rb.appendChild(__rb2);
+			let __rb3 = document.createElement('div');
+			__rb3.appendChild(document.createTextNode(`${_pl.toFixed(4)}`));
+			__rb.appendChild(__rb3);
+			$("OBB").appendChild(__rb);
+
+			/*
 
 			$("OBA").innerHTML = `
 				<div
@@ -726,6 +800,7 @@ async function paintBook() {
 				</div>
 			` + $("OBB").innerHTML;
 					//<div><input placeholder="0.00" id="op_${rd[0][i]}" value="${ _oldinp }"> <button onclick="openPositionAt(${rd[0][i]},${rd[1][i]},${rd[2][i]},${rd[3][i]},${rd[4][i]},${rd[5][i]},${rd[6][i]},'y')"><img src="img/check.svg"></button></div>
+			*/
 
 		/*
 			$("OBAB").innerHTML = `
@@ -744,11 +819,11 @@ async function paintBook() {
 			*/;
 		}
 
-		sortit(0,"OBA","OBR_A","div");
+		//sortit(0,"OBA","OBR_A","div");
 		//sortit(0,"OBA","OBR_A","div");
 
-		sortit(0,"OBB","OBR_B","div");
-		sortit(0,"OBB","OBR_B","div");
+		//sortit(0,"OBB","OBR_B","div");
+		//sortit(0,"OBB","OBR_B","div");
 
 		if(_ux > 0) {
 			$("mp-list").innerHTML += `
@@ -760,6 +835,7 @@ async function paintBook() {
 				</div>
 			`;
 		}
+
 		if(_uy > 0) {
 			$("mp-list").innerHTML +=  `
 				<div class="OBR_B">
@@ -772,6 +848,12 @@ async function paintBook() {
 		}
 
 	}
+
+	//sortit(0,"OBA","OBR_A","div");
+	//sortit(0,"OBA","OBR_A","div");
+
+	sortit(0,"OBB","OBR_B","div");
+	//sortit(0,"OBB","OBR_B","div");
 
 
 }
