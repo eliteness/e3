@@ -29,11 +29,11 @@
 			<br>
 			<div class="input-amount-els">
 				<div onclick="pairSelectionMenu()">
-					<img class="bigthumb" id="logo-sold" src="https://ftm.guru/icons/ftm.svg"/>
+					<img class="bigthumb" id="logo-sold" src="https://ftm.guru/icons/usdc.svg"/>
 				</div>
 				<div class="amount-area">
 					<div class="prefill-num">
-						<span id="amount-sold-balance">0.000000 WFTM available</span>
+						<span id="amount-sold-balance">0.000000 USDC available</span>
 					</div>
 					<div class="amount-sold" id="token-sold">
 						<input value="1" placeholder="Sell Amount" id="amount-sold-input">
@@ -51,11 +51,11 @@
   			</div>
 			<div class="input-amount-els">
 				<div onclick="pairSelectionMenu()">
-					<img class="bigthumb" id="logo-bought" src="https://ftm.guru/icons/usdc.svg"/>
+					<img class="bigthumb" id="logo-bought" src="https://ftm.guru/icons/usdt.svg"/>
 				</div>
 				<div class="amount-area">
 					<div class="prefill-num">
-						<span id="amount-bought-balance">0.000000 USDC available</span>
+						<span id="amount-bought-balance">0.000000 fUSDT available</span>
 					</div>
 					<div class="amount-bought" id="token-bought">
 						<input value="Loading.." placeholder="Buy Amount" id="amount-bought-input" disabled="">
@@ -122,6 +122,8 @@
 	</div>
 
 
+
+
 	<br><br><br><br>
 
 
@@ -132,9 +134,9 @@
 		</div>
 
 		<div class="OBH" style="display:none">
-			<div>Spot Price <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdc.svg"></div>
-			<div>Amount <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/ftm.svg"></div>
-			<div>Total <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdc.svg"></div>
+			<div>Spot Price <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdt.svg"></div>
+			<div>Amount <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdc.svg"></div>
+			<div>Total <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdt.svg"></div>
 			<!--<div>Add New Order</div>-->
 		</div>
 
@@ -143,21 +145,21 @@
 		</div>
 
 		<div align="right">
-			<button onclick="paintBook()" style="font-family:light">Refresh Orders?</button>
+			<button onclick="paintBook()" style="font-family:light;padding: 2px 10px;width:auto" class="equal-gradient">Refresh Orders?</button>
 		</div>
 
 		<div id="OBOOK" style="display:">
 
 			<div class="OBH" id="OBH_A">
-				<div>Spot Price <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdc.svg"></div>
-				<div>Amount <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/ftm.svg"></div>
-				<div>Total <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdc.svg"></div>
+				<div>Spot Price <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdt.svg"></div>
+				<div>Amount <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdc.svg"></div>
+				<div>Total <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdt.svg"></div>
 				<!--<div>Add New Order</div>-->
 			</div>
 			<div class="OBH" id="OBH_B">
-				<div>Spot Price <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdc.svg"></div>
-				<div>Amount <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/ftm.svg"></div>
-				<div>Total <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdc.svg"></div>
+				<div>Spot Price <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdt.svg"></div>
+				<div>Amount <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdc.svg"></div>
+				<div>Total <img style="vertical-align: top;width: 24px;" src="https://ftm.guru/icons/usdt.svg"></div>
 				<!--<div>Add New Order</div>-->
 			</div>
 
@@ -176,8 +178,8 @@
 
 			<b>Step 1:</b> Enter the amount of tokens you wish to make the market with:
 			<br><br>
-			<input id="onp-ask" placeholder="WFTM Amount">
-			<br><br><input id="onp-bid" placeholder="USDC Amount">
+			<input id="onp-ask" placeholder="USDC Amount">
+			<br><br><input id="onp-bid" placeholder="fUSDT Amount">
 
 			<br><br><br><br>
 			<b>Step 2:</b> Choose the market-making strategy:
@@ -280,7 +282,7 @@
 				<img src="img/wallet.svg" width="24px" style="position:relative;top:4px">
 				<span id="cw"></span>
 			</b>
-			<br>Balance: <b style="font-family:bold" id="usb-mtv">?</b> <img class="imgmtv" src="https://ftm.guru/icons/ftm.svg" width="20px" style="position:relative;top:4px">WFTM<br>
+			<br>Balance: <b style="font-family:bold" id="usb-mtv">?</b> <img class="imgmtv" src="https://ftm.guru/icons/usdc.svg" width="20px" style="position:relative;top:4px">USDC<br>
 			<span style="font-size:0.9em">Wallet at <img class="imgmtv" src="https://ftm.guru/icons/ftm.svg" width="20px" style="position:relative;top:4px">Fantom Opera. <a href="index.html" style="color:aqua;font-family:bold">Change?</a></span>
 		</div>
 	</div>
@@ -296,29 +298,29 @@
 			EXPLORE = "https://ftmscan.com";
 			CHAIN_NAME = "Fantom Opera";
 			CHAIN_GAS = "FTM"
-			WFTM="0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83";
+			FTM="0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83";
 			USDC="0x04068DA6C83AFCFA0e13ba15A6696662335D5B75";
 			FUSDT="0x049d68029688eAbF473097a2fC38ef61633A3C7A";
 
-			POOLID = 1;
-			BUCKET = 20;
+			POOLID = 0;
+			BUCKET = 1;
 			BUCK_1 = 8388608;
-			POOLADDR = "0x6fea3b68a0666bd77b5c002ceedca0e4eb93f4aa";
+			POOLADDR = "0x1d766E912b4872ECa5172a5792c82ec28B9f894C";
+
 			T_X = {
-				symbol: "WFTM",
-				address: WFTM,
-				decimals: 18,
-				logo: "https://ftm.guru/icons/ftm.svg",
-				minimum: 2e6
-			}
-			T_Y = {
 				symbol: "USDC",
 				address: USDC,
 				decimals: 6,
 				logo: "https://ftm.guru/icons/usdc.svg",
 				minimum: 2e6
 			}
-
+			T_Y = {
+				symbol: "fUSDT",
+				address: FUSDT,
+				decimals: 6,
+				logo: "https://ftm.guru/icons/usdt.svg",
+				minimum: 2e6
+			}
 			INITIAL = "1";
 			SLIPBPS = 9990;
 		</script>
