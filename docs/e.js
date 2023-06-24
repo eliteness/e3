@@ -766,17 +766,10 @@ async function paintBook() {
 			__rb1.appendChild(document.createTextNode(`${_p.toFixed(6)}`));
 			__rb.appendChild(__rb1);
 			let __rb2 = document.createElement('div');
-<<<<<<< HEAD
 			__rb2.appendChild(document.createTextNode(`${(_py/_p).toFixed(4)}`));
 			__rb.appendChild(__rb2);
 			let __rb3 = document.createElement('div');
 			__rb3.appendChild(document.createTextNode(`${_py.toFixed(4)}`));
-=======
-			__rb2.appendChild(document.createTextNode(`${(_pl/_p).toFixed(4)}`));
-			__rb.appendChild(__rb2);
-			let __rb3 = document.createElement('div');
-			__rb3.appendChild(document.createTextNode(`${_pl.toFixed(4)}`));
->>>>>>> b725f0d35aea73ff6ccfd7431290ebf245316338
 			__rb.appendChild(__rb3);
 			$("OBB").appendChild(__rb);
 
