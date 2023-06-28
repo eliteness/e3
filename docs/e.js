@@ -706,7 +706,7 @@ async function paintBook() {
 			let __r = document.createElement('div');
 			__r.setAttribute('id',`OBR_${rd[0][i]}`);
 			__r.setAttribute('class','OBR_B');
-			__r.setAttribute('style', `background:linear-gradient(to right, #00cc003f 0 ${_pl/_tliqMax*100}%, #00cc0017 0 100%)`);
+			__r.setAttribute('style', `background:linear-gradient(to left, #00cc003f 0 ${_pl/_tliqMax*100}%, #00cc0017 0 100%)`);
 			let __r1 = document.createElement('div');
 			__r1.appendChild(document.createTextNode(`${_p.toFixed(6)}`));
 			__r.appendChild(__r1);
@@ -761,7 +761,7 @@ async function paintBook() {
 			let __rb = document.createElement('div');
 			__rb.setAttribute('id',`OBR_${rd[0][i]}`);
 			__rb.setAttribute('class','OBR_B');
-			__rb.setAttribute('style', `background:linear-gradient(to right, #00cc003f 0 ${_py/_tliqMax*100}%, #00cc0017 0 100%)`);
+			__rb.setAttribute('style', `background:linear-gradient(to left, #00cc003f 0 ${_py/_tliqMax*100}%, #00cc0017 0 100%)`);
 			let __rb1 = document.createElement('div');
 			__rb1.appendChild(document.createTextNode(`${_p.toFixed(6)}`));
 			__rb.appendChild(__rb1);
