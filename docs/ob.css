@@ -112,6 +112,11 @@
 #OB {
 	font-size: 0.8em;
 }
+#OBA *, #OBB * {
+	color: #fff;
+	font-weight:bolder;
+	text-shadow: 0 0px 5px #000;
+}
 
 #OBOOK {
 }
