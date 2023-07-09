@@ -490,6 +490,11 @@ function pairSelectionMenu() {
 					<div>WETH/USDC.e</div>
 					<div>Arbitrum #0</div>
 				</a>
+				<a href="42161-1">
+					<div><img src="https://ftm.guru/icons/eth.svg"><img src="https://ftm.guru/icons/usdc.svg"></div>
+					<div>WETH/USDC</div>
+					<div>Arbitrum #1</div>
+				</a>
 			</h2>
 		</div>
 	`);
@@ -1105,6 +1110,32 @@ async function closeAll() {
 	let _pn = new ethers.Contract(POOLADDR,["function balanceOfBatch(address[],uint256[]) public view returns(uint256[])"],signer);
 	R = new ethers.Contract(ROUTER.address, ROUTER.ABI, signer);
 	bq=await _pn.balanceOfBatch(qa,rd3);
+
+	_POOL = new ethers.Contract(POOLADDR,PAIRABI,signer);
+	_isAFA = await _POOL.isApprovedForAll(window.ethereum.selectedAddress,ROUTER.address);
+
+	if( _isAFA == false) {
+	notice(`
+		<h3>Approve Position Manager</h3>
+		E3 Position manager requires your approval to access and close all your positions.
+		<br><br>
+		<b>Please approve the this transaction in your wallet..</b>
+	`);
+	txh = await _POOL.approveForAll(ROUTER.address, true);
+
+	notice(`
+		<h2><img style="vertical-align: bottom;" height="32px" src="${STATE.ts.logo}"> Approving the E3 Position Manager...</h2>
+		<b>Awaiting confirmation from the network . . ..</b>
+		<br><br><i>Please wait.</i>
+	`);
+	txr = await txh.wait();
+
+	notice(`
+		<h2><img style="vertical-align: bottom;" height="32px" src="${STATE.ts.logo}"> Approval Granted</h2>
+		<br>Closing all of your orders...
+	`);
+}
+
 	notice(`
 		<h2>Closing All Positions</h2>
 		<h3>Total Asks</h3>
