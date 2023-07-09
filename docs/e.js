@@ -628,7 +628,8 @@ async function paintBook() {
 
 	for(let i=0;i<rd[0].length;i++) {
 		//POW(CAST(1.0020 AS DOUBLE),CAST(CAST(AVG(Bucket) AS DOUBLE)-8388608 AS DOUBLE)) * 1e12 as Price;
-		_p = (1+BUCKET/1e4) ** (rd[0][i] - BUCK_1) * 10**(POOLID==0?0:12);
+		//_p = (1+BUCKET/1e4) ** (rd[0][i] - BUCK_1) * 10**(POOLID==0?0:12);
+		_p = ((1e4+BUCKET)/1e4) ** (rd[0][i] - BUCK_1) * 10**(T_X.decimals-T_Y.decimals);
 		_ux = Number(rd[1][i])/10**T_X.decimals;
 		_uy = Number(rd[2][i])/10**T_Y.decimals;
 		_ul = Number(rd[3][i])/10**T_Y.decimals;
@@ -999,7 +1000,8 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl,_kind) {
 		}
 
 		R = new ethers.Contract(ROUTER.address, ROUTER.ABI, signer);
-		let _price = (1+BUCKET/1e4) ** (_bId - BUCK_1) * 10**(POOLID==0?0:12);
+		//let _price = (1+BUCKET/1e4) ** (_bId - BUCK_1) * 10**(POOLID==0?0:12);
+		let _price = ((1e4+BUCKET)/1e4) ** (_bId - BUCK_1) * 10**(T_X.decimals-T_Y.decimals);
 		notice(`
 			<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}"> New Limit Order</h2>
 			<h4>Selling ${T_X.symbol} for ${T_Y.symbol}</h4>
@@ -1066,7 +1068,8 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl,_kind) {
 		}
 
 		R = new ethers.Contract(ROUTER.address, ROUTER.ABI, signer);
-		let _price = (1+BUCKET/1e4) ** (_bId - BUCK_1) * 10**(POOLID==0?0:12);
+		//let _price = (1+BUCKET/1e4) ** (_bId - BUCK_1) * 10**(POOLID==0?0:12);
+		let _price = ((1e4+BUCKET)/1e4) ** (_bId - BUCK_1) * 10**(T_X.decimals-T_Y.decimals);
 		notice(`
 			<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}"> New Limit Order</h2>
 			<h4>Purchasing ${T_X.symbol} using ${T_Y.symbol}</h4>
