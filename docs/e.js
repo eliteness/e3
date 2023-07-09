@@ -23,7 +23,7 @@ BL = {
 
 BUCKETDECIMALS = {
 	250: { 0:6, 1:12 },
-	42161: { 0:12 }
+	42161: { 0:12, 1:12 }
 }
 
 MAXORDERBOOKSIZE = 2500;
@@ -477,17 +477,17 @@ function pairSelectionMenu() {
 			<h2 class="pairSelectionMenu">
 				<a href="250-0">
 					<div><img src="https://ftm.guru/icons/usdc.svg"><img src="https://ftm.guru/icons/usdt.svg"></div>
-					<div>USDC/fUSDT</div>
+					<div>mc.USDC/mc.fUSDT</div>
 					<div>Fantom #0</div>
 				</a>
 				<a href="250-1">
 					<div><img src="https://ftm.guru/icons/ftm.svg"><img src="https://ftm.guru/icons/usdc.svg"></div>
-					<div>WFTM/USDC</div>
+					<div>WFTM/mc.USDC</div>
 					<div>Fantom #1</div>
 				</a>
 				<a href="42161-0">
 					<div><img src="https://ftm.guru/icons/eth.svg"><img src="https://ftm.guru/icons/usdc.svg"></div>
-					<div>WETH/USDC</div>
+					<div>WETH/USDC.e</div>
 					<div>Arbitrum #0</div>
 				</a>
 			</h2>
