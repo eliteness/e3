@@ -589,6 +589,12 @@ function e3lib_gen_dist(_isx, _kind, _size, _zeros) {
 			: ["2352571339581980","2837474143462068","3403231542769610","4059023421017415","4814177413491765","5677970071259770","6659392019927108","7766878975915517","9008012267419790","10389194434459100","11915307473221600","13589363247419300","15412157402808900","17381939670544900","19494114608220600","21740987486925100","24111570084459900","26591460507005900","29162809782220400","31804385831372300","34491742564713800","37197498326338900","39891723861428700","42542435551692800","45116185061827900","47578731985577300","49895781813860300","52033767809535700","53960652389436200","55646721580678200","57065345187862800","58193675578387300","59013259498679400","59510540040309100","29755270020154500","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"]
 		;
 	}
+	else if(_kind == 'ffc') {
+		_rarr = _isx
+			? ["0","0",BigInt(0.4e18),BigInt(0.35e18),BigInt(0.25e18)]
+			: [BigInt(0.2e18),BigInt(0.375e18),BigInt(0.425e18),"0","0"]
+		;
+	}
 	return _rarr;
 }
 
@@ -1396,6 +1402,58 @@ async function onp_create() {
 		`);
 		gubs();paintBook();
 	}
+
+
+
+	else if( $("onp-ffc").checked ){
+		if(_aamt<T_X.minimum/10**T_X.decimals) { notice(`<h3>Amount of ${T_X.symbol} low!</h3>Minimum order size: ${T_X.minimum/10**T_X.decimals}`); return;}
+		if(_bamt<T_Y.minimum/10**T_Y.decimals) { notice(`<h3>Amount of ${T_Y.symbol} low!</h3>Minimum order size: ${T_Y.minimum/10**T_Y.decimals}`); return;}
+		notice(`
+			<h3>Creating New EⅢ Position</h3>
+			Using <b>Five Finger Claw</b> strategy..
+			<br>
+			<br><img style="vertical-align: bottom;" height="20px" src="${T_X.logo}"> Asks: ${_aamt} ${T_X.symbol}
+			<br><img style="vertical-align: bottom;" height="20px" src="${T_Y.logo}"> Bids: ${_bamt} ${T_Y.symbol}
+		`);
+
+		let _op_obj = {
+			"tokenX": T_X.address,
+			"tokenY": T_Y.address,
+			"binStep": BUCKET,
+			"amountX": BigInt(Math.floor(_aamt*10**T_X.decimals)),
+			"amountY": BigInt(Math.floor(_bamt*10**T_Y.decimals)),
+			"amountXMin": BigInt(Math.floor(_aamt*10**T_X.decimals*SLIPBPS/1e4)),
+			"amountYMin": BigInt(Math.floor(_bamt*10**T_Y.decimals*SLIPBPS/1e4)),
+			"activeIdDesired": _usernums[0],//CACHE.ACTIVEI,
+			"idSlippage": 10,
+			"deltaIds": e3lib_gen_ids(-2,2),
+			"distributionX": e3lib_gen_dist(true,'ffc'),
+			"distributionY": e3lib_gen_dist(false,'ffc'),
+			"to": window.ethereum.selectedAddress,
+			"refundTo": window.ethereum.selectedAddress,
+			"deadline": Math.floor(Date.now()/999.999)
+		};
+		console.log("_op_obj",_op_obj);
+
+		txh = await R.addLiquidity(_op_obj);
+		notice(`
+			<h2>Opening a new position</h2>
+			<b>Awaiting confirmation from the network . . ..</b>
+			<br><br><i>Please wait.</i>
+			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
+		`);
+		txr = await txh.wait();
+		notice(`
+			<h2>New Position Opened!</h2>
+			Using <b>Five Finger Claw</b> strategy..
+			<br>
+			<br><img style="vertical-align: bottom;" height="20px" src="${T_X.logo}"> Asks: ${_aamt} ${T_X.symbol}
+			<br><img style="vertical-align: bottom;" height="20px" src="${T_Y.logo}"> Bids: ${_bamt} ${T_Y.symbol}
+			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
+		`);
+		gubs();paintBook();
+	}
+
 
 	else if( $("onp-rr").checked ){}
 	else { notice(`<h3>Please select a Strategy</h3>`); }
