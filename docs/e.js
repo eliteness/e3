@@ -291,6 +291,21 @@ async function gubs() {
 
 async function pre_stats() {
 	prepro = new ethers.providers.JsonRpcProvider(RPC_URL);
+	$("logo-sold").src= T_X.logo;
+	$("amount-sold-balance").innerHTML = `0.000000 ${T_X.symbol} available`;
+	$("logo-bought").src= T_Y.logo;
+	$("amount-bought-balance").innerHTML = `0.000000 ${T_Y.symbol} available`;
+	$("img-obh-pri").src= T_Y.logo;
+	$("img-obh-amt").src= T_X.logo;
+	$("img-obh-tot").src= T_Y.logo;
+	$("img-obh-a-pri").src= T_Y.logo;
+	$("img-obh-a-amt").src= T_X.logo;
+	$("img-obh-a-tot").src= T_Y.logo;
+	$("img-obh-b-pri").src= T_Y.logo;
+	$("img-obh-b-amt").src= T_X.logo;
+	$("img-obh-b-tot").src= T_Y.logo;
+	$("onp-bid").placeholder=` ${T_X.symbol} Amount`;
+	$("onp-ask").placeholder=` ${T_Y.symbol} Amount`;
 	return;
 	lp = new ethers.Contract(WRAP, LPABI, prepro);
 	fa = new ethers.Contract(FARM, FARABI, prepro);
@@ -476,24 +491,32 @@ function pairSelectionMenu() {
 		<div style="overflow:auto;max-height:60vh">
 			<h2 class="pairSelectionMenu">
 				<a href="250-0">
-					<div><img src="https://ftm.guru/icons/usdc.svg"><img src="https://ftm.guru/icons/usdt.svg"></div>
-					<div>mc.USDC/mc.fUSDT</div>
-					<div>Fantom #0</div>
+					<div><img src="https://ftm.guru/icons/mc.USDC.png"><img src="https://ftm.guru/icons/mc.USDT.png"></div>
+					<div>
+						<div>mc.USDC/mc.fUSDT</div>
+						<div><img src="https://ftm.guru/icons/ftm.svg"> #0 - Fantom Opera</div>
+					</div>
 				</a>
 				<a href="250-1">
-					<div><img src="https://ftm.guru/icons/ftm.svg"><img src="https://ftm.guru/icons/usdc.svg"></div>
-					<div>WFTM/mc.USDC</div>
-					<div>Fantom #1</div>
+					<div><img src="https://ftm.guru/icons/ftm.svg"><img src="https://ftm.guru/icons/mc.USDC.png"></div>
+					<div>
+						<div>WFTM/mc.USDC</div>
+						<div><img src="https://ftm.guru/icons/ftm.svg"> #1 - Fantom Opera</div>
+					</div>
 				</a>
 				<a href="42161-0">
 					<div><img src="https://ftm.guru/icons/eth.svg"><img src="https://ftm.guru/icons/usdc.svg"></div>
-					<div>WETH/USDC.e</div>
-					<div>Arbitrum #0</div>
+					<div>
+						<div>WETH/USDC.e</div>
+						<div><img src="https://ftm.guru/icons/arb1.svg"> #0 - Arbitrum One</div>
+					</div>
 				</a>
 				<a href="42161-1">
 					<div><img src="https://ftm.guru/icons/eth.svg"><img src="https://ftm.guru/icons/usdc.svg"></div>
-					<div>WETH/USDC</div>
-					<div>Arbitrum #1</div>
+					<div>
+						<div>WETH/USDC</div>
+						<div><img src="https://ftm.guru/icons/arb1.svg"> #1 - Arbitrum One</div>
+					</div>
 				</a>
 			</h2>
 		</div>
