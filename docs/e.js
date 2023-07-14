@@ -10,6 +10,8 @@ let CACHE = {
 	ACTIVEI: 0
 }
 window.addEventListener('load',async function() {
+	//PRE
+	pre_stats();
 	console.log("waitin for 3 secs..");
 	$("cw_m").innerHTML = "Connecting.. Please wait."
 	setTimeout(async () => { basetrip(); paintBook();}, 3000);
@@ -29,8 +31,6 @@ BUCKETDECIMALS = {
 MAXORDERBOOKSIZE = 2500;
 
 async function basetrip() {
-	//PRE
-	pre_stats();
 	//MAIN
 	if(!(window.ethereum)){$("cw_m").innerHTML = "Wallet wasn't detected!";console.log("Wallet wasn't detected!");notice("<h3>Wallet wasn't detected!</h3>Please make sure that your device and browser have an active Web3 wallet like MetaMask installed and running.<br><br>Visit <a href='https://metamask.io' target='_blank'>metamask.io</a> to install MetaMask wallet.");provider = new ethers.providers.JsonRpcProvider(RPC_URL); dexstats();paintBook();return}
 	else if(!Number(window.ethereum.chainId)==CHAINID){$("cw_m").innerHTML = "Wrong network! Please Switch to "+CHAINID;provider = new ethers.providers.JsonRpcProvider(RPC_URL); dexstats();notice("<h3>Wrong network!</h3>Please Switch to Chain #"+CHAINID+"<btr"+ CHAIN_NAME+ "</u> Blockchain.");}
@@ -290,6 +290,7 @@ async function gubs() {
 }
 
 async function pre_stats() {
+	console.log("pre-stat'ing");
 	prepro = new ethers.providers.JsonRpcProvider(RPC_URL);
 	$("logo-sold").src= T_X.logo;
 	$("amount-sold-balance").innerHTML = `0.000000 ${T_X.symbol} available`;
@@ -304,8 +305,9 @@ async function pre_stats() {
 	$("img-obh-b-pri").src= T_Y.logo;
 	$("img-obh-b-amt").src= T_X.logo;
 	$("img-obh-b-tot").src= T_Y.logo;
-	$("onp-bid").placeholder=` ${T_X.symbol} Amount`;
-	$("onp-ask").placeholder=` ${T_Y.symbol} Amount`;
+	$("onp-ask").placeholder=` ${T_X.symbol} Amount`;
+	$("onp-bid").placeholder=` ${T_Y.symbol} Amount`;
+	console.log("pre-stat'd");
 	return;
 	lp = new ethers.Contract(WRAP, LPABI, prepro);
 	fa = new ethers.Contract(FARM, FARABI, prepro);
