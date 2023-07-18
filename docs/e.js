@@ -1323,8 +1323,8 @@ async function onp_create() {
 		txh = await R.addLiquidity(_op_obj);
 		notice(`
 			<h2>Opening a new position</h2>
-			<img style="vertical-align: bottom;" height="32px" src="${T_X.logo}"> Asks: ${_aamt} ${T_X.symbol}
-			<img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}"> Bids: ${_bamt} ${T_Y.symbol}
+			<img style="vertical-align: bottom;" height="32px" src="${T_X.logo}">
+			<img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}">
 			<b>Awaiting confirmation from the network . . ..</b>
 			<br><br><i>Please wait.</i>
 			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
@@ -1375,8 +1375,8 @@ async function onp_create() {
 		txh = await R.addLiquidity(_op_obj);
 		notice(`
 			<h2>Opening a new position</h2>
-			<img style="vertical-align: bottom;" height="32px" src="${T_X.logo}"> Asks: ${_aamt} ${T_X.symbol}
-			<img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}"> Bids: ${_bamt} ${T_Y.symbol}
+			<img style="vertical-align: bottom;" height="32px" src="${T_X.logo}">
+			<img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}">
 			<b>Awaiting confirmation from the network . . ..</b>
 			<br><br><i>Please wait.</i>
 			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
@@ -1427,8 +1427,8 @@ async function onp_create() {
 		txh = await R.addLiquidity(_op_obj);
 		notice(`
 			<h2>Opening a new position</h2>
-			<img style="vertical-align: bottom;" height="32px" src="${T_X.logo}"> Asks: ${_aamt} ${T_X.symbol}
-			<img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}"> Bids: ${_bamt} ${T_Y.symbol}
+			<img style="vertical-align: bottom;" height="32px" src="${T_X.logo}">
+			<img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}">
 			<b>Awaiting confirmation from the network . . ..</b>
 			<br><br><i>Please wait.</i>
 			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
@@ -1480,8 +1480,8 @@ async function onp_create() {
 		txh = await R.addLiquidity(_op_obj);
 		notice(`
 			<h2>Opening a new position</h2>
-			<img style="vertical-align: bottom;" height="32px" src="${T_X.logo}"> Asks: ${_aamt} ${T_X.symbol}
-			<img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}"> Bids: ${_bamt} ${T_Y.symbol}
+			<img style="vertical-align: bottom;" height="32px" src="${T_X.logo}">
+			<img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}">
 			<b>Awaiting confirmation from the network . . ..</b>
 			<br><br><i>Please wait.</i>
 			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
