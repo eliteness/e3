@@ -33,7 +33,7 @@
 				</div>
 				<div class="amount-area">
 					<div class="prefill-num">
-						<span id="amount-sold-balance">0.000000 available</span>
+						<span id="amount-sold-balance">-</span>
 					</div>
 					<div class="amount-sold" id="token-sold">
 						<input value="1" placeholder="Sell Amount" id="amount-sold-input">
@@ -120,6 +120,8 @@
 			 • <span>eTHENA/WBNB-Farming (Earn THE) APR: Unknown%</span>
 		</div>
 	</div>
+
+
 
 
 	<br><br><br><br>
@@ -250,7 +252,7 @@
 			<div id="mp-utab">-</div>
 
 			<br>
-			<button class="submit equal-gradient" style="width:200px;margin:auto;" onclick="closeAll()"><img src="img/cross.svg"> Close all positions</button>
+			<button onclick="closeAll()"><img src="img/cross.svg"></button> Close all positions</button>
 
 			<br><br><br><br>
 
@@ -276,6 +278,8 @@
 
 
 
+
+
 <!-- IGNORE BELOW BLOCK : DEV LOGS -->
 		<div style="display:none">
 		<span id="cw_m"></span>
@@ -289,46 +293,48 @@
 				<img src="img/wallet.svg" width="24px" style="position:relative;top:4px">
 				<span id="cw"></span>
 			</b>
-			<br>Balance: <b style="font-family:bold" id="usb-mtv">?</b> <img class="imgmtv" src="https://ftm.guru/icons/eth.svg" width="20px" style="position:relative;top:4px">WETH<br>
-			<span style="font-size:0.9em">Wallet at <img class="imgmtv" src="https://ftm.guru/icons/eth.svg" width="20px" style="position:relative;top:4px">Arbitrum One. <a href="index.html" style="color:aqua;font-family:bold">Change?</a></span>
+			<br>Balance: <b style="font-family:bold" id="usb-mtv">?</b> <img class="imgmtv" src="https://ftm.guru/icons/eth.svg" width="20px" style="position:relative;top:4px">USDC<br>
+			<span style="font-size:0.9em">Wallet at <img class="imgmtv" src="https://ftm.guru/icons/ftm.svg" width="20px" style="position:relative;top:4px">Fantom Opera. <a href="index.html" style="color:aqua;font-family:bold">Change?</a></span>
 		</div>
 	</div>
 <!-- IGNORE ABOVE BLOCK : DEV LOGS -->
+
+
 
 		<div id="particle-container" style="display:none">
 			<div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
 		</div>
 		<script>
 			DAPPNAME = "E3";
-			CHAINID = 42161;
-			RPC_URL = "https://rpc.ankr.com/arbitrum";
-			EXPLORE = "https://arbiscan.io";
-			CHAIN_NAME = "Arbitrum One";
-			CHAIN_GAS = "ETH"
-			WETH="0x82af49447d8a07e3bd95bd0d56f35241523fbab1";
-			USDC_e="0xff970a61a04b1ca14834a43f5de4533ebddb5cc8";
-			USDC="0xaf88d065e77c8cC2239327C5EDb3A432268e5831";
-			FUSDT="";
+			CHAINID = 250;
+			RPC_URL = "https://rpc2.fantom.network";
+			EXPLORE = "https://ftmscan.com";
+			CHAIN_NAME = "Fantom Opera";
+			CHAIN_GAS = "FTM"
+			FTM="0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83";
+			WFTM="0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83";
+			USDC="0x04068DA6C83AFCFA0e13ba15A6696662335D5B75";
+			FUSDT="0x049d68029688eAbF473097a2fC38ef61633A3C7A";
 
-			POOLID = 1;
-			BUCKET = 5;
+			POOLID = 2;
+			BUCKET = 1;
 			BUCK_1 = 8388608;
-			POOLADDR = "0x576b3179e58de0c91cb15aeaadeb4ecfee3620af";
+			POOLADDR = "0x121ce0321de5e245fc49efdbb6444bcb4b42fc6f";
+
 			T_X = {
-				symbol: "WETH",
-				address: "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
-				decimals: 18,
-				logo: "https://ftm.guru/icons/eth.svg",
+				symbol: "mc.USDC",
+				address: "0x28a92dde19D9989F39A49905d7C9C2FAc7799bDf",
+				decimals: 6,
+				logo: "https://ftm.guru/icons/lz.USDC.png",
 				minimum: 2e6
 			}
 			T_Y = {
-				symbol: "USDC",
-				address: "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+				symbol: "mc.fUSDT",
+				address: "0x1b6382dbdea11d97f24495c9a90b7c88469134a4",
 				decimals: 6,
-				logo: "https://ftm.guru/icons/usdc.svg",
+				logo: "https://ftm.guru/icons/axl.USDC.png",
 				minimum: 2e6
 			}
-
 			INITIAL = "1";
 			SLIPBPS = 9990;
 		</script>
