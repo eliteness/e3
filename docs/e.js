@@ -24,7 +24,7 @@ BL = {
 }
 
 BUCKETDECIMALS = {
-	250: { 0:6, 1:12 },
+	250: { 0:6, 1:12, 2:6, 3:12 },
 	42161: { 0:12, 1:12 }
 }
 
@@ -524,6 +524,13 @@ function pairSelectionMenu() {
 					<div><img src="https://ftm.guru/icons/lz.USDC.png"><img src="https://ftm.guru/icons/axl.USDC.png"></div>
 					<div>
 						<div>lz.USDC/axlUSDC</div>
+						<div><img src="https://ftm.guru/icons/ftm.svg"> #2 - Fantom Opera</div>
+					</div>
+				</a>
+				<a href="250-3">
+					<div><img src="https://ftm.guru/icons/ftm.svg"><img src="https://ftm.guru/icons/axl.USDC.png"></div>
+					<div>
+						<div>wFTM/axlUSDC</div>
 						<div><img src="https://ftm.guru/icons/ftm.svg"> #2 - Fantom Opera</div>
 					</div>
 				</a>
@@ -1323,9 +1330,9 @@ async function onp_create() {
 		txh = await R.addLiquidity(_op_obj);
 		notice(`
 			<h2>Opening a new position</h2>
-			<img style="vertical-align: bottom;" height="32px" src="${T_X.logo}">
-			<img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}">
-			<b>Awaiting confirmation from the network . . ..</b>
+			<img style="vertical-align: bottom;" height="48px" src="${T_X.logo}">
+			<img style="vertical-align: bottom;" height="48px" src="${T_Y.logo}">
+			<br><b>Awaiting confirmation from the network . . ..</b>
 			<br><br><i>Please wait.</i>
 			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
@@ -1375,9 +1382,9 @@ async function onp_create() {
 		txh = await R.addLiquidity(_op_obj);
 		notice(`
 			<h2>Opening a new position</h2>
-			<img style="vertical-align: bottom;" height="32px" src="${T_X.logo}">
-			<img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}">
-			<b>Awaiting confirmation from the network . . ..</b>
+			<img style="vertical-align: bottom;" height="48px" src="${T_X.logo}">
+			<img style="vertical-align: bottom;" height="48px" src="${T_Y.logo}">
+			<br><b>Awaiting confirmation from the network . . ..</b>
 			<br><br><i>Please wait.</i>
 			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
@@ -1427,9 +1434,9 @@ async function onp_create() {
 		txh = await R.addLiquidity(_op_obj);
 		notice(`
 			<h2>Opening a new position</h2>
-			<img style="vertical-align: bottom;" height="32px" src="${T_X.logo}">
-			<img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}">
-			<b>Awaiting confirmation from the network . . ..</b>
+			<img style="vertical-align: bottom;" height="48px" src="${T_X.logo}">
+			<img style="vertical-align: bottom;" height="48px" src="${T_Y.logo}">
+			<br><b>Awaiting confirmation from the network . . ..</b>
 			<br><br><i>Please wait.</i>
 			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
@@ -1480,9 +1487,9 @@ async function onp_create() {
 		txh = await R.addLiquidity(_op_obj);
 		notice(`
 			<h2>Opening a new position</h2>
-			<img style="vertical-align: bottom;" height="32px" src="${T_X.logo}">
-			<img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}">
-			<b>Awaiting confirmation from the network . . ..</b>
+			<img style="vertical-align: bottom;" height="48px" src="${T_X.logo}">
+			<img style="vertical-align: bottom;" height="48px" src="${T_Y.logo}">
+			<br><b>Awaiting confirmation from the network . . ..</b>
 			<br><br><i>Please wait.</i>
 			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
