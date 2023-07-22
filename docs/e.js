@@ -9,6 +9,15 @@ let CACHE = {
 	oldinp: [,],
 	ACTIVEI: 0
 }
+
+CHAINDATA = {
+	250 : {
+		logo: "https://ftm.guru/icons/ftm.svg"
+	},
+	42161 : {
+		logo: "https://ftm.guru/icons/arb1.svg"
+	}
+}
 window.addEventListener('load',async function() {
 	//PRE
 	pre_stats();
@@ -307,6 +316,31 @@ async function pre_stats() {
 	$("img-obh-b-tot").src= T_Y.logo;
 	$("onp-ask").placeholder=` ${T_X.symbol} Amount`;
 	$("onp-bid").placeholder=` ${T_Y.symbol} Amount`;
+
+	$("topnav-mkts").innerHTML = `
+
+
+			<div style="" class="pairSelectionMenuContainer">
+				<div class="pairSelectionMenu">
+					<a onclick="pairSelectionMenu()">
+						<div style="font-size:initial">
+							<img style="width:20px;height:20px;" src="${T_X.logo}">
+							<img style="width:20px;height:20px;" src="${T_Y.logo}">
+						</div>
+						<div>
+							<div style="font-size:0.3em">${T_X.symbol}/${T_Y.symbol}</div>
+						</div>
+					</a>
+				</div>
+			</div>
+	`;
+						/*
+						<div>
+							<div style="font-size:0.4em">${T_X.symbol}/${T_Y.symbol}</div>
+							<div style="font-size:0.3em"><img style="width:12pxheight:12px;" src="${CHAINDATA[CHAINID].logo}"> #${POOLID} - ${CHAIN_NAME}</div>
+						</div>
+						*/
+
 	console.log("pre-stat'd");
 	return;
 	lp = new ethers.Contract(WRAP, LPABI, prepro);
@@ -490,7 +524,7 @@ async function flipAssets2() {
 function pairSelectionMenu() {
 	notice(`
 		<h2>Select a Pair to Trade</h2>
-		<div style="overflow:auto;max-height:60vh">
+		<div style="" class="pairSelectionMenuContainer">
 			<h2 class="pairSelectionMenu">
 				<a href="250-0">
 					<div><img src="https://ftm.guru/icons/mc.USDC.png"><img src="https://ftm.guru/icons/mc.USDT.png"></div>
@@ -1330,10 +1364,12 @@ async function onp_create() {
 		txh = await R.addLiquidity(_op_obj);
 		notice(`
 			<h2>Opening a new position</h2>
-			<img style="vertical-align: bottom;" height="48px" src="${T_X.logo}">
-			<img style="vertical-align: bottom;" height="48px" src="${T_Y.logo}">
-			<br><b>Awaiting confirmation from the network . . ..</b>
-			<br><br><i>Please wait.</i>
+			<div align="center">
+				<img style="vertical-align: bottom;" height="64px" src="${T_X.logo}">
+				<img style="vertical-align: bottom;" height="64px" src="${T_Y.logo}">
+			</div>
+			<br><b>Awaiting confirmation from the network . . .</b>
+			<br<i>Please wait.</i>
 			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
 		txr = await txh.wait();
@@ -1382,10 +1418,12 @@ async function onp_create() {
 		txh = await R.addLiquidity(_op_obj);
 		notice(`
 			<h2>Opening a new position</h2>
-			<img style="vertical-align: bottom;" height="48px" src="${T_X.logo}">
-			<img style="vertical-align: bottom;" height="48px" src="${T_Y.logo}">
-			<br><b>Awaiting confirmation from the network . . ..</b>
-			<br><br><i>Please wait.</i>
+			<div align="center">
+				<img style="vertical-align: bottom;" height="64px" src="${T_X.logo}">
+				<img style="vertical-align: bottom;" height="64px" src="${T_Y.logo}">
+			</div>
+			<br><b>Awaiting confirmation from the network . . .</b>
+			<br<i>Please wait.</i>
 			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
 		txr = await txh.wait();
@@ -1434,10 +1472,12 @@ async function onp_create() {
 		txh = await R.addLiquidity(_op_obj);
 		notice(`
 			<h2>Opening a new position</h2>
-			<img style="vertical-align: bottom;" height="48px" src="${T_X.logo}">
-			<img style="vertical-align: bottom;" height="48px" src="${T_Y.logo}">
-			<br><b>Awaiting confirmation from the network . . ..</b>
-			<br><br><i>Please wait.</i>
+			<div align="center">
+				<img style="vertical-align: bottom;" height="64px" src="${T_X.logo}">
+				<img style="vertical-align: bottom;" height="64px" src="${T_Y.logo}">
+			</div>
+			<br><b>Awaiting confirmation from the network . . .</b>
+			<br<i>Please wait.</i>
 			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
 		txr = await txh.wait();
@@ -1487,10 +1527,12 @@ async function onp_create() {
 		txh = await R.addLiquidity(_op_obj);
 		notice(`
 			<h2>Opening a new position</h2>
-			<img style="vertical-align: bottom;" height="48px" src="${T_X.logo}">
-			<img style="vertical-align: bottom;" height="48px" src="${T_Y.logo}">
-			<br><b>Awaiting confirmation from the network . . ..</b>
-			<br><br><i>Please wait.</i>
+			<div align="center">
+				<img style="vertical-align: bottom;" height="64px" src="${T_X.logo}">
+				<img style="vertical-align: bottom;" height="64px" src="${T_Y.logo}">
+			</div>
+			<br><b>Awaiting confirmation from the network . . .</b>
+			<br<i>Please wait.</i>
 			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
 		txr = await txh.wait();

@@ -578,14 +578,15 @@ polygon.arrow-top {
 
 
 
-
-
-
-
 .topnav {
 	display:grid;
 	grid-template-columns:auto;
-	margin:2vh 1vw
+	margin:0;
+	padding:2vh 1vw;
+    position: sticky;
+    top: 0;
+    background:linear-gradient(to top, rgba(0,0,16,0.8), rgba(0,19,55,0.8));
+    z-index:0;
 }
 
 .topnav div:first-child {
@@ -656,6 +657,11 @@ img.bigthumb {
 	color: #abb;
 }
 
+.pairSelectionMenuContainer {
+	overflow:auto;
+	max-height:60vh;
+}
+
 
 
 
@@ -665,7 +671,6 @@ img.bigthumb {
 	.topnav {
 		display:grid;
 		grid-template-columns:auto max-content;
-		margin:2vh 1vw
 	}
 
 	.amount-sold input, .amount-bought input {
