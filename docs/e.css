@@ -264,10 +264,12 @@ textarea:focus, input:focus {
 	visibility: hidden;
 	opacity: 0;
 	overflow-y:	auto;
+	z-index:1;
 }
 .overlay:target {
 	visibility: visible;
 	opacity: 1;
+	z-index:1;
 }
 
 .popup {
@@ -585,7 +587,7 @@ polygon.arrow-top {
 	padding:2vh 1vw;
     position: sticky;
     top: 0;
-    background:linear-gradient(to top, rgba(0,0,16,0.8), rgba(0,19,55,0.8));
+    background:linear-gradient(to bottom, rgba(0,0,16,0.8), rgba(0,19,55,0.8));
     z-index:0;
 }
 

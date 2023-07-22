@@ -282,7 +282,7 @@ async function arf(){
 			c++;
 		},
 		2000
-	)
+	);
 }
 
 async function gubs() {
@@ -314,8 +314,11 @@ async function pre_stats() {
 	$("img-obh-b-pri").src= T_Y.logo;
 	$("img-obh-b-amt").src= T_X.logo;
 	$("img-obh-b-tot").src= T_Y.logo;
-	$("onp-ask").placeholder=` ${T_X.symbol} Amount`;
-	$("onp-bid").placeholder=` ${T_Y.symbol} Amount`;
+
+	$("addlp-logo-x").src= T_X.logo;
+	$("addlp-logo-y").src= T_Y.logo;
+	$("onp-ask").placeholder=`0.0 ${T_X.symbol}`;
+	$("onp-bid").placeholder=`0.0 ${T_Y.symbol}`;
 
 	$("topnav-mkts").innerHTML = `
 

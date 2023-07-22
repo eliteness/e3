@@ -1,6 +1,6 @@
 @font-face{ font-family:mono_regular;src: url(font/ChivoMono-Regular.ttf);}
 
-#OB {
+.OB {
 	overflow:auto;
 }
 
@@ -42,19 +42,19 @@
 }
 
 
-#OB button, #OB input {
+.OB button, .OB input {
 	background:none;
 	padding:2px;
 	border-radius:100px;
 	border:none;
 }
-#OB input {
+.OB input {
 	background:#44447744;
 	width:50%;
 	text-align:center;
 }
 
-#OB img {
+.OB img {
 	width:16px;
 	vertical-align: top;
 }
@@ -109,7 +109,7 @@
 	vertical-align: !important;
 }
 
-#OB {
+.OB {
 	font-size: 0.8em;
 }
 #OBA *, #OBB * {
