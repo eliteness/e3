@@ -571,6 +571,13 @@ function pairSelectionMenu() {
 						<div><img src="https://ftm.guru/icons/ftm.svg"> #2 - Fantom Opera</div>
 					</div>
 				</a>
+				<a href="8453-0">
+					<div><img src="https://ftm.guru/icons/eth.svg"><img src="https://ftm.guru/icons/axl.USDC.png"></div>
+					<div>
+						<div>wETH/axlUSDC</div>
+						<div><img src="https://ftm.guru/icons/base.svg"> #0 - Base</div>
+					</div>
+				</a>
 			</h2>
 		</div>
 	`);
