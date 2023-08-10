@@ -29,7 +29,8 @@ window.addEventListener('load',async function() {
 
 BL = {
 	250:	"0x5a054233e59323e7a58f6b7dae86e6992f1f92e2",
-	42161:	"0xc4c807aee35f75c891cb51ef982c98371b1362b4"
+	42161:	"0xc4c807aee35f75c891cb51ef982c98371b1362b4",
+	8453:	"0xb62f6095f2afd00702fb79570c9f1aa730510fc4"
 }
 
 BUCKETDECIMALS = {
