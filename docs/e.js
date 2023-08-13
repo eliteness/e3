@@ -16,6 +16,9 @@ CHAINDATA = {
 	},
 	42161 : {
 		logo: "https://ftm.guru/icons/arb1.svg"
+	},
+	42161 : {
+		logo: "https://ftm.guru/icons/base.svg"
 	}
 }
 window.addEventListener('load',async function() {
@@ -35,6 +38,7 @@ BL = {
 
 BUCKETDECIMALS = {
 	250: { 0:6, 1:12, 2:6, 3:12 },
+	42161: { 0:12, 1:12 },
 	42161: { 0:12, 1:12 }
 }
 
