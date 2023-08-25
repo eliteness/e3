@@ -583,6 +583,13 @@ function pairSelectionMenu() {
 						<div><img src="https://ftm.guru/icons/base.svg"> #0 - Base</div>
 					</div>
 				</a>
+				<a href="8453-1">
+					<div><img src="https://ftm.guru/icons/eth.svg"><img src="https://ftm.guru/icons/usdc.svg"></div>
+					<div>
+						<div>wETH/USDbC</div>
+						<div><img src="https://ftm.guru/icons/base.svg"> #1 - Base</div>
+					</div>
+				</a>
 			</h2>
 		</div>
 	`);
