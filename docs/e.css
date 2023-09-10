@@ -14,14 +14,14 @@ body {
 	margin:0;
 }
 .equal-gradient {
-    background: -webkit-linear-gradient(top, #07f, #123) !important;
-    border:none;
-    color:
+	background: -webkit-linear-gradient(top, #07f, #123) !important;
+	border:none;
+	color:
 }
 
 .equal-gradient-white {
-    background: -webkit-linear-gradient(top, #07f, #7ff) !important;
-    color: white !important;
+	background: -webkit-linear-gradient(top, #07f, #7ff) !important;
+	color: white !important;
 	font-family: ;
 }
 
@@ -77,19 +77,23 @@ h2 {
 }
 
 .mechanism {
-    width: 75%;
-    position: relative;
-    background: -webkit-linear-gradient(183.56deg, #01011b, #001337);
-    background: -moz-linear-gradient(183.56deg, #01011b 0, #001337 100%);
-    background: linear-gradient(266.44deg, #01011b, #000d54);
-    background: #090333;
-    border: 1px solid #0089ed;
-    border-radius: 25px;
-    margin: 25px auto;
-        margin-bottom: 25px;
-    padding: 15px;
-    position: relative;
-    margin-bottom: 0;
+	width: 75%;
+	position: relative;
+	background: -webkit-linear-gradient(183.56deg, #01011b, #001337);
+	background: -moz-linear-gradient(183.56deg, #01011b 0, #001337 100%);
+	background: linear-gradient(266.44deg, #01011b, #000d54);
+	background: #090333;
+	border: 1px solid #0089ed;
+	border-radius: 25px;
+	margin: 25px auto;
+	margin-bottom: 25px;
+	padding: 15px;
+	position: relative;
+	margin-bottom: 0;
+}
+.mechanism-fullwidth {
+	width: !important;
+	max-width: !important;
 }
 
 .mechanism .amount p {
@@ -121,8 +125,8 @@ button.submit:active{
 
 button.btn-max {
 	background: #001337;
-    width: 35% !important;
-    margin-left: 2%;
+	width: 35% !important;
+	margin-left: 2%;
 }
 
 .mechanism input, .nft-amtl {
@@ -364,6 +368,9 @@ textarea:focus, input:focus {
 	.mechanism {
 		width: 500px;
 	}
+	.mechanism-fullwidth {
+		width: min(800px,90%) !important;
+	}
 
 	#nft-amt, #nft-offer {
 		font-size: 2.5em;
@@ -461,14 +468,14 @@ textarea:focus, input:focus {
 
 @keyframes scroll-animation {
   to {
-    -moz-transform: translateX(-100%);
-    -webkit-transform: translateX(-100%);
-    transform: translateX(-100%);
+	-moz-transform: translateX(-100%);
+	-webkit-transform: translateX(-100%);
+	transform: translateX(-100%);
   }
   from {
-    -moz-transform: translateX(10%);
-    -webkit-transform: translateX(10%);
-    transform: translateX(10%);
+	-moz-transform: translateX(10%);
+	-webkit-transform: translateX(10%);
+	transform: translateX(10%);
   }
 }
 
@@ -585,10 +592,10 @@ polygon.arrow-top {
 	grid-template-columns:auto;
 	margin:0;
 	padding:2vh 1vw;
-    position: sticky;
-    top: 0;
-    background:linear-gradient(to bottom, rgba(0,0,16,0.8), rgba(0,19,55,0.8));
-    z-index:0;
+	position: sticky;
+	top: 0;
+	background:linear-gradient(to bottom, rgba(0,0,16,0.8), rgba(0,19,55,0.8));
+	z-index:0;
 }
 
 .topnav div:first-child {
@@ -664,7 +671,52 @@ img.bigthumb {
 	max-height:60vh;
 }
 
+#allpools {
+	text-align: left;
+	margin: auto;
+}
+.allpools-row{
+	display:grid;
+	grid-template-columns:auto auto auto auto auto;
+	text-align: left;
+}
+.allpools-head {
+	font-size: 1.25em;
+	font-family: bold;
+	text-align: left;
+}
+#allpools img {
+	width: 16px;
+	height: 16px;
+}
+.allpools-item {
+	min-width: max-content;
+	min-width: -moz-max-content;
+	margin: 10px
+}
+.allpools-item:nth-child(1){width: 50px;}
+.allpools-item:nth-child(2){width: 80px;}
+.allpools-item:nth-child(3){width: 150px;}
+.allpools-item:nth-child(4){width: 100px;}
+.allpools-item:nth-child(5){width: 100px;}
 
+.allpools-row:not(.allpools-head) .allpools-item:nth-child(4),
+.allpools-row:not(.allpools-head) .allpools-item:nth-child(5){
+	font-size: 1.5em;
+}
+
+.labels span {
+	background: #333;
+	border-radius: 10px;
+	padding: 0px 5px;
+	font-family: light
+}
+
+.allpools-row:hover {
+	background: rgba(0,200,200,0.2);
+	border-radius: 20px;
+	cursor: pointer;
+}
 
 
 
@@ -686,5 +738,9 @@ img.bigthumb {
 	.mechanism .input-amount img.bigthumb {
 		width: 100px;
 		height: 100px;
+	}
+	#allpools img {
+		width: 36px;
+		height: 36px;
 	}
 }
