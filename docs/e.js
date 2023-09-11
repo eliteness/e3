@@ -1263,7 +1263,7 @@ async function closeAll() {
 		<h3>Minimum Received</h3>
 		<img style="vertical-align: bottom;" height="24px" width="24px" src="${T_X.logo}"> ${_t[0]/10**T_X.decimals*SLIPBPS/1e4} ${T_X.symbol} <br>
 		<img style="vertical-align: bottom;" height="24px" width="24px" src="${T_Y.logo}"> ${_t[1]/10**T_Y.decimals*SLIPBPS/1e4} ${T_Y.symbol} <br>
-		<i>Slippage Tolerance : ±0.1%)</i>
+		<i>Slippage Tolerance : ±0.1%</i>
 		<br><br>
 		<b>Awaiting confirmation from the network . . ..</b>
 		<br><br><i>Please wait.</i>

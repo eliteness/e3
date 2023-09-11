@@ -226,9 +226,9 @@ function sortit(n,_maintable,_trName,_tdName) {
     r = t.getElementsByClassName(_trName);
     for (i = 0; i < (r.length - 1); i++) {
       v = false;
-      x = (r[i].getElementsByTagName(_tdName)[n].textContent)//.replace(/,| |\.|\$|%/g,'');
+      x = (r[i].getElementsByClassName(_tdName)[n].textContent).replace(/,| |\.|\$|%/g,'');
       if(isFinite(x)){x=Number(x)}else{x=x.toLowerCase()}
-      y = (r[i + 1].getElementsByTagName(_tdName)[n].textContent)//.replace(/,| |\.|\$|%/g,'');
+      y = (r[i + 1].getElementsByClassName(_tdName)[n].textContent).replace(/,| |\.|\$|%/g,'');
       if(isFinite(y)){y=Number(y)}else{y=y.toLowerCase()}
       if (b == "a") {
         if ((x) > (y)) {
@@ -602,16 +602,24 @@ async function pre_stats() {
 	$("8453-0-gr0").innerHTML = ( Number( _gr[6][0] ) / 1e18 ).toLocaleString();
 	$("8453-0-gr1").innerHTML = ( Number( _gr[6][1] ) / 1e06 ).toLocaleString();
 
+	_cgd = await (await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=fantom%2Cethereum&order=id_asc&per_page=100&page=1&sparkline=false&price_change_percentage=30d&locale=en")).json();
+
+	$("250-0-tvl").innerHTML = "$" + Number( ( Number( _gr[0][0] ) / 1e06 + Number( _gr[0][1] ) / 1e06 ).toFixed() ).toLocaleString();
+	$("250-1-tvl").innerHTML = "$" + Number( ( Number( _gr[1][0] ) / 1e18 * _cgd[1].current_price + Number( _gr[1][1] ) / 1e06 ).toFixed() ).toLocaleString();
+	$("250-2-tvl").innerHTML = "$" + Number( ( Number( _gr[2][0] ) / 1e06 + Number( _gr[2][1] ) / 1e06 ).toFixed() ).toLocaleString();
+	$("250-3-tvl").innerHTML = "$" + Number( ( Number( _gr[3][0] ) / 1e18 * _cgd[1].current_price + Number( _gr[3][1] ) / 1e06 ).toFixed() ).toLocaleString();
+
+	$("42161-0-tvl").innerHTML = "$" + Number( ( Number( _gr[4][0] ) / 1e18 * _cgd[0].current_price + Number( _gr[4][1] ) / 1e06 ).toFixed() ).toLocaleString();
+	$("42161-1-tvl").innerHTML = "$" + Number( ( Number( _gr[5][0] ) / 1e18 * _cgd[0].current_price + Number( _gr[5][1] ) / 1e06 ).toFixed() ).toLocaleString();
+
+	$("8453-0-tvl").innerHTML = "$" + Number( ( Number( _gr[6][0] ) / 1e18 * _cgd[0].current_price + Number( _gr[6][1] ) / 1e06 ).toFixed() ).toLocaleString();
+
+
+	sortit(3,"allpools","allpools-row","allpools-item");
+	sortit(3,"allpools","allpools-row","allpools-item");
+
 	console.log("pre-stat'd");
 	return;
-	lp = new ethers.Contract(WRAP, LPABI, prepro);
-	fa = new ethers.Contract(FARM, FARABI, prepro);
-	bal = await Promise.all([
-		fa.tvl(),
-		fa.aprs()
-	]);
-	$("bal_tvl").innerHTML = fornum(bal[0],18);
-	$("bal_apr").innerHTML = fornum(bal[1][0],18);
 }
 
 
