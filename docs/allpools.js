@@ -541,6 +541,13 @@ POOLS = {
 			i: 0,
 			b: 1,
 			f: 1,
+			a: "0x9cc88fEe0004AE4eC0B9b565130d7526a5BFfdEc",
+			t: [ TOKENS[250].mc_usdc, TOKENS[250].mc_usdc ],
+		},
+		{
+			i: 0,
+			b: 1,
+			f: 1,
 			a: "0xf6cd71d6a9b49647ed09acf5fde5c75c6f3552e7",
 			t: [ TOKENS[250].mc_usdc, TOKENS[250].mc_usdc ],
 		},
@@ -568,6 +575,7 @@ async function pre_stats() {
 	_P_42161_0 = new ethers.Contract(POOLS[42161][0].a, PAIRABI, ARB1);
 	_P_42161_1 = new ethers.Contract(POOLS[42161][1].a, PAIRABI, ARB1);
 	_P_8453_0 = new ethers.Contract(POOLS[8453][0].a, PAIRABI, BASE);
+	_P_8453_1 = new ethers.Contract(POOLS[8453][1].a, PAIRABI, BASE);
 
 
 	_gr = await Promise.all([
@@ -577,7 +585,8 @@ async function pre_stats() {
 		_P_250_3.getReserves(),
 		_P_42161_0.getReserves(),
 		_P_42161_1.getReserves(),
-		_P_8453_0.getReserves()
+		_P_8453_0.getReserves(),
+		_P_8453_1.getReserves()
 	]);
 
 
@@ -602,6 +611,9 @@ async function pre_stats() {
 	$("8453-0-gr0").innerHTML = ( Number( _gr[6][0] ) / 1e18 ).toLocaleString();
 	$("8453-0-gr1").innerHTML = ( Number( _gr[6][1] ) / 1e06 ).toLocaleString();
 
+	$("8453-1-gr0").innerHTML = ( Number( _gr[7][0] ) / 1e18 ).toLocaleString();
+	$("8453-1-gr1").innerHTML = ( Number( _gr[7][1] ) / 1e06 ).toLocaleString();
+
 	_cgd = await (await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=fantom%2Cethereum&order=id_asc&per_page=100&page=1&sparkline=false&price_change_percentage=30d&locale=en")).json();
 
 	$("250-0-tvl").innerHTML = "$" + Number( ( Number( _gr[0][0] ) / 1e06 + Number( _gr[0][1] ) / 1e06 ).toFixed() ).toLocaleString();
@@ -613,6 +625,7 @@ async function pre_stats() {
 	$("42161-1-tvl").innerHTML = "$" + Number( ( Number( _gr[5][0] ) / 1e18 * _cgd[0].current_price + Number( _gr[5][1] ) / 1e06 ).toFixed() ).toLocaleString();
 
 	$("8453-0-tvl").innerHTML = "$" + Number( ( Number( _gr[6][0] ) / 1e18 * _cgd[0].current_price + Number( _gr[6][1] ) / 1e06 ).toFixed() ).toLocaleString();
+	$("8453-1-tvl").innerHTML = "$" + Number( ( Number( _gr[7][0] ) / 1e18 * _cgd[0].current_price + Number( _gr[7][1] ) / 1e06 ).toFixed() ).toLocaleString();
 
 
 	sortit(3,"allpools","allpools-row","allpools-item");

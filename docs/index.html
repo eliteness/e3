@@ -22,8 +22,10 @@
 
 	<div class="topnav">
 		<div align="left">
-			<img src="https://ftm.guru/icons/e3.svg" style="vertical-align: middle;" height="32px">
-			eliteness.network
+			<a href="https://eliteness.network">
+				<img src="https://ftm.guru/icons/e3.svg" style="vertical-align: middle;" height="32px">
+				eliteness.network
+			</a>
 		</div>
 		<div align="right">
 			<p id="p_cw"><span id="cw" onclick="cw()">Hello 👋 <span id="cw_og">Connect wallet!</span></p>
@@ -51,7 +53,7 @@
 				<div class="allpools-item" onclick='sortit(1,"allpools","allpools-row","allpools-item")'>Tokens</div>
 				<div class="allpools-item" onclick='sortit(2,"allpools","allpools-row","allpools-item")'>Pair Details</div>
 				<div class="allpools-item" onclick='sortit(3,"allpools","allpools-row","allpools-item")'>Liquidity</div>
-				<div class="allpools-item" onclick='sortit(4,"allpools","allpools-row","allpools-item")'>Yields</div>
+				<div class="allpools-item" onclick='sortit(4,"allpools","allpools-row","allpools-item")'>Composition</div>
 			</div>
 		</div>
 
@@ -163,9 +165,9 @@
 
 			<div class="allpools-row" onclick="window.location='8453-0'">
 				<div class="allpools-item"><div><img src="https://ftm.guru/icons/base.svg"></div></div>
-				<div class="allpools-item"><div><img src="https://ftm.guru/icons/eth.svg"><img src="https://ftm.guru/icons/axl.USDC.png"></div></div>
+				<div class="allpools-item"><div><img src="https://ftm.guru/icons/eth.svg"><img src="https://ftm.guru/icons/USDbC.webp"></div></div>
 				<div class="allpools-item">
-					<div>WETH / axlUSDC</div>
+					<div>WETH / USDbC</div>
 					<div class="labels">
 						<span>⇿ 0.05%</span>
 						<span>$ 0.05%</span>
@@ -175,6 +177,23 @@
 				<div class="allpools-item">
 					<div><img src="https://ftm.guru/icons/eth.svg"> <span id="8453-0-gr0">-.--</span></div>
 					<div><img src="https://ftm.guru/icons/usdc.svg"> <span id="8453-0-gr1">-.--</span></div>
+				</div>
+			</div>
+
+			<div class="allpools-row" onclick="window.location='8453-1'">
+				<div class="allpools-item"><div><img src="https://ftm.guru/icons/base.svg"></div></div>
+				<div class="allpools-item"><div><img src="https://ftm.guru/icons/eth.svg"><img src="https://ftm.guru/icons/axl.USDC.png"></div></div>
+				<div class="allpools-item">
+					<div>WETH / axlUSDC</div>
+					<div class="labels">
+						<span>⇿ 0.05%</span>
+						<span>$ 0.05%</span>
+					</div>
+				</div>
+				<div class="allpools-item allpools-item-tvl" id="8453-1-tvl">$-.--</div>
+				<div class="allpools-item">
+					<div><img src="https://ftm.guru/icons/eth.svg"> <span id="8453-1-gr0">-.--</span></div>
+					<div><img src="https://ftm.guru/icons/usdc.svg"> <span id="8453-1-gr1">-.--</span></div>
 				</div>
 			</div>
 
