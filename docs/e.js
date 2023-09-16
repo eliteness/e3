@@ -68,9 +68,9 @@ async function basetrip() {
 		dexstats();
 		$("connect").innerHTML=`Wallet not found.<br><br><button onclick="window.location.reload()" id="btn-connect">Retry?</button>`;
 	}
-	if(Number(window.ethereum.chainId) != null &&(window.ethereum.chainId!=CHAINID || window.ethereum.chainId!=1337))
+	if(Number(window.ethereum.chainId) != null &&(window.ethereum.chainId!=CHAINID || window.ethereum.chainId!=-2))
 	{
-		await window.ethereum.request({
+		_newch = await window.ethereum.request({
     		method: "wallet_addEthereumChain",
     		params: [{
         		chainId: "0x"+(CHAINID).toString(16),
@@ -84,7 +84,7 @@ async function basetrip() {
         		blockExplorerUrls: [EXPLORE]
     		}]
 		});
-		//window.location.reload()
+		window.location.reload();
 		notice(`<h3>Wrong Network!</h3>Please Switch to ${CHAIN_NAME}`)
 	}
 	//DrefreshFarm()
