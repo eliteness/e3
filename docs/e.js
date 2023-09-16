@@ -68,7 +68,7 @@ async function basetrip() {
 		dexstats();
 		$("connect").innerHTML=`Wallet not found.<br><br><button onclick="window.location.reload()" id="btn-connect">Retry?</button>`;
 	}
-	if(Number(window.ethereum.chainId) != null &&(window.ethereum.chainId!=CHAINID || window.ethereum.chainId!=-2))
+	if(Number(window.ethereum.chainId) != null &&(window.ethereum.chainId!="0x"+(CHAINID).toString(16) || window.ethereum.chainId!=-2))
 	{
 		console.log("1: switching chain: ",window.ethereum.chainId, CHAINID);
 		_newch = await window.ethereum.request({

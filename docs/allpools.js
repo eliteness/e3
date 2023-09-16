@@ -68,8 +68,9 @@ async function basetrip() {
 		dexstats();
 		$("connect").innerHTML=`Wallet not found.<br><br><button onclick="window.location.reload()" id="btn-connect">Retry?</button>`;
 	}
-	if(Number(window.ethereum.chainId) != null && (window.ethereum.chainId!=CHAINID || window.ethereum.chainId!=-2))
+	if(Number(window.ethereum.chainId) != null &&(window.ethereum.chainId!="0x"+(CHAINID).toString(16) || window.ethereum.chainId!=-2))
 	{
+		console.log("1: switching chain: ",window.ethereum.chainId, CHAINID);
 		_newch = await window.ethereum.request({
     		method: "wallet_addEthereumChain",
     		params: [{
@@ -84,8 +85,13 @@ async function basetrip() {
         		blockExplorerUrls: [EXPLORE]
     		}]
 		});
+		console.log("2: switching chain: ",window.ethereum.chainId, CHAINID);
+		await _newch;
+		console.log("3: switching chain: ",window.ethereum.chainId, CHAINID);
 		window.location.reload();
-		notice(`<h3>Wrong Network!</h3>Please Switch to ${CHAIN_NAME}`)
+		console.log("4: switching chain: ",window.ethereum.chainId, CHAINID);
+		notice(`<h3>Wrong Network!</h3>Please Switch to ${CHAIN_NAME}`);
+		console.log("5: switching chain: ",window.ethereum.chainId, CHAINID);
 	}
 	//DrefreshFarm()
 	//arf()
