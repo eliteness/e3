@@ -86,12 +86,10 @@ async function basetrip() {
     		}]
 		});
 		console.log("2: switching chain: ",window.ethereum.chainId, CHAINID);
-		await _newch;
+		_newch.then(window.location.reload());
 		console.log("3: switching chain: ",window.ethereum.chainId, CHAINID);
-		window.location.reload();
-		console.log("4: switching chain: ",window.ethereum.chainId, CHAINID);
 		notice(`<h3>Wrong Network!</h3>Please Switch to ${CHAIN_NAME}`);
-		console.log("5: switching chain: ",window.ethereum.chainId, CHAINID);
+		console.log("4: switching chain: ",window.ethereum.chainId, CHAINID);
 	}
 	//DrefreshFarm()
 	//arf()
