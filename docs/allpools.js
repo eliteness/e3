@@ -70,8 +70,9 @@ async function basetrip() {
 	}
 	if(Number(window.ethereum.chainId) != null &&(window.ethereum.chainId!="0x"+(CHAINID).toString(16) || window.ethereum.chainId!=-2))
 	{
+		notice(`<h3>Wrong Network!</h3>You are connectedd to Chain ID ${window.ethereum.chainId}<br>Please Switch to ${CHAIN_NAME}`);
 		console.log("1: switching chain: ",window.ethereum.chainId, CHAINID);
-		_newch = await window.ethereum.request({
+		_newch = window.ethereum.request({
     		method: "wallet_addEthereumChain",
     		params: [{
         		chainId: "0x"+(CHAINID).toString(16),
@@ -86,10 +87,12 @@ async function basetrip() {
     		}]
 		});
 		console.log("2: switching chain: ",window.ethereum.chainId, CHAINID);
-		_newch.then(window.location.reload());
+		_newch = await _newch;
 		console.log("3: switching chain: ",window.ethereum.chainId, CHAINID);
-		notice(`<h3>Wrong Network!</h3>Please Switch to ${CHAIN_NAME}`);
+		if( _newch == null) { window.location.reload(); }
 		console.log("4: switching chain: ",window.ethereum.chainId, CHAINID);
+		notice(`<h3>Wrong Network!</h3>Please Switch to ${CHAIN_NAME}`);
+		console.log("5: switching chain: ",window.ethereum.chainId, CHAINID);
 	}
 	//DrefreshFarm()
 	//arf()
