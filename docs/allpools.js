@@ -26,7 +26,7 @@ window.addEventListener('load',async function() {
 	pre_stats();
 	console.log("waitin for 3 secs..");
 	$("cw_m").innerHTML = "Connecting.. Please wait."
-	setTimeout(async () => { basetrip(); }, 3000);
+	setTimeout(async () => { await basetrip(); }, 3000);
 	arf();
 }, false);
 
