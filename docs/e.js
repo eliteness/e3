@@ -70,7 +70,7 @@ async function basetrip() {
 	}
 	if(Number(window.ethereum.chainId) != null && Number(window.ethereum.chainId!=CHAINID && CHAINID!=-2))
 	{
-		notice(`<h3>Wrong Network!</h3>You are connectedd to Chain ID ${window.ethereum.chainId}<br>Please Switch to ${CHAIN_NAME}`);
+		notice(`<h3>Wrong Network!</h3>You are connectedd to Chain ID ${Number(window.ethereum.chainId)}<br>Please Switch to ${CHAIN_NAME}`);
 		_newch = "test";
 		console.log("1: switching chain: ",window.ethereum.chainId, CHAINID, _newch);
 		_newch = window.ethereum.request({
