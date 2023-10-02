@@ -309,6 +309,11 @@ async function gubs() {
 	_ub_b = (bal[1]/10**STATE.tb.decimals).toFixed(STATE.tb.decimals);
 	$("amount-sold-balance").innerHTML = `<span onclick='$("amount-sold-input").value=${_ub_s}'>Balance: `+ _ub_s +" "+ STATE.ts.symbol+"</span>";
 	$("amount-bought-balance").innerHTML = `<span onclick="">Balance: `+ _ub_b +" "+ STATE.tb.symbol+"</span>";
+
+	_ub_x = T_X.symbol == STATE.ts.symbol ? _ub_s : _ub_b;
+	_ub_y = T_Y.symbol == STATE.ts.symbol ? _ub_s : _ub_b;
+	$("addlp-amount-sold-balance").innerHTML = `<span onclick='$("onp-bid").value=${_ub_x}'>Balance: `+ _ub_x +" "+ T_X.symbol+"</span>";
+	$("addlp-amount-bought-balance").innerHTML = `<span onclick='$("onp-ask").value=${_ub_y}'>Balance: `+ _ub_y +" "+ T_Y.symbol+"</span>";
 }
 
 async function pre_stats() {
@@ -330,6 +335,8 @@ async function pre_stats() {
 
 	$("addlp-logo-x").src= T_X.logo;
 	$("addlp-logo-y").src= T_Y.logo;
+	$("addlp-amount-sold-balance").innerHTML = `0.000000 ${T_X.symbol} available`;
+	$("addlp-amount-bought-balance").innerHTML = `0.000000 ${T_Y.symbol} available`;
 	$("onp-ask").placeholder=`0.0 ${T_X.symbol}`;
 	$("onp-bid").placeholder=`0.0 ${T_Y.symbol}`;
 
