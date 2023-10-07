@@ -312,8 +312,8 @@ async function gubs() {
 
 	_ub_x = T_X.symbol == STATE.ts.symbol ? _ub_s : _ub_b;
 	_ub_y = T_Y.symbol == STATE.ts.symbol ? _ub_s : _ub_b;
-	$("addlp-amount-sold-balance").innerHTML = `<span onclick='$("onp-bid").value=${_ub_x}'>Balance: `+ _ub_x +" "+ T_X.symbol+"</span>";
-	$("addlp-amount-bought-balance").innerHTML = `<span onclick='$("onp-ask").value=${_ub_y}'>Balance: `+ _ub_y +" "+ T_Y.symbol+"</span>";
+	$("addlp-amount-sold-balance").innerHTML = `<span onclick='$("onp-ask").value=${_ub_x}'>Balance: `+ _ub_x +" "+ T_X.symbol+"</span>";
+	$("addlp-amount-bought-balance").innerHTML = `<span onclick='$("onp-bid").value=${_ub_y}'>Balance: `+ _ub_y +" "+ T_Y.symbol+"</span>";
 }
 
 async function pre_stats() {
