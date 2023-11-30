@@ -631,8 +631,8 @@ async function pre_stats() {
 	$("8453-1-gr0").innerHTML = ( Number( _gr[7][0] ) / 1e18 ).toLocaleString();
 	$("8453-1-gr1").innerHTML = ( Number( _gr[7][1] ) / 1e06 ).toLocaleString();
 
-	$("8453-1-gr0").innerHTML = ( Number( _gr[8][0] ) / 1e06 ).toLocaleString();
-	$("8453-1-gr1").innerHTML = ( Number( _gr[8][1] ) / 1e06 ).toLocaleString();
+	$("8453-2-gr0").innerHTML = ( Number( _gr[8][0] ) / 1e06 ).toLocaleString();
+	$("8453-2-gr1").innerHTML = ( Number( _gr[8][1] ) / 1e06 ).toLocaleString();
 
 	_cgd = await (await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=fantom%2Cethereum&order=id_asc&per_page=100&page=1&sparkline=false&price_change_percentage=30d&locale=en")).json();
 
