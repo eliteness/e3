@@ -800,7 +800,7 @@ img.bigthumb {
 		height: 16px !important;
 	}
 	.subnav {
-		grid-template-columns:auto auto max-content auto;
+		grid-template-columns:auto auto max-content auto auto;
 	}
 	.subnav-link {
 		margin: -2px 2px;
