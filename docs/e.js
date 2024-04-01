@@ -1602,7 +1602,7 @@ async function onp_create() {
 	else if( $("onp-cute").checked ){
 		notice(`
 			<h3>Customize Cute Order</h3>
-			1. Position Side:<br>
+			1. Select Type of Position:<br>
 			<select class="submit equal-gradient" id="cute-inp-side">
 				<option selected value="selling">Sell using ${_aamt} ${T_X.symbol}</option>
 				<option value="buying">Buy using ${_bamt} ${T_Y.symbol}</option>
@@ -1617,7 +1617,7 @@ async function onp_create() {
 			<div align="center">
 				<button
 					class="submit equal-gradient"
-					onclick="cute_confirm(${_aamt},${_bamt},${_usernums})">
+					onclick="cute_confirm(${_aamt},${_bamt},${_usernums[0]})">
 						Confirm Order
 				</button>
 			</div>
@@ -1630,7 +1630,7 @@ async function onp_create() {
 	else { notice(`<h3>Please select a Strategy first</h3>`); }
 }
 
-async function cute_confirm(_aamt,_bamt,_usernums) {
+async function cute_confirm(_aamt,_bamt,_activeId) {
 
 	cute_params = {
 		side: $("cute-inp-side").value,
@@ -1669,7 +1669,7 @@ async function cute_confirm(_aamt,_bamt,_usernums) {
 			"amountY": BigInt(0),
 			"amountXMin": BigInt(Math.floor(_aamt*10**T_X.decimals*SLIPBPS/1e4)),
 			"amountYMin": BigInt(0),
-			"activeIdDesired": _usernums[0],//CACHE.ACTIVEI,
+			"activeIdDesired": _activeId,
 			"idSlippage": 10,
 			"deltaIds": e3lib_gen_ids(cute_params.shift, cute_params.shift + cute_params.spill - 1),
 			"distributionX": (new Array(cute_params.spill)).fill(BigInt(Math.floor(1e18/cute_params.spill))),
@@ -1728,7 +1728,7 @@ async function cute_confirm(_aamt,_bamt,_usernums) {
 			"amountY": BigInt(Math.floor(_bamt*10**T_Y.decimals)),
 			"amountXMin": BigInt(0),
 			"amountYMin": BigInt(Math.floor(_bamt*10**T_Y.decimals*SLIPBPS/1e4)),
-			"activeIdDesired": _usernums[0],//CACHE.ACTIVEI,
+			"activeIdDesired": _activeId,
 			"idSlippage": 10,
 			"deltaIds": e3lib_gen_ids( -(cute_params.shift + cute_params.spill) , -(cute_params.shift) -1 ),
 			"distributionX": (new Array(cute_params.spill)).fill(BigInt(0)),
