@@ -1329,7 +1329,7 @@ async function onp_create() {
 		<br><br>Please wait..
 	`);
 
-	let _usernums = await Promise.all([
+	_usernums = await Promise.all([
 		_POOL.getActiveId(),
 		_T_X.balanceOf(window.ethereum.selectedAddress),
 		_T_X.allowance(window.ethereum.selectedAddress, ROUTER.address),
@@ -1603,18 +1603,24 @@ async function onp_create() {
 		notice(`
 			<h3>Customize Cute Order</h3>
 			1. Position Side:<br>
-			<select id="cute-inp-side">
+			<select class="submit equal-gradient" id="cute-inp-side">
 				<option selected value="selling">Sell using ${_aamt} ${T_X.symbol}</option>
 				<option value="buying">Buy using ${_bamt} ${T_Y.symbol}</option>
 			</select>
 			<br><br>
 			2. Distance from Current Bucket:<br>
-			<input id="cute-inp-shift" type="number" step="1" max="10000" min="0" value="10"/>
+			<input class="notice-form" id="cute-inp-shift" type="number" step="1" max="10000" min="0" value="10"/>
 			<br><br>
 			3. Number of Buckets to spill over:<br>
-			<input id="cute-inp-bucks" type="number" step="1" max="100" min="1" value="1"/>
+			<input class="notice-form" id="cute-inp-spill" type="number" step="1" max="100" min="1" value="1"/>
 			<br><br>
-			<div align="center"><button class="submit equal-gradient" onclick="cute_confirm(${_aamt},${_bamt})">Confirm Order</button></div>
+			<div align="center">
+				<button
+					class="submit equal-gradient"
+					onclick="cute_confirm(${_aamt},${_bamt},${_usernums})">
+						Confirm Order
+				</button>
+			</div>
 		`);
 	}
 
@@ -1623,7 +1629,7 @@ async function onp_create() {
 	else { notice(`<h3>Please select a Strategy</h3>`); }
 }
 
-async function cute_confirm(_aamt,_bamt) {
+async function cute_confirm(_aamt,_bamt,_usernums) {
 
 	cute_params = {
 		side: $("cute-inp-side").value,
@@ -1638,7 +1644,7 @@ async function cute_confirm(_aamt,_bamt) {
 	}
 
 	if(cute_params.spill > 100 || cute_params.spill < 0 || isNaN(cute_params.spill)) {
-		notice(`Invalid Number of Spilled Buckets. \nYour input: ${cute_params.spill}`);
+		notice(`Invalid Number of Buckets Filled. \nYour input: ${cute_params.spill}`);
 		return;
 	}
 
@@ -1650,7 +1656,7 @@ async function cute_confirm(_aamt,_bamt) {
 			<br>
 			<br><img style="vertical-align: bottom;" height="20px" src="${T_X.logo}"> Asks: ${_aamt} ${T_X.symbol}
 			<br>Distance from Current Bucket: ${cute_params.shift}
-			<br>Number of Spilled Buckets: ${cute_params.spill}
+			<br>Number of Buckets Filled: ${cute_params.spill}
 			<br>${T_X.symbol} per Bucket: ${Number(_aamt)/cute_params.spill}
 		`);
 
@@ -1683,7 +1689,7 @@ async function cute_confirm(_aamt,_bamt) {
 			<br>Using <b>Custom Cutie</b> strategy..
 			<br><img style="vertical-align: bottom;" height="20px" src="${T_X.logo}"> Asks: ${_aamt} ${T_X.symbol}
 			<br>Distance from Current Bucket: ${cute_params.shift}
-			<br>Number of Spilled Buckets: ${cute_params.spill}
+			<br>Number of Buckets Filled: ${cute_params.spill}
 			<br>${T_X.symbol} per Bucket: ${Number(_aamt)/cute_params.spill}
 			<br><br><i>Awaiting confirmation from the network... Please wait.</i>
 			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
@@ -1694,7 +1700,7 @@ async function cute_confirm(_aamt,_bamt) {
 			<br>Using <b>Custom Cutie</b> strategy..
 			<br><img style="vertical-align: bottom;" height="20px" src="${T_X.logo}"> Asks: ${_aamt} ${T_X.symbol}
 			<br>Distance from Current Bucket: ${cute_params.shift}
-			<br>Number of Spilled Buckets: ${cute_params.spill}
+			<br>Number of Buckets Filled: ${cute_params.spill}
 			<br>${T_X.symbol} per Bucket: ${Number(_aamt)/cute_params.spill}
 			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
@@ -1707,9 +1713,9 @@ async function cute_confirm(_aamt,_bamt) {
 			<h3>Creating New EⅢ Position</h3>
 			Using <b>Custom Cutie</b> strategy..
 			<br>
-			<br><img style="vertical-align: bottom;" height="20px" src="${T_Y.logo}"> Asks: ${_bamt} ${T_Y.symbol}
+			<br><img style="vertical-align: bottom;" height="20px" src="${T_Y.logo}"> Bids: ${_bamt} ${T_Y.symbol}
 			<br>Distance from Current Bucket: ${cute_params.shift}
-			<br>Number of Spilled Buckets: ${cute_params.spill}
+			<br>Number of Buckets Filled: ${cute_params.spill}
 			<br>${T_Y.symbol} per Bucket: ${Number(_aamt)/cute_params.spill}
 		`);
 
@@ -1740,9 +1746,9 @@ async function cute_confirm(_aamt,_bamt) {
 				<img style="vertical-align: bottom;" height="64px" src="${T_Y.logo}">
 			</div>
 			<br>Using <b>Custom Cutie</b> strategy..
-			<br><img style="vertical-align: bottom;" height="20px" src="${T_Y.logo}"> Asks: ${_bamt} ${T_Y.symbol}
+			<br><img style="vertical-align: bottom;" height="20px" src="${T_Y.logo}"> Bids: ${_bamt} ${T_Y.symbol}
 			<br>Distance from Current Bucket: -${cute_params.shift}
-			<br>Number of Spilled Buckets: ${cute_params.spill}
+			<br>Number of Buckets Filled: ${cute_params.spill}
 			<br>${T_Y.symbol} per Bucket: ${Number(_bamt)/cute_params.spill}
 			<br><br><i>Awaiting confirmation from the network... Please wait.</i>
 			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
@@ -1751,9 +1757,9 @@ async function cute_confirm(_aamt,_bamt) {
 		notice(`
 			<h2>New Position Opened!</h2>
 			<br>Using <b>Custom Cutie</b> strategy..
-			<br><img style="vertical-align: bottom;" height="20px" src="${T_Y.logo}"> Asks: ${_bamt} ${T_Y.symbol}
+			<br><img style="vertical-align: bottom;" height="20px" src="${T_Y.logo}"> Bids: ${_bamt} ${T_Y.symbol}
 			<br>Distance from Current Bucket: -${cute_params.shift}
-			<br>Number of Spilled Buckets: ${cute_params.spill}
+			<br>Number of Buckets Filled: ${cute_params.spill}
 			<br>${T_Y.symbol} per Bucket: ${Number(_bamt)/cute_params.spill}
 			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
