@@ -647,7 +647,7 @@ async function pre_stats() {
 	$("250-4-gr1").innerHTML = ( Number( _gr[9][1] ) / 1e06 ).toLocaleString();
 
 
-	_cgd = await (await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=fantom%2Cethereum%2Cfantom-usd&order=id_asc&per_page=100&page=1&sparkline=false&price_change_percentage=30d&locale=en")).json();
+	_cgd = await (await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum%2Cfantom%2Cfantom-usd&order=id_asc&per_page=100&page=1&sparkline=false&price_change_percentage=30d&locale=en")).json();
 
 	$("250-0-tvl").innerHTML = "$" + Number( ( Number( _gr[0][0] ) / 1e06 + Number( _gr[0][1] ) / 1e06 ).toFixed() ).toLocaleString();
 	$("250-1-tvl").innerHTML = "$" + Number( ( Number( _gr[1][0] ) / 1e18 * _cgd[1].current_price + Number( _gr[1][1] ) / 1e06 ).toFixed() ).toLocaleString();
@@ -661,7 +661,7 @@ async function pre_stats() {
 	$("8453-1-tvl").innerHTML = "$" + Number( ( Number( _gr[7][0] ) / 1e18 * _cgd[0].current_price + Number( _gr[7][1] ) / 1e06 ).toFixed() ).toLocaleString();
 	$("8453-2-tvl").innerHTML = "$" + Number( ( Number( _gr[8][0] ) / 1e06 * 1                     + Number( _gr[8][1] ) / 1e06 ).toFixed() ).toLocaleString();
 
-	$("250-4-tvl").innerHTML = "$" + Number( ( Number( _gr[9][0] ) / 1e18 * _cgd[1].current_price + Number( _gr[9][1] ) / 1e6 * _cgd[2].current_price ).toFixed() ).toLocaleString();
+	$("250-4-tvl").innerHTML = "$" + Number( ( Number( _gr[9][0] ) / 1e18 * _cgd[2].current_price + Number( _gr[9][1] ) / 1e06 ).toFixed() ).toLocaleString();
 
 
 	sortit(3,"allpools","allpools-row","allpools-item");

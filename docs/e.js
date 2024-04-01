@@ -1604,8 +1604,8 @@ async function onp_create() {
 			<h3>Customize Cute Order</h3>
 			1. Position Side:<br>
 			<select id="cute-inp-side">
-				<option selected value="selling">Sell using ${_aamt} ${T_X.symbol}></option>
-				<option value="buying">Buy using ${_bamt} ${T_Y.symbol}></option>
+				<option selected value="selling">Sell using ${_aamt} ${T_X.symbol}</option>
+				<option value="buying">Buy using ${_bamt} ${T_Y.symbol}</option>
 			</select>
 			<br><br>
 			2. Distance from Current Bucket:<br>
@@ -1614,7 +1614,7 @@ async function onp_create() {
 			3. Number of Buckets to spill over:<br>
 			<input id="cute-inp-bucks" type="number" step="1" max="100" min="1" value="1"/>
 			<br><br>
-			<button class="submit" onclick="cute_confirm(${_aamt},${_bamt})">Confirm Order</button>
+			<div align="center"><button class="submit equal-gradient" onclick="cute_confirm(${_aamt},${_bamt})">Confirm Order</button></div>
 		`);
 	}
 
