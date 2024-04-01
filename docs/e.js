@@ -1625,8 +1625,9 @@ async function onp_create() {
 	}
 
 
-	else if( $("onp-rr").checked ){}
-	else { notice(`<h3>Please select a Strategy</h3>`); }
+	//else if( $("onp-rr").checked ){}
+
+	else { notice(`<h3>Please select a Strategy first</h3>`); }
 }
 
 async function cute_confirm(_aamt,_bamt,_usernums) {
