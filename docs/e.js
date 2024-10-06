@@ -1,4 +1,8 @@
 function $(_) {return document.getElementById(_);}
+$$ = {
+	CE: (a) => {return document.createElement(a)} ,
+	GE: (a) => {return document.getElementById(a)} ,
+}
 let provider= {};
 let signer= {};
 let STATE = {
@@ -962,6 +966,7 @@ async function paintBook() {
 		//sortit(0,"OBB","OBR_B","div");
 
 		if(_ux > 0) {
+			/*
 			$("mp-list").innerHTML += `
 				<div class="OBR_A">
 					<div> ${_p.toFixed(6)} <img style="vertical-align: top;width: 16px;" src="${T_Y.logo}"></div>
@@ -970,9 +975,21 @@ async function paintBook() {
 					<div>${(_upabx)}</div>
 				</div>
 			`;
+			*/
+			let e = $$.CE("div")
+			e.innerHTML =`
+				<div> ${_p.toFixed(6)} <img style="vertical-align: top;width: 16px;" src="${T_Y.logo}"></div>
+				<div> ${(_ux*_p).toFixed(4)} <img style="vertical-align: top;width: 16px;" src="${T_Y.logo}"></div>
+				<div> ${(_uy).toFixed(4)} <img style="vertical-align: top;width: 16px;" src="${T_Y.logo}"></div>
+				<div>${(_upabx)}</div>
+			`;
+			e.setAttribute("class","OBR_A")
+			$("mp-list").appendChild(e);
+			e=undefined;
 		}
 
 		if(_uy > 0) {
+			/*
 			$("mp-list").innerHTML +=  `
 				<div class="OBR_B">
 					<div> ${_p.toFixed(6)} <img style="vertical-align: top;width: 16px;" src="${T_Y.logo}"></div>
@@ -981,6 +998,17 @@ async function paintBook() {
 					<div>${(_upaby)}</div>
 				</div>
 			`;
+			*/
+			let e = $$.CE("div")
+			e.innerHTML = `
+				<div> ${_p.toFixed(6)} <img style="vertical-align: top;width: 16px;" src="${T_Y.logo}"></div>
+				<div> ${(_uy/_p).toFixed(4)} <img style="vertical-align: top;width: 16px;" src="${T_X.logo}"></div>
+				<div> ${(_ux).toFixed(4)} <img style="vertical-align: top;width: 16px;" src="${T_X.logo}"></div>
+				<div>${(_upaby)}</div>
+			`;
+			e.setAttribute("class","OBR_B")
+			$("mp-list").appendChild(e);
+			e=undefined;
 		}
 
 	}
