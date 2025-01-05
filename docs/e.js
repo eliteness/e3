@@ -41,7 +41,7 @@ BL = {
 }
 
 BUCKETDECIMALS = {
-	250: { 0:6, 1:12, 2:6, 3:12, 4:12 },
+	250: { 0:6, 1:12, 2:6, 3:12, 4:12, 5:6, 6:0},
 	42161: { 0:12, 1:12 },
 	8453: { 0:12, 1:12 }
 }
@@ -586,6 +586,20 @@ function pairSelectionMenu() {
 					<div>
 						<div>FUSD/axlUSDC</div>
 						<div><img src="https://ftm.guru/icons/ftm.svg"> #4 - Fantom Opera</div>
+					</div>
+				</a>
+				<a href="250-5">
+					<div><img src="https://ftm.guru/icons/axl.USDC.png"><img src="https://ftm.guru/icons/wh.USDC.png"></div>
+					<div>
+						<div>axlUSDC/wormUSDC.e</div>
+						<div><img src="https://ftm.guru/icons/ftm.svg"> #5 - Fantom Opera</div>
+					</div>
+				</a>
+				<a href="250-6">
+					<div><img src="https://ftm.guru/icons/mftm.png"><img src="https://ftm.guru/icons/ftm.svg"></div>
+					<div>
+						<div>mFTM/WFTM</div>
+						<div><img src="https://ftm.guru/icons/ftm.svg"> #6 - Fantom Opera</div>
 					</div>
 				</a>
 				<a href="42161-0">

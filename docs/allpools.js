@@ -322,20 +322,6 @@ function pairSelectionMenu() {
 		<h2>Select a Pair to Trade</h2>
 		<div style="" class="pairSelectionMenuContainer">
 			<h2 class="pairSelectionMenu">
-				<a href="250-0">
-					<div><img src="https://ftm.guru/icons/mc.USDC.png"><img src="https://ftm.guru/icons/mc.USDT.png"></div>
-					<div>
-						<div>mc.USDC/mc.fUSDT</div>
-						<div><img src="https://ftm.guru/icons/ftm.svg"> #0 - Fantom Opera</div>
-					</div>
-				</a>
-				<a href="250-1">
-					<div><img src="https://ftm.guru/icons/ftm.svg"><img src="https://ftm.guru/icons/mc.USDC.png"></div>
-					<div>
-						<div>WFTM/mc.USDC</div>
-						<div><img src="https://ftm.guru/icons/ftm.svg"> #1 - Fantom Opera</div>
-					</div>
-				</a>
 				<a href="42161-0">
 					<div><img src="https://ftm.guru/icons/eth.svg"><img src="https://ftm.guru/icons/usdc.svg"></div>
 					<div>
@@ -348,6 +334,20 @@ function pairSelectionMenu() {
 					<div>
 						<div>WETH/USDC</div>
 						<div><img src="https://ftm.guru/icons/arb1.svg"> #1 - Arbitrum One</div>
+					</div>
+				</a>
+				<a href="250-0">
+					<div><img src="https://ftm.guru/icons/mc.USDC.png"><img src="https://ftm.guru/icons/mc.USDT.png"></div>
+					<div>
+						<div>mc.USDC/mc.fUSDT</div>
+						<div><img src="https://ftm.guru/icons/ftm.svg"> #0 - Fantom Opera</div>
+					</div>
+				</a>
+				<a href="250-1">
+					<div><img src="https://ftm.guru/icons/ftm.svg"><img src="https://ftm.guru/icons/mc.USDC.png"></div>
+					<div>
+						<div>WFTM/mc.USDC</div>
+						<div><img src="https://ftm.guru/icons/ftm.svg"> #1 - Fantom Opera</div>
 					</div>
 				</a>
 				<a href="250-2">
