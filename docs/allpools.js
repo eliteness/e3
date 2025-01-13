@@ -322,20 +322,6 @@ function pairSelectionMenu() {
 		<h2>Select a Pair to Trade</h2>
 		<div style="" class="pairSelectionMenuContainer">
 			<h2 class="pairSelectionMenu">
-				<a href="250-0">
-					<div><img src="https://ftm.guru/icons/mc.USDC.png"><img src="https://ftm.guru/icons/mc.USDT.png"></div>
-					<div>
-						<div>mc.USDC/mc.fUSDT</div>
-						<div><img src="https://ftm.guru/icons/ftm.svg"> #0 - Fantom Opera</div>
-					</div>
-				</a>
-				<a href="250-1">
-					<div><img src="https://ftm.guru/icons/ftm.svg"><img src="https://ftm.guru/icons/mc.USDC.png"></div>
-					<div>
-						<div>WFTM/mc.USDC</div>
-						<div><img src="https://ftm.guru/icons/ftm.svg"> #1 - Fantom Opera</div>
-					</div>
-				</a>
 				<a href="42161-0">
 					<div><img src="https://ftm.guru/icons/eth.svg"><img src="https://ftm.guru/icons/usdc.svg"></div>
 					<div>
@@ -348,6 +334,20 @@ function pairSelectionMenu() {
 					<div>
 						<div>WETH/USDC</div>
 						<div><img src="https://ftm.guru/icons/arb1.svg"> #1 - Arbitrum One</div>
+					</div>
+				</a>
+				<a href="250-0">
+					<div><img src="https://ftm.guru/icons/mc.USDC.png"><img src="https://ftm.guru/icons/mc.USDT.png"></div>
+					<div>
+						<div>mc.USDC/mc.fUSDT</div>
+						<div><img src="https://ftm.guru/icons/ftm.svg"> #0 - Fantom Opera</div>
+					</div>
+				</a>
+				<a href="250-1">
+					<div><img src="https://ftm.guru/icons/ftm.svg"><img src="https://ftm.guru/icons/mc.USDC.png"></div>
+					<div>
+						<div>WFTM/mc.USDC</div>
+						<div><img src="https://ftm.guru/icons/ftm.svg"> #1 - Fantom Opera</div>
 					</div>
 				</a>
 				<a href="250-2">
@@ -504,28 +504,49 @@ POOLS = {
 			b: 1,
 			f: 1,
 			a: "0x1d766E912b4872ECa5172a5792c82ec28B9f894C",
-			t: [ TOKENS[250].mc_usdc, TOKENS[250].mc_usdc ],
+			t: [  ],
 		},
 		{	//1
 			i: 1,
 			b: 1,
 			f: 1,
 			a: "0x6fea3b68a0666bd77b5c002ceedca0e4eb93f4aa",
-			t: [ TOKENS[250].mc_usdc, TOKENS[250].mc_usdc ],
+			t: [  ],
 		},
 		{	//2
 			i: 2,
 			b: 1,
 			f: 1,
 			a: "0x121ce0321de5e245fc49efdbb6444bcb4b42fc6f",
-			t: [ TOKENS[250].mc_usdc, TOKENS[250].mc_usdc ],
+			t: [  ],
 		},
 		{	//3
 			i: 3,
 			b: 1,
 			f: 1,
 			a: "0x0582f4a92e581f08e3e3df909520f03f08c942a4",
-			t: [ TOKENS[250].mc_usdc, TOKENS[250].mc_usdc ],
+			t: [  ],
+		},
+		{	//4
+			i: 4,
+			b: 1,
+			f: 1,
+			a: "0xE916fF144E79B10b5e43307FF4Cd29296C98F516",
+			t: [  ],
+		},
+		{
+			i: 5,
+			b: 1,
+			f: 1,
+			a: "0x0e10c685052c950296e1b65414acb006299c9a58",
+			t: [  ],
+		},
+		{
+			i: 5,
+			b: 1,
+			f: 1,
+			a: "0xcd836ad87959fAb4DC1c7f5352c0C0970384204e",
+			t: [  ],
 		},
 	],
 	42161 : [
@@ -534,14 +555,14 @@ POOLS = {
 			b: 1,
 			f: 1,
 			a: "0xde5f1668cb5ef56dfb9211694d00252d858082e3",
-			t: [ TOKENS[250].mc_usdc, TOKENS[250].mc_usdc ],
+			t: [  ],
 		},
 		{
 			i: 0,
 			b: 1,
 			f: 1,
 			a: "0x576b3179e58de0c91cb15aeaadeb4ecfee3620af",
-			t: [ TOKENS[250].mc_usdc, TOKENS[250].mc_usdc ],
+			t: [  ],
 		},
 	],
 	8453 : [
@@ -550,14 +571,21 @@ POOLS = {
 			b: 1,
 			f: 1,
 			a: "0x9cc88fEe0004AE4eC0B9b565130d7526a5BFfdEc",
-			t: [ TOKENS[250].mc_usdc, TOKENS[250].mc_usdc ],
+			t: [  ],
 		},
 		{
 			i: 0,
 			b: 1,
 			f: 1,
 			a: "0xf6cd71d6a9b49647ed09acf5fde5c75c6f3552e7",
-			t: [ TOKENS[250].mc_usdc, TOKENS[250].mc_usdc ],
+			t: [  ],
+		},
+		{
+			i: 0,
+			b: 1,
+			f: 1,
+			a: "0x14EC8e1c2E57b2540841fd2C1d987CF611Bc165D",
+			t: [  ],
 		},
 	]
 };
@@ -580,10 +608,20 @@ async function pre_stats() {
 	_P_250_1 = new ethers.Contract(POOLS[250][1].a, PAIRABI, FANTOM);
 	_P_250_2 = new ethers.Contract(POOLS[250][2].a, PAIRABI, FANTOM);
 	_P_250_3 = new ethers.Contract(POOLS[250][3].a, PAIRABI, FANTOM);
+	_P_250_4 = new ethers.Contract(POOLS[250][4].a, PAIRABI, FANTOM);
+	_P_250_5 = new ethers.Contract(POOLS[250][5].a, PAIRABI, FANTOM);
+	_P_250_6 = new ethers.Contract(POOLS[250][6].a, PAIRABI, FANTOM);
+
 	_P_42161_0 = new ethers.Contract(POOLS[42161][0].a, PAIRABI, ARB1);
 	_P_42161_1 = new ethers.Contract(POOLS[42161][1].a, PAIRABI, ARB1);
+
 	_P_8453_0 = new ethers.Contract(POOLS[8453][0].a, PAIRABI, BASE);
 	_P_8453_1 = new ethers.Contract(POOLS[8453][1].a, PAIRABI, BASE);
+	_P_8453_2 = new ethers.Contract(POOLS[8453][2].a, PAIRABI, BASE);
+
+
+
+
 
 
 	_gr = await Promise.all([
@@ -594,7 +632,11 @@ async function pre_stats() {
 		_P_42161_0.getReserves(),
 		_P_42161_1.getReserves(),
 		_P_8453_0.getReserves(),
-		_P_8453_1.getReserves()
+		_P_8453_1.getReserves(),
+		_P_8453_2.getReserves(),
+		_P_250_4.getReserves(),
+		_P_250_5.getReserves(),
+		_P_250_6.getReserves(),
 	]);
 
 
@@ -622,18 +664,36 @@ async function pre_stats() {
 	$("8453-1-gr0").innerHTML = ( Number( _gr[7][0] ) / 1e18 ).toLocaleString();
 	$("8453-1-gr1").innerHTML = ( Number( _gr[7][1] ) / 1e06 ).toLocaleString();
 
-	_cgd = await (await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=fantom%2Cethereum&order=id_asc&per_page=100&page=1&sparkline=false&price_change_percentage=30d&locale=en")).json();
+	$("8453-2-gr0").innerHTML = ( Number( _gr[8][0] ) / 1e06 ).toLocaleString();
+	$("8453-2-gr1").innerHTML = ( Number( _gr[8][1] ) / 1e06 ).toLocaleString();
+
+	$("250-4-gr0").innerHTML = ( Number( _gr[9][0] ) / 1e18 ).toLocaleString();
+	$("250-4-gr1").innerHTML = ( Number( _gr[9][1] ) / 1e06 ).toLocaleString();
+
+	$("250-5-gr0").innerHTML = ( Number( _gr[10][0] ) / 1e06 ).toLocaleString();
+	$("250-5-gr1").innerHTML = ( Number( _gr[10][1] ) / 1e06 ).toLocaleString();
+
+	$("250-6-gr0").innerHTML = ( Number( _gr[11][0] ) / 1e18 ).toLocaleString();
+	$("250-6-gr1").innerHTML = ( Number( _gr[11][1] ) / 1e18 ).toLocaleString();
+
+
+	_cgd = await (await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum%2Cfantom%2Cfantom-usd&order=id_asc&per_page=100&page=1&sparkline=false&price_change_percentage=30d&locale=en")).json();
 
 	$("250-0-tvl").innerHTML = "$" + Number( ( Number( _gr[0][0] ) / 1e06 + Number( _gr[0][1] ) / 1e06 ).toFixed() ).toLocaleString();
 	$("250-1-tvl").innerHTML = "$" + Number( ( Number( _gr[1][0] ) / 1e18 * _cgd[1].current_price + Number( _gr[1][1] ) / 1e06 ).toFixed() ).toLocaleString();
 	$("250-2-tvl").innerHTML = "$" + Number( ( Number( _gr[2][0] ) / 1e06 + Number( _gr[2][1] ) / 1e06 ).toFixed() ).toLocaleString();
 	$("250-3-tvl").innerHTML = "$" + Number( ( Number( _gr[3][0] ) / 1e18 * _cgd[1].current_price + Number( _gr[3][1] ) / 1e06 ).toFixed() ).toLocaleString();
+	$("250-4-tvl").innerHTML = "$" + Number( ( Number( _gr[9][0] ) / 1e18 * _cgd[2].current_price + Number( _gr[9][1] ) / 1e06 ).toFixed() ).toLocaleString();
+	$("250-5-tvl").innerHTML = "$" + Number( ( Number( _gr[10][0] ) / 1e06 + Number( _gr[10][1] ) / 1e06 ).toFixed() ).toLocaleString();
+	$("250-1-tvl").innerHTML = "$" + Number( ( Number( _gr[11][0] ) / 1e18 * _cgd[1].current_price + Number( _gr[11][1] ) / 1e18 * _cgd[1].current_price ).toFixed() ).toLocaleString();
+
 
 	$("42161-0-tvl").innerHTML = "$" + Number( ( Number( _gr[4][0] ) / 1e18 * _cgd[0].current_price + Number( _gr[4][1] ) / 1e06 ).toFixed() ).toLocaleString();
 	$("42161-1-tvl").innerHTML = "$" + Number( ( Number( _gr[5][0] ) / 1e18 * _cgd[0].current_price + Number( _gr[5][1] ) / 1e06 ).toFixed() ).toLocaleString();
 
 	$("8453-0-tvl").innerHTML = "$" + Number( ( Number( _gr[6][0] ) / 1e18 * _cgd[0].current_price + Number( _gr[6][1] ) / 1e06 ).toFixed() ).toLocaleString();
 	$("8453-1-tvl").innerHTML = "$" + Number( ( Number( _gr[7][0] ) / 1e18 * _cgd[0].current_price + Number( _gr[7][1] ) / 1e06 ).toFixed() ).toLocaleString();
+	$("8453-2-tvl").innerHTML = "$" + Number( ( Number( _gr[8][0] ) / 1e06 * 1                     + Number( _gr[8][1] ) / 1e06 ).toFixed() ).toLocaleString();
 
 
 	sortit(3,"allpools","allpools-row","allpools-item");

@@ -129,7 +129,7 @@ button.btn-max {
 	margin-left: 2%;
 }
 
-.mechanism input, .nft-amtl {
+.mechanism input, .nft-amtl, .notice-form {
 	background-color: rgba(0,0,0,0.25);
 	width: 90%;
 	border: 0;
@@ -366,6 +366,13 @@ textarea:focus, input:focus {
 	padding: 8px;
 }
 
+fieldset div:hover {
+	background: rgba(0,255,255,0.25);
+	border-radius: 10px;
+	position: relative;
+	top: -1px;
+}
+
 @media(min-width:641px) {
 
 	.mechanism {
@@ -399,7 +406,7 @@ textarea:focus, input:focus {
 	}
 
 
-	.mechanism input, .nft-amtl {
+	.mechanism input, .nft-amtl, .notice-form {
 		font-size: 1.5em;
 	}
 
@@ -800,7 +807,7 @@ img.bigthumb {
 		height: 16px !important;
 	}
 	.subnav {
-		grid-template-columns:auto auto max-content auto;
+		grid-template-columns:auto auto max-content auto auto;
 	}
 	.subnav-link {
 		margin: -2px 2px;
