@@ -1,0 +1,486 @@
+<!doctype html>
+<html>
+<meta charset="UTF-8">
+<head>
+<meta name="description" content="E3 DEX offers zero slippage Trading Experience with its unique Bucket Model to combine Concentrated Liquidity with a Limit Order Book. | Powered By Guru Network.">
+<meta name="keywords" content="Ftm.guru, Guru Network, Finance, Decentralized Finance, defi, Airdrop, veNFT, Solidly, Equalizer, Fantom Opera, FTM">
+<title>E3 DEX | FTM.guru</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="https://ftm.guru/icons/e3.svg"/>
+<link rel="stylesheet" href="e.css"/>
+<link rel="stylesheet" href="ob.css"/>
+<body>
+
+	<div id="note" class="overlay">
+		<div class="popup">
+			<a class="close" href="#">&times;</a>
+			<div class="content" id="content1">
+				w31c0m3 fren!<br>trade well :)
+			</div>
+		</div>
+	</div>
+
+	<div class="topnav">
+		<div align="left">
+			<a href="https://eliteness.network/e3">
+				<img src="https://ftm.guru/icons/e3.svg" style="vertical-align: middle;" height="32px">
+			</a>
+			<a href="https://eliteness.network">
+				eliteness.network
+			</a>
+		</div>
+		<div align="right">
+			<p id="p_cw"><span id="cw" onclick="cw()">Hello 👋 <span id="cw_og">Connect wallet!</span></p>
+		</div>
+		<div align="left" class="topnav-mkts" id="topnav-mkts">
+		</div>
+	</div>
+	<div class="subnav">
+		<div class="subnav-link"><a href="#a-trade">Trade</a></div>
+		<div class="subnav-link"><a href="#a-order">Orderbook</a></div>
+		<div class="subnav-link"><a href="#a-addlp">Liquidity</a></div>
+		<div class="subnav-link"><a href="#a-posit">Positions</a></div>
+		<div class="subnav-link"><a href="https://eliteness.network/fertilizer">Farm & Earn</a></div>
+	</div>
+
+
+
+
+
+	<div class="partnership">
+		<h1 id="a-trade"><span>Spot Trading</span></h1>
+		<h2>Experience Zero-Slippage Trading with Elite E3 Engine</h2>
+	</div>
+	<br>
+	<div class="mechanism">
+		<div class="input-amount">
+			<br>
+			<div class="input-amount-els">
+				<div onclick="pairSelectionMenu()">
+					<img class="bigthumb" id="logo-sold" src="https://ftm.guru/icons/e3.svg"/>
+				</div>
+				<div class="amount-area">
+					<div class="prefill-num">
+						<span id="amount-sold-balance">0.000000 available</span>
+					</div>
+					<div class="amount-sold" id="token-sold">
+						<input value="1" placeholder="Sell Amount" id="amount-sold-input">
+					</div>
+				</div>
+			</div>
+  			<div class="arrow-content" onclick="flipAssets()">
+  				<br>
+    			<svg id="more-arrows" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+      				<polygon class="arrow-top" points="37.6,27.9 1.8,1.3 3.3,0 37.6,25.3 71.9,0 73.7,1.3 "/>
+      				<polygon class="arrow-middle" points="37.6,45.8 0.8,18.7 4.4,16.4 37.6,41.2 71.2,16.4 74.5,18.7 "/>
+      				<polygon class="arrow-bottom" points="37.6,64 0,36.1 5.1,32.8 37.6,56.8 70.4,32.8 75.5,36.1 "/>
+    			</svg>
+  				<br>
+  			</div>
+			<div class="input-amount-els">
+				<div onclick="pairSelectionMenu()">
+					<img class="bigthumb" id="logo-bought" src="https://ftm.guru/icons/e3.svg"/>
+				</div>
+				<div class="amount-area">
+					<div class="prefill-num">
+						<span id="amount-bought-balance">0.000000 available</span>
+					</div>
+					<div class="amount-bought" id="token-bought">
+						<input value="Loading.." placeholder="Buy Amount" id="amount-bought-input" disabled="">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="margin-top: -25px;" align="center">
+			<button class="submit equal-gradient" onclick="sell()"><span id="claim-offer">Execute Order</span></button>
+			<br><br>
+		</div>
+	</div>
+	<div class="analytics" style="display:none">
+		<a class="equal-gradient-white">Mint</a>
+		<a href="staking">Stake</a>
+		<a href="https://dune.com/eliteness/ethena" target="_blank">Analytics</a>
+		<a href="https://thena.fi/swap" target="_blank">Trade</a>
+		<a href="https://ftm.guru/docs/eTHENA/eTHENA" target="_blank">Docs</a>
+	</div>
+
+	<div class="extra">
+		<br><br>
+		<!--
+		<h3><a href="https://eliteness.network">Powered by Guru Network</a></h3>
+		-->
+		<div class="social">
+			<a target="_blank" href="https://discord.gg/QpyfMarNrV"><img src="https://ftm.guru/icons/discord.svg"></a>
+			<a target="_blank" href="https://twitter.com/FTM1337"><img src="https://ftm.guru/icons/twitter.svg"></a>
+			<a target="_blank" href="https://dune.com/e3/fees"><img src="https://ftm.guru/icons/dune.svg"></a>
+			<a target="_blank" href="https://defillama.com/protocol/e3"><img src="https://ftm.guru/icons/defillama.svg"></a>
+			<a target="_blank" href="https://coinmarketcap.com/exchanges/e3"><img src="https://ftm.guru/icons/cmc.svg"></a>
+		</div>
+		<!--
+		<small id="stats">
+		</small>
+		<h1><span></span></h1>
+		-->
+		<br><br>
+	</div>
+
+
+
+	<br>
+	<br>
+	<br>
+	<br>
+
+
+
+	<div class="partnership">
+		<h1 id="a-order"><span>Order Book</span></h1>
+		<h2>Explore E3 with our Real-Time & Transparent Book</h2>
+	</div>
+	<div class="OB" align="center">
+
+		<div id="OBP" style="display:none">
+			<h2>Loading Price ...</h2>
+		</div>
+
+		<div class="OBH" style="display:none">
+			<div>Spot Price <img style="vertical-align: top;width: 24px;" id="img-obh-pri" src="https://ftm.guru/icons/e3.svg"></div>
+			<div>Amount <img style="vertical-align: top;width: 24px;" id="img-obh-amt"src="https://ftm.guru/icons/e3.svg"></div>
+			<div>Total <img style="vertical-align: top;width: 24px;" id="img-obh-tot" src="https://ftm.guru/icons/e3.svg"></div>
+			<!--<div>Add New Order</div>-->
+		</div>
+
+		<div id="OBAB" style="display:">
+			<h2>Loading Price ...</h2>
+		</div>
+
+		<div align="right">
+			<button onclick="paintBook()" style="font-family:light;padding: 2px 10px;width:auto" class="equal-gradient">Refresh Orders?</button>
+		</div>
+
+		<div id="OBOOK" style="display:">
+
+			<div class="OBH" id="OBH_A">
+				<div>Spot Price <img style="vertical-align: top;width: 24px;" id="img-obh-a-pri" src="https://ftm.guru/icons/e3.svg"></div>
+				<div>Amount <img style="vertical-align: top;width: 24px;" id="img-obh-a-amt" src="https://ftm.guru/icons/e3.svg"></div>
+				<div>Total <img style="vertical-align: top;width: 24px;" id="img-obh-a-tot" src="https://ftm.guru/icons/e3.svg"></div>
+				<!--<div>Add New Order</div>-->
+			</div>
+			<div class="OBH" id="OBH_B">
+				<div>Spot Price <img style="vertical-align: top;width: 24px;" id="img-obh-b-pri" src="https://ftm.guru/icons/e3.svg"></div>
+				<div>Amount <img style="vertical-align: top;width: 24px;" id="img-obh-b-amt" src="https://ftm.guru/icons/e3.svg"></div>
+				<div>Total <img style="vertical-align: top;width: 24px;" id="img-obh-b-tot" src="https://ftm.guru/icons/e3.svg"></div>
+				<!--<div>Add New Order</div>-->
+			</div>
+
+			<div id="OBB">
+				<h2>Loading Bids ...</h2>
+			</div>
+			<div id="OBA" style="display:">
+				<h2>Loading Asks ...</h2>
+			</div>
+
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+
+
+
+
+
+
+	<div class="partnership">
+		<h1 id="a-addlp"><span>Create New Position</span></h1>
+		<h2>Add Liquidity in Custom Shapes for Extreme Capital Efficiency</h2>
+	</div>
+	<br>
+	<div>
+		<br>
+
+		<h3 align="center">Choose your preferred market-making strategy:</h3>
+
+		<fieldset id="infodesc-strats">
+			<legend> Available Strategies </legend><br>
+
+			<div>
+				<h3>
+					<input type="radio" id="onp-uwf" name="infodesc-strats" value="uwf" checked="">
+					<label for="dewey">Ultra-Wide Flat</label>
+				</h3>
+				Spread out liquidity over 101 Bins, 50 as Asks & 50 as Bids. Ideal for new users with no prior experience. This opens 101 individual positions, with all of the same-side positions worth the same at current spot market price. Ideal for Top 50 Cryptocurrenices using a Stablecoin pairing.
+				<br><br>
+			</div>
+
+			<div>
+				<h3>
+					<input type="radio" id="onp-cbd" name="infodesc-strats" value="cbd">
+					<label for="dewey">Casual Basement Degen</label>
+				</h3>
+				69 Bucket-wide. Pointy at the center, tapering towards the sides. Looks like the Empire-State building, but way fatter. Requires regular monitoring to satisfy the Shiny Object Syndrome.
+				<br><br>
+			</div>
+
+			<div>
+				<h3>
+					<input type="radio" id="onp-bp" name="infodesc-strats" value="bp">
+					<label for="dewey">Bogdanoff Pro™</label>
+				</h3>
+				For Professional Market-Makers only. Highly concentrated Gaussian Distribution around mean, skewed in the direction of local price-action trend. Requires active maintenance. Spread over 14 Asks & 14 Bids focused around 1 heated bucket.
+				<br><br>
+			</div>
+
+			<!--<div>
+				<h3>
+					<input type="radio" id="onp-rr" name="infodesc-strats" value="rr" disabled>
+					<label for="dewey">Range Rover</label>
+				</h3>
+				Single-sided Order for Dollar-Cost-Averaging into the other side. 75-Buckets wide to ease in slowly into the counterparty during a shift in the Market Trend. With Parabolic-tails loved by Cex bots and Knife-Catchers.
+				<br><br>
+			</div>-->
+
+			<div>
+				<h3>
+					<input type="radio" id="onp-ffc" name="infodesc-strats" value="ffc">
+					<label for="dewey">Five Finger Claw</label>
+				</h3>
+				Stop. Look at your hand. See those 5 fingers? That's the shape of this liquidity. Tight range, ideal for extremely correlated assets like a pair of stables, Interest-Bearing Derivatives / L.S.D., Wrappers of all kinds. Clenched by the E3 Claw.
+				<br><br>
+			</div>
+
+			<div>
+				<h3>
+					<input type="radio" id="onp-cute" name="infodesc-strats" value="cute">
+					<label for="dewey">Custom Cutie</label>
+				</h3>
+				Feeling cute? Nice! This strategy enables you to add Single-sided Liquidity (yeah, like limit orders!) at any custom price point, spread over multiple buckets (you choose how many! 200 max.). Perfect for our <strike>Crazy</strike> Cute users UwU.
+				<br><br>
+			</div>
+
+		</fieldset>
+	</div>
+
+	<br>
+	<br>
+	<br>
+	<h3 align="center">Enter the amount of tokens you wish to make the market with</h3>
+
+	<div class="mechanism">
+		<div class="input-amount">
+			<br>
+			<div class="input-amount-els">
+				<div onclick="pairSelectionMenu()">
+					<img class="bigthumb" id="addlp-logo-x" src="https://ftm.guru/icons/e3.svg"/>
+				</div>
+				<div class="amount-area">
+					<div class="prefill-num">
+						<span id="addlp-amount-sold-balance">0.000000 available</span>
+					</div>
+					<div class="amount-sold" id="addlp-token-sold">
+						<input value="" placeholder="Amount" id="onp-ask">
+					</div>
+				</div>
+			</div>
+  			<div class="arrow-content">
+  				<br>
+  				<i>and</i>
+  				<br>
+  				<!--
+    			<svg id="more-arrows" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+      				<polygon class="arrow-top" points="37.6,27.9 1.8,1.3 3.3,0 37.6,25.3 71.9,0 73.7,1.3 "/>
+      				<polygon class="arrow-middle" points="37.6,45.8 0.8,18.7 4.4,16.4 37.6,41.2 71.2,16.4 74.5,18.7 "/>
+      				<polygon class="arrow-bottom" points="37.6,64 0,36.1 5.1,32.8 37.6,56.8 70.4,32.8 75.5,36.1 "/>
+    			</svg>
+    			-->
+  				<br>
+  			</div>
+			<div class="input-amount-els">
+				<div onclick="pairSelectionMenu()">
+					<img class="bigthumb" id="addlp-logo-y" src="https://ftm.guru/icons/e3.svg"/>
+				</div>
+				<div class="amount-area">
+					<div class="prefill-num">
+						<span id="addlp-amount-bought-balance">0.000000 available</span>
+					</div>
+					<div class="amount-bought" id="token-bought">
+						<input value="" placeholder="Amount" id="onp-bid">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="margin-top: -25px;" align="center">
+			<button class="submit equal-gradient" onclick="onp_create()"><span id="">Create Position</span></button>
+			<br><br>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+	<div class="extra">
+		<br><br>
+		<!--
+		<h3><a href="https://eliteness.network">Powered by Guru Network</a></h3>
+		-->
+		<div class="social">
+			<a target="_blank" href="https://discord.gg/QpyfMarNrV"><img src="https://ftm.guru/icons/discord.svg"></a>
+			<a target="_blank" href="https://twitter.com/FTM1337"><img src="https://ftm.guru/icons/twitter.svg"></a>
+			<a target="_blank" href="https://dune.com/e3/fees"><img src="https://ftm.guru/icons/dune.svg"></a>
+			<a target="_blank" href="https://defillama.com/protocol/e3"><img src="https://ftm.guru/icons/defillama.svg"></a>
+			<a target="_blank" href="https://coinmarketcap.com/exchanges/e3"><img src="https://ftm.guru/icons/cmc.svg"></a>
+		</div>
+		<!--
+		<small id="stats">
+		</small>
+		<h1><span></span></h1>
+		-->
+		<br><br>
+	</div>
+
+	<div id="scroll-container" style="display:none">
+		<div id="scroll-text">
+			 • <span>eTHENA Price: $Unknown (Unknown THE)</span>
+			 • <span>eTHENA Minting Ratio (veTHE): 1.Unknown</span>
+			 • <span>Market Cap: $Unknown</span>
+			 • <span>Total Supply: 200,000+</span>
+			 • <span>veTHE Controlled: 228,228+</span>
+			 • <span>Collateralization: Unknown%</span>
+			 • <span>eTHENA/WBNB Liquidity: $Unknown</span>
+			 • <span>eTHENA-Staking (Earn BNB) APR: Unknown%</span>
+			 • <span>eTHENA/WBNB-Farming (Earn THE) APR: Unknown%</span>
+		</div>
+	</div>
+
+
+	<br><br><br><br>
+
+
+	<div class="partnership">
+		<h1 id="a-posit"><span>My Positions</span></h1>
+		<h2>An overview of all your individual Positions</h2>
+	</div>
+	<div class="OB" id="" align="center">
+		<br>
+		<br>
+
+
+
+		<div align="center">
+
+			<div id="mp-utab">-</div>
+
+			<br>
+			<button onclick="closeAll()"><img src="img/cross.svg"></button> Close all positions</button>
+
+			<br><br><br><br>
+
+			<div class="OBH" id="OBH_UP">
+				<div>Price </div>
+				<div>Open </div>
+				<div>Filled </div>
+				<div>Current</div>
+			</div>
+			<div id="mp-list">-</div>
+		</div>
+
+
+
+	</div>
+
+	<br><br><br><br>
+	<h2>Powered by Guru Network</h2>
+	<div align="center" style="font-size:4em">(🦾,🚀)</div>
+	<div class="social">
+		<a target="_blank" href="https://discord.gg/QpyfMarNrV"><img src="https://ftm.guru/icons/discord.svg"></a>
+		<a target="_blank" href="https://twitter.com/FTM1337"><img src="https://ftm.guru/icons/twitter.svg"></a>
+		<a target="_blank" href="https://dune.com/e3/fees"><img src="https://ftm.guru/icons/dune.svg"></a>
+		<a target="_blank" href="https://defillama.com/protocol/e3"><img src="https://ftm.guru/icons/defillama.svg"></a>
+		<a target="_blank" href="https://coinmarketcap.com/exchanges/e3"><img src="https://ftm.guru/icons/cmc.svg"></a>
+		<a target="_blank" href="https://ftm.guru/docs"><img src="https://ftm.guru/icons/docs.svg"></a>
+	</div>
+	<br><br>
+
+
+
+
+
+
+
+
+<!-- IGNORE BELOW BLOCK : DEV LOGS -->
+		<div style="display:none">
+		<span id="cw_m"></span>
+		<div id="connect">
+			Please connect your web3 wallet.
+			<br><br>
+			<button onclick="cw()" id="btn-connect">Connect</button>
+		</div>
+		<div id="switch">
+			<b id="btn-switch" onclick="cw()">
+				<img src="img/wallet.svg" width="24px" style="position:relative;top:4px">
+				<span id="cw"></span>
+			</b>
+			<br>Balance: <b style="font-family:bold" id="usb-mtv">?</b> <img class="imgmtv" src="https://ftm.guru/icons/eth.svg" width="20px" style="position:relative;top:4px">USDC<br>
+			<span style="font-size:0.9em">Wallet at <img class="imgmtv" src="https://ftm.guru/icons/ftm.svg" width="20px" style="position:relative;top:4px">Fantom Opera. <a href="index.html" style="color:aqua;font-family:bold">Change?</a></span>
+		</div>
+	</div>
+<!-- IGNORE ABOVE BLOCK : DEV LOGS -->
+
+
+
+		<div id="particle-container" style="display:none">
+			<div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+		</div>
+		<script>
+			DAPPNAME = "E3";
+			CHAINID = 250;
+			RPC_URL = "https://rpc.ankr.com/fantom";
+			EXPLORE = "https://ftmscan.com";
+			CHAIN_NAME = "Fantom Opera";
+			CHAIN_GAS = "FTM"
+			FTM="0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83";
+			WFTM="0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83";
+			USDC="0x04068DA6C83AFCFA0e13ba15A6696662335D5B75";
+			FUSDT="0x049d68029688eAbF473097a2fC38ef61633A3C7A";
+
+			POOLID = 7;
+			BUCKET = 1;
+			BUCK_1 = 8388608;
+			POOLADDR = "0x9F38B904664074422606005874EcF7b9163a1496";
+
+			T_X = {
+				symbol: "oldFIERY",
+				address: "0xc36cae799b758d04dac9b3a1fd59755c4a8ae721",
+				decimals: 18,
+				logo: "https://cdn.jsdelivr.net/gh/unified-defi/equalizer-tokens@latest/fantom/tokens/128x128/0xc36cae799b758d04dac9b3a1fd59755c4a8ae721.png",
+				minimum: 2e6
+			}
+			T_Y = {
+				symbol: "FIERY",
+				address: "0xF97d438BC03aD0F75B83ce5714c9619880B305bc",
+				decimals: 18,
+				logo: "https://cdn.jsdelivr.net/gh/unified-defi/equalizer-tokens@latest/fantom/tokens/128x128/0xc36cae799b758d04dac9b3a1fd59755c4a8ae721.png",
+				minimum: 2e6
+			}
+			INITIAL = "1";
+			SLIPBPS = 9990;
+		</script>
+		<script src="https://ftm.guru/ethers-5.2.umd.min.js" type="application/javascript" defer="true"></script>
+
+		<!--
+		<script src="https://ftm.guru/chart.min.js" type="application/javascript"></script>
+		<script src="https://ftm.guru/chartjs-adapter-date-fns.bundle.min.js" type="application/javascript"></script>
+		-->
+
+		<script src="e.js"></script>
+	</body>
+</html>

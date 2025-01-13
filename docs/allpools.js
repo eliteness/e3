@@ -541,6 +541,13 @@ POOLS = {
 			a: "0x0e10c685052c950296e1b65414acb006299c9a58",
 			t: [  ],
 		},
+		{
+			i: 5,
+			b: 1,
+			f: 1,
+			a: "0xcd836ad87959fAb4DC1c7f5352c0C0970384204e",
+			t: [  ],
+		},
 	],
 	42161 : [
 		{
@@ -603,6 +610,7 @@ async function pre_stats() {
 	_P_250_3 = new ethers.Contract(POOLS[250][3].a, PAIRABI, FANTOM);
 	_P_250_4 = new ethers.Contract(POOLS[250][4].a, PAIRABI, FANTOM);
 	_P_250_5 = new ethers.Contract(POOLS[250][5].a, PAIRABI, FANTOM);
+	_P_250_6 = new ethers.Contract(POOLS[250][6].a, PAIRABI, FANTOM);
 
 	_P_42161_0 = new ethers.Contract(POOLS[42161][0].a, PAIRABI, ARB1);
 	_P_42161_1 = new ethers.Contract(POOLS[42161][1].a, PAIRABI, ARB1);
@@ -628,6 +636,7 @@ async function pre_stats() {
 		_P_8453_2.getReserves(),
 		_P_250_4.getReserves(),
 		_P_250_5.getReserves(),
+		_P_250_6.getReserves(),
 	]);
 
 
@@ -664,6 +673,9 @@ async function pre_stats() {
 	$("250-5-gr0").innerHTML = ( Number( _gr[10][0] ) / 1e06 ).toLocaleString();
 	$("250-5-gr1").innerHTML = ( Number( _gr[10][1] ) / 1e06 ).toLocaleString();
 
+	$("250-6-gr0").innerHTML = ( Number( _gr[11][0] ) / 1e18 ).toLocaleString();
+	$("250-6-gr1").innerHTML = ( Number( _gr[11][1] ) / 1e18 ).toLocaleString();
+
 
 	_cgd = await (await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum%2Cfantom%2Cfantom-usd&order=id_asc&per_page=100&page=1&sparkline=false&price_change_percentage=30d&locale=en")).json();
 
@@ -673,6 +685,7 @@ async function pre_stats() {
 	$("250-3-tvl").innerHTML = "$" + Number( ( Number( _gr[3][0] ) / 1e18 * _cgd[1].current_price + Number( _gr[3][1] ) / 1e06 ).toFixed() ).toLocaleString();
 	$("250-4-tvl").innerHTML = "$" + Number( ( Number( _gr[9][0] ) / 1e18 * _cgd[2].current_price + Number( _gr[9][1] ) / 1e06 ).toFixed() ).toLocaleString();
 	$("250-5-tvl").innerHTML = "$" + Number( ( Number( _gr[10][0] ) / 1e06 + Number( _gr[10][1] ) / 1e06 ).toFixed() ).toLocaleString();
+	$("250-1-tvl").innerHTML = "$" + Number( ( Number( _gr[11][0] ) / 1e18 * _cgd[1].current_price + Number( _gr[11][1] ) / 1e18 * _cgd[1].current_price ).toFixed() ).toLocaleString();
 
 
 	$("42161-0-tvl").innerHTML = "$" + Number( ( Number( _gr[4][0] ) / 1e18 * _cgd[0].current_price + Number( _gr[4][1] ) / 1e06 ).toFixed() ).toLocaleString();
