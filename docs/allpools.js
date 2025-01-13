@@ -542,10 +542,17 @@ POOLS = {
 			t: [  ],
 		},
 		{
-			i: 5,
+			i: 6,//mftm/wftm
 			b: 1,
 			f: 1,
 			a: "0xcd836ad87959fAb4DC1c7f5352c0C0970384204e",
+			t: [  ],
+		},
+		{
+			i: 7,//fiery
+			b: 1,
+			f: 1,
+			a: "0x9F38B904664074422606005874EcF7b9163a1496",
 			t: [  ],
 		},
 	],
@@ -600,9 +607,12 @@ async function pre_stats() {
 	console.log("pre-stat'ing");
 	prepro = new ethers.providers.JsonRpcProvider(RPC_URL);
 
-	FANTOM = new ethers.providers.JsonRpcProvider("https://rpc.ankr.com/fantom");
+	FANTOM = new ethers.providers.JsonRpcProvider("https://rpcapi.fantom.network");
 	BASE = new ethers.providers.JsonRpcProvider("https://rpc.ankr.com/base");
 	ARB1 = new ethers.providers.JsonRpcProvider("https://rpc.ankr.com/arbitrum");
+	SONIC = new ethers.providers.JsonRpcProvider("https://rpc.soniclabs.com");
+
+	PRICEGURU_SONIC = new ethers.Contract("0x5A11968256F7860C9c19513aDf30AD9C8F5F6041",["function getAssetPrice(address) public view returns(uint)"],SONIC);
 
 	_P_250_0 = new ethers.Contract(POOLS[250][0].a, PAIRABI, FANTOM);
 	_P_250_1 = new ethers.Contract(POOLS[250][1].a, PAIRABI, FANTOM);
@@ -611,6 +621,7 @@ async function pre_stats() {
 	_P_250_4 = new ethers.Contract(POOLS[250][4].a, PAIRABI, FANTOM);
 	_P_250_5 = new ethers.Contract(POOLS[250][5].a, PAIRABI, FANTOM);
 	_P_250_6 = new ethers.Contract(POOLS[250][6].a, PAIRABI, FANTOM);
+	_P_250_7 = new ethers.Contract(POOLS[250][7].a, PAIRABI, FANTOM);
 
 	_P_42161_0 = new ethers.Contract(POOLS[42161][0].a, PAIRABI, ARB1);
 	_P_42161_1 = new ethers.Contract(POOLS[42161][1].a, PAIRABI, ARB1);
@@ -637,7 +648,13 @@ async function pre_stats() {
 		_P_250_4.getReserves(),
 		_P_250_5.getReserves(),
 		_P_250_6.getReserves(),
+		_P_250_7.getReserves(),
 	]);
+
+	_prices = await Promise.all([
+		PRICEGURU_SONIC.getAssetPrice("0xF97d438BC03aD0F75B83ce5714c9619880B305bc")
+	])
+	_prices = _prices.map(i=>Number(i)/1e18)
 
 
 	$("250-0-gr0").innerHTML = ( Number( _gr[0][0] ) / 1e06 ).toLocaleString();
@@ -676,6 +693,9 @@ async function pre_stats() {
 	$("250-6-gr0").innerHTML = ( Number( _gr[11][0] ) / 1e18 ).toLocaleString();
 	$("250-6-gr1").innerHTML = ( Number( _gr[11][1] ) / 1e18 ).toLocaleString();
 
+	$("250-7-gr0").innerHTML = ( Number( _gr[12][0] ) / 1e18 ).toLocaleString();
+	$("250-7-gr1").innerHTML = ( Number( _gr[12][1] ) / 1e18 ).toLocaleString();
+
 
 	_cgd = await (await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum%2Cfantom%2Cfantom-usd&order=id_asc&per_page=100&page=1&sparkline=false&price_change_percentage=30d&locale=en")).json();
 
@@ -685,7 +705,8 @@ async function pre_stats() {
 	$("250-3-tvl").innerHTML = "$" + Number( ( Number( _gr[3][0] ) / 1e18 * _cgd[1].current_price + Number( _gr[3][1] ) / 1e06 ).toFixed() ).toLocaleString();
 	$("250-4-tvl").innerHTML = "$" + Number( ( Number( _gr[9][0] ) / 1e18 * _cgd[2].current_price + Number( _gr[9][1] ) / 1e06 ).toFixed() ).toLocaleString();
 	$("250-5-tvl").innerHTML = "$" + Number( ( Number( _gr[10][0] ) / 1e06 + Number( _gr[10][1] ) / 1e06 ).toFixed() ).toLocaleString();
-	$("250-1-tvl").innerHTML = "$" + Number( ( Number( _gr[11][0] ) / 1e18 * _cgd[1].current_price + Number( _gr[11][1] ) / 1e18 * _cgd[1].current_price ).toFixed() ).toLocaleString();
+	$("250-6-tvl").innerHTML = "$" + Number( ( Number( _gr[11][0] ) / 1e18 * _cgd[1].current_price + Number( _gr[11][1] ) / 1e18 * _cgd[1].current_price ).toFixed() ).toLocaleString();
+	$("250-7-tvl").innerHTML = "$" + Number( ( Number( _gr[12][0] ) / 1e18 * _prices[0] + Number( _gr[12][1] ) / 1e18 * _prices[0] ).toFixed() ).toLocaleString();
 
 
 	$("42161-0-tvl").innerHTML = "$" + Number( ( Number( _gr[4][0] ) / 1e18 * _cgd[0].current_price + Number( _gr[4][1] ) / 1e06 ).toFixed() ).toLocaleString();
