@@ -620,6 +620,7 @@ async function pre_stats() {
 	SONIC = new ethers.providers.JsonRpcProvider("https://rpc.soniclabs.com");
 
 	PRICEGURU_SONIC = new ethers.Contract("0x5A11968256F7860C9c19513aDf30AD9C8F5F6041",["function getAssetPrice(address) public view returns(uint)"],SONIC);
+	TVLGURU_FANTOM = new ethers.Contract("0x0786c3a78f5133f08c1c70953b8b10376bc6dcad",["function p_t_coin_usd(address) public view returns(uint)"],FANTOM);
 
 	_P_250_0 = new ethers.Contract(POOLS[250][0].a, PAIRABI, FANTOM);
 	_P_250_1 = new ethers.Contract(POOLS[250][1].a, PAIRABI, FANTOM);
@@ -662,7 +663,7 @@ async function pre_stats() {
 
 	_prices = await Promise.all([
 		PRICEGURU_SONIC.getAssetPrice("0xF97d438BC03aD0F75B83ce5714c9619880B305bc"),
-		PRICEGURU_SONIC.getAssetPrice("0x308F66EBEE21861D304C8013Eb3A9a5fC78A8a6c")
+		TVLGURU_FANTOM.p_t_coin_usd("0x5734fe62c9881c438da8ff21198dc733983f59dc")//PRICEGURU_SONIC.getAssetPrice("0x308F66EBEE21861D304C8013Eb3A9a5fC78A8a6c")
 	])
 	_prices = _prices.map(i=>Number(i)/1e18)
 
