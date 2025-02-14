@@ -741,7 +741,7 @@ async function pre_stats() {
 	$("250-6-tvl").innerHTML = "$" + Number( ( Number( _gr[11][0] ) / 1e18 * _cgd[1].current_price + Number( _gr[11][1] ) / 1e18 * _cgd[1].current_price ).toFixed() ).toLocaleString();
 	$("250-7-tvl").innerHTML = "$" + Number( ( Number( _gr[12][0] ) / 1e18 * _prices[0] + Number( _gr[12][1] ) / 1e18 * _prices[0] ).toFixed() ).toLocaleString();
 	$("250-8-tvl").innerHTML = "$" + Number( ( Number( _gr[13][0] ) / 1e18 * _prices[1] + Number( _gr[13][1] ) / 1e18 * _prices[1] / 19000 ).toFixed() ).toLocaleString();
-	$("250-8-tvl").innerHTML = "$" + Number( ( Number( _gr[14][0] ) / 1e18 * _prices[2] + Number( _gr[14][1] ) / 1e18 * _prices[2] / 25 ).toFixed() ).toLocaleString();
+	$("250-9-tvl").innerHTML = "$" + Number( ( Number( _gr[14][0] ) / 1e18 * _prices[2] / 25 + Number( _gr[14][1] ) / 1e18 * _prices[2] ).toFixed() ).toLocaleString();
 
 
 	$("42161-0-tvl").innerHTML = "$" + Number( ( Number( _gr[4][0] ) / 1e18 * _cgd[0].current_price + Number( _gr[4][1] ) / 1e06 ).toFixed() ).toLocaleString();
