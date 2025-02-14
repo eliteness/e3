@@ -626,8 +626,9 @@ async function pre_stats() {
 	ARB1 = new ethers.providers.JsonRpcProvider("https://rpc.ankr.com/arbitrum");
 	SONIC = new ethers.providers.JsonRpcProvider("https://rpc.soniclabs.com");
 
-	PRICEGURU_SONIC = new ethers.Contract("0x5A11968256F7860C9c19513aDf30AD9C8F5F6041",["function getAssetPrice(address) public view returns(uint)"],SONIC);
 	TVLGURU_FANTOM = new ethers.Contract("0x0786c3a78f5133f08c1c70953b8b10376bc6dcad",["function p_t_coin_usd(address) public view returns(uint)"],FANTOM);
+	TVLGURU_SONIC = new ethers.Contract("0x2696f94f11dfF0d77875E2652FCdB537274B9CE7",["function p_t_coin_usd(address) public view returns(uint)"],SONIC);
+	PRICEGURU_SONIC = new ethers.Contract("0x5A11968256F7860C9c19513aDf30AD9C8F5F6041",["function getAssetPrice(address) public view returns(uint)"],SONIC);
 
 	_P_250_0 = new ethers.Contract(POOLS[250][0].a, PAIRABI, FANTOM);
 	_P_250_1 = new ethers.Contract(POOLS[250][1].a, PAIRABI, FANTOM);
@@ -652,7 +653,7 @@ async function pre_stats() {
 
 
 
-	_gr = await Promise.all([
+	_gr0 = await Promise.all([
 		_P_250_0.getReserves(),
 		_P_250_1.getReserves(),
 		_P_250_2.getReserves(),
@@ -662,6 +663,9 @@ async function pre_stats() {
 		_P_8453_0.getReserves(),
 		_P_8453_1.getReserves(),
 		_P_8453_2.getReserves(),
+	]);
+
+	_gr1 = await Promise.all([
 		_P_250_4.getReserves(),
 		_P_250_5.getReserves(),
 		_P_250_6.getReserves(),
@@ -670,9 +674,11 @@ async function pre_stats() {
 		_P_250_9.getReserves(),
 	]);
 
+	_gr = [ ..._gr0, ..._gr1 ]
+
 	_prices = await Promise.all([
 		PRICEGURU_SONIC.getAssetPrice("0xF97d438BC03aD0F75B83ce5714c9619880B305bc"),
-		TVLGURU_FANTOM.p_t_coin_usd("0x5734fe62c9881c438da8ff21198dc733983f59dc")//PRICEGURU_SONIC.getAssetPrice("0x308F66EBEE21861D304C8013Eb3A9a5fC78A8a6c")
+		TVLGURU_FANTOM.p_t_coin_usd("0x5734fe62c9881c438da8ff21198dc733983f59dc"),//PRICEGURU_SONIC.getAssetPrice("0x308F66EBEE21861D304C8013Eb3A9a5fC78A8a6c")
 		TVLGURU_SONIC.p_t_coin_usd("0x1d64b681315839c83bf545b7a041f4e5111bee39"),
 	])
 	_prices = _prices.map(i=>Number(i)/1e18)
