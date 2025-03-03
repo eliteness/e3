@@ -569,6 +569,13 @@ POOLS = {
 			a: "0x16197Eb0650b49383E0E5724b6e4818dA47e9ad9",
 			t: [  ],
 		},
+		{
+			i: 10,//elite
+			b: 25,
+			f: 1,
+			a: "0xc2e7ba4a1d080b53ef7f9d9d62b2aa3b9908fae3",
+			t: [  ],
+		},
 	],
 	42161 : [
 		{
@@ -640,6 +647,7 @@ async function pre_stats() {
 	_P_250_7 = new ethers.Contract(POOLS[250][7].a, PAIRABI, FANTOM);
 	_P_250_8 = new ethers.Contract(POOLS[250][8].a, PAIRABI, FANTOM);
 	_P_250_9 = new ethers.Contract(POOLS[250][9].a, PAIRABI, FANTOM);
+	_P_250_10 = new ethers.Contract(POOLS[250][10].a, PAIRABI, FANTOM);
 
 	_P_42161_0 = new ethers.Contract(POOLS[42161][0].a, PAIRABI, ARB1);
 	_P_42161_1 = new ethers.Contract(POOLS[42161][1].a, PAIRABI, ARB1);
@@ -672,6 +680,7 @@ async function pre_stats() {
 		_P_250_7.getReserves(),
 		_P_250_8.getReserves(),
 		_P_250_9.getReserves(),
+		_P_250_10.getReserves(),
 	]);
 
 	_gr = [ ..._gr0, ..._gr1 ]
@@ -680,6 +689,7 @@ async function pre_stats() {
 		PRICEGURU_SONIC.getAssetPrice("0xF97d438BC03aD0F75B83ce5714c9619880B305bc"),
 		TVLGURU_FANTOM.p_t_coin_usd("0x5734fe62c9881c438da8ff21198dc733983f59dc"),//PRICEGURU_SONIC.getAssetPrice("0x308F66EBEE21861D304C8013Eb3A9a5fC78A8a6c")
 		TVLGURU_SONIC.p_t_coin_usd("0x1d64b681315839c83bf545b7a041f4e5111bee39"),
+		TVLGURU_FANTOM.p_t_coin_usd("0xea035a13b64cb49d85e2f0a2736c9604cb21599c"),
 	])
 	_prices = _prices.map(i=>Number(i)/1e18)
 
@@ -729,6 +739,9 @@ async function pre_stats() {
 	$("250-9-gr0").innerHTML = ( Number( _gr[14][0] ) / 1e18 ).toLocaleString();
 	$("250-9-gr1").innerHTML = ( Number( _gr[14][1] ) / 1e18 ).toLocaleString();
 
+	$("250-10-gr0").innerHTML = ( Number( _gr[15][0] ) / 1e18 ).toLocaleString();
+	$("250-10-gr1").innerHTML = ( Number( _gr[15][1] ) / 1e18 ).toLocaleString();
+
 
 	_cgd = await (await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum%2Cfantom%2Cfantom-usd&order=id_asc&per_page=100&page=1&sparkline=false&price_change_percentage=30d&locale=en")).json();
 
@@ -742,6 +755,7 @@ async function pre_stats() {
 	$("250-7-tvl").innerHTML = "$" + Number( ( Number( _gr[12][0] ) / 1e18 * _prices[0] + Number( _gr[12][1] ) / 1e18 * _prices[0] ).toFixed() ).toLocaleString();
 	$("250-8-tvl").innerHTML = "$" + Number( ( Number( _gr[13][0] ) / 1e18 * _prices[1] + Number( _gr[13][1] ) / 1e18 * _prices[1] / 19000 ).toFixed() ).toLocaleString();
 	$("250-9-tvl").innerHTML = "$" + Number( ( Number( _gr[14][0] ) / 1e18 * _prices[2] / 25 + Number( _gr[14][1] ) / 1e18 * _prices[2] ).toFixed() ).toLocaleString();
+	$("250-10-tvl").innerHTML = "$" + Number( ( Number( _gr[15][0] ) / 1e18 * _prices[3] / 300000 + Number( _gr[15][1] ) / 1e18 * _prices[3] ).toFixed() ).toLocaleString();
 
 
 	$("42161-0-tvl").innerHTML = "$" + Number( ( Number( _gr[4][0] ) / 1e18 * _cgd[0].current_price + Number( _gr[4][1] ) / 1e06 ).toFixed() ).toLocaleString();
