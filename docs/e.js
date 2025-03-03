@@ -459,7 +459,7 @@ async function sell() {
 		To sell ${(Number(ain)/10**selldeci).toFixed(selldeci)}	 ${(dir?T_X:T_Y).symbol}
 		<br>To buy ${(dir?T_Y:T_X).symbol}
 		<br>
-		<br><i>Slippage Tolerance</i> : ±0.1%
+		<br><i>Slippage Tolerance</i> : ±${(10000-SLIPBPS)/10000*100}%
 	`);
 	let sod = await R.getSwapOut(POOLADDR, ain, dir);
 	let bmin = Math.floor(Number(sod[1]) * SLIPBPS/10000);
@@ -471,7 +471,7 @@ async function sell() {
 		<img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"><img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"> ${((Number(sod[1])/10**buydeci)/(Number(ain)/10**selldeci)).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol} per ${(dir?T_X:T_Y).symbol}
 		<br><img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"><img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"> ${((Number(ain)/10**selldeci)/(Number(sod[1])/10**buydeci)).toFixed(selldeci)} ${(dir?T_X:T_Y).symbol} per ${(dir?T_Y:T_X).symbol}
 		<br><h3>Slippage</h3>
-		<b>Tolerance</b> : ±0.1%</i>
+		<b>Tolerance</b> : ±${(10000-SLIPBPS)/10000*100}%</i>
 		<br><b>Minimum Received</b> : <img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"> ${(bmin/10**buydeci).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol}</i>
 		<br>
 		<br><br><b><u>Please confirm this transaction in your wallet</u></b>
@@ -486,7 +486,7 @@ async function sell() {
 		<img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"><img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"> ${((Number(sod[1])/10**buydeci)/(Number(ain)/10**selldeci)).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol} per ${(dir?T_X:T_Y).symbol}
 		<br><img style="vertical-align: bottom;" height="20px" src="${STATE.ts.logo}"><img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"> ${((Number(ain)/10**selldeci)/(Number(sod[1])/10**buydeci)).toFixed(selldeci)} ${(dir?T_X:T_Y).symbol} per ${(dir?T_Y:T_X).symbol}
 		<br><h3>Slippage</h3>
-		<b>Tolerance</b> : ±0.1%</i>
+		<b>Tolerance</b> : ±${(10000-SLIPBPS)/10000*100}%</i>
 		<br><b>Minimum Received</b> : <img style="vertical-align: bottom;" height="20px" src="${STATE.tb.logo}"> ${(bmin/10**buydeci).toFixed(buydeci)} ${(dir?T_Y:T_X).symbol}</i>
 		<br>
 		<br><br><b><u>Please wait till this transaction is confirmed by the ${CHAIN_NAME} Network.</u></b>
@@ -1095,7 +1095,7 @@ async function closePositionAt(_bId,_upx,_upy,_upl,_kind) {
 		Ask: ${_upx/10**T_X.decimals} ${T_X.symbol}<br>
 		Bid: ${_upy/10**T_Y.decimals} ${T_Y.symbol}<br>
 		Net Position: ${_upl/10**T_Y.decimals} ${T_Y.symbol}<br><br>
-		Slippage Tolerance: ±0.1%<br>
+		Slippage Tolerance: ±${(10000-SLIPBPS)/10000*100}%<br>
 		Ask: ${_upx/10**T_X.decimals*SLIPBPS/1e4} ${T_X.symbol}<br>
 		Bid: ${_upy/10**T_Y.decimals*SLIPBPS/1e4} ${T_Y.symbol}<br>
 		<br><br>
@@ -1322,7 +1322,7 @@ async function closeAll() {
 		<h3>Minimum Received</h3>
 		<img style="vertical-align: bottom;" height="24px" width="24px" src="${T_X.logo}"> ${_t[0]/10**T_X.decimals*SLIPBPS/1e4} ${T_X.symbol} <br>
 		<img style="vertical-align: bottom;" height="24px" width="24px" src="${T_Y.logo}"> ${_t[1]/10**T_Y.decimals*SLIPBPS/1e4} ${T_Y.symbol} <br>
-		<i>Slippage Tolerance : ±0.1%</i>
+		<i>Slippage Tolerance : ±${(10000-SLIPBPS)/10000*100}%</i>
 	`);
 	txh = await R.removeLiquidity(T_X.address,T_Y.address,BUCKET,BigInt(Math.floor(_t[0]*SLIPBPS/1e4)),BigInt(Math.floor(_t[1]*SLIPBPS/1e4)),rd3,bq,window.ethereum.selectedAddress,Math.floor(Date.now()/1000+1337));
 	notice(`
@@ -1334,7 +1334,7 @@ async function closeAll() {
 		<h3>Minimum Received</h3>
 		<img style="vertical-align: bottom;" height="24px" width="24px" src="${T_X.logo}"> ${_t[0]/10**T_X.decimals*SLIPBPS/1e4} ${T_X.symbol} <br>
 		<img style="vertical-align: bottom;" height="24px" width="24px" src="${T_Y.logo}"> ${_t[1]/10**T_Y.decimals*SLIPBPS/1e4} ${T_Y.symbol} <br>
-		<i>Slippage Tolerance : ±0.1%</i>
+		<i>Slippage Tolerance : ±${(10000-SLIPBPS)/10000*100}%</i>
 		<br><br>
 		<b>Awaiting confirmation from the network . . ..</b>
 		<br><br><i>Please wait.</i>
