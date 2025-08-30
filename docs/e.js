@@ -13,6 +13,7 @@ let CACHE = {
 	oldinp: [,],
 	ACTIVEI: 0
 }
+let DEBUGMODE = false;
 
 CHAINDATA = {
 	250 : {
@@ -1694,8 +1695,10 @@ async function cute_confirm(_aamt,_bamt,_activeId) {
 	}
 
 	if(cute_params.spill > 100 || cute_params.spill < 0 || isNaN(cute_params.spill)) {
-		notice(`Invalid Number of Buckets Filled. \nYour input: ${cute_params.spill}`);
-		return;
+		if(DEBUGMODE==false) {
+			notice(`Invalid Number of Buckets Filled. \nYour input: ${cute_params.spill}`);
+			return;
+		}
 	}
 
 	if(cute_params.side=="selling") {
