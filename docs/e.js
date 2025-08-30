@@ -832,7 +832,7 @@ async function paintBook() {
 			__r.setAttribute('class','OBR_A');
 			__r.setAttribute('style', `background:linear-gradient(to right, #ff3333ff 0 ${_pl/_tliqMax*100}%, #ff33333f 0 100%)`);
 			let __r1 = document.createElement('div');
-			__r1.appendChild(document.createTextNode(`${_p.toFixed(6)}`));
+			__r1.appendChild(document.createTextNode(`${_p.toFixed(8)}`));
 			__r.appendChild(__r1);
 			let __r2 = document.createElement('div');
 			__r2.appendChild(document.createTextNode(`${(_pl/_p).toFixed(4)}`));
@@ -849,7 +849,7 @@ async function paintBook() {
 					class="OBR_A"
 					style="background:linear-gradient(to right, #ff3333ff 0 ${_pl/_tliqMax*100}%, #ff33333f 0 100%)"
 				>
-					<div>${_p.toFixed(6)}</div>
+					<div>${_p.toFixed(8)}</div>
 					<div>${(_pl/_p).toFixed(4)}</div>
 					<div>${_pl.toFixed(4)}</div>
 				</div>
@@ -869,7 +869,7 @@ async function paintBook() {
 			__r.setAttribute('class','OBR_B');
 			__r.setAttribute('style', `background:linear-gradient(to left, #00bb44ff 0 ${_pl/_tliqMax*100}%, #00bb443f 0 100%)`);
 			let __r1 = document.createElement('div');
-			__r1.appendChild(document.createTextNode(`${_p.toFixed(6)}`));
+			__r1.appendChild(document.createTextNode(`${_p.toFixed(8)}`));
 			__r.appendChild(__r1);
 			let __r2 = document.createElement('div');
 			__r2.appendChild(document.createTextNode(`${(_pl/_p).toFixed(4)}`));
@@ -879,7 +879,7 @@ async function paintBook() {
 			__r.appendChild(__r3);
 			$("OBB").appendChild(__r);
 
-			//__r.appendChild( document.createElement('div').appendChild(document.createTextNode(`${_p.toFixed(6)}`)) );
+			//__r.appendChild( document.createElement('div').appendChild(document.createTextNode(`${_p.toFixed(8)}`)) );
 			//__r.appendChild( document.createElement('div').appendChild(document.createTextNode(`${(_pl/_p).toFixed(4)}`)) );
 			//__r.appendChild( document.createElement('div').appendChild(document.createTextNode(`${_pl.toFixed(4)}`)) );
 
@@ -891,7 +891,7 @@ async function paintBook() {
 					class="OBR_B"
 					style="background:linear-gradient(to right, #00bb44ff 0 ${_pl/_tliqMax*100}%, #00bb443f 0 100%)"
 				>
-					<div>${_p.toFixed(6)}</div>
+					<div>${_p.toFixed(8)}</div>
 					<div>${(_pl/_p).toFixed(4)}</div>
 					<div>${_pl.toFixed(4)}</div>
 				</div>
@@ -908,7 +908,7 @@ async function paintBook() {
 			__ra.setAttribute('class','OBR_A');
 			__ra.setAttribute('style', `background:linear-gradient(to right, #ff3333ff 0 ${_px*_p/_tliqMax*100}%, #ff33333f 0 100%)`);
 			let __ra1 = document.createElement('div');
-			__ra1.appendChild(document.createTextNode(`${(_p).toFixed(6)}`));
+			__ra1.appendChild(document.createTextNode(`${(_p).toFixed(8)}`));
 			__ra.appendChild(__ra1);
 			let __ra2 = document.createElement('div');
 			__ra2.appendChild(document.createTextNode(`${(_px).toFixed(4)}`));
@@ -924,7 +924,7 @@ async function paintBook() {
 			__rb.setAttribute('class','OBR_B');
 			__rb.setAttribute('style', `background:linear-gradient(to left, #00bb44ff 0 ${_py/_tliqMax*100}%, #00bb443f 0 100%)`);
 			let __rb1 = document.createElement('div');
-			__rb1.appendChild(document.createTextNode(`${_p.toFixed(6)}`));
+			__rb1.appendChild(document.createTextNode(`${_p.toFixed(8)}`));
 			__rb.appendChild(__rb1);
 			let __rb2 = document.createElement('div');
 			__rb2.appendChild(document.createTextNode(`${(_py/_p).toFixed(4)}`));
@@ -942,7 +942,7 @@ async function paintBook() {
 					class="OBR_A"
 					style="background:linear-gradient(to right, #ff3333ff 0 ${_px*_p/_tliqMax*100}%, #ff33333f 0 100%)"
 				>
-					<div>${_p.toFixed(6)}</div>
+					<div>${_p.toFixed(8)}</div>
 					<div>${(_px).toFixed(4)}</div>
 					<div>${(_px*_p).toFixed(4)}</div>
 				</div>
@@ -955,7 +955,7 @@ async function paintBook() {
 					class="OBR_B"
 					style="background:linear-gradient(to right, #00bb44ff 0 ${_py/_tliqMax*100}%, #00bb443f 0 100%)"
 				>
-					<div>${_p.toFixed(6)}</div>
+					<div>${_p.toFixed(8)}</div>
 					<div>${(_py/_p).toFixed(4)}</div>
 					<div>${(_py).toFixed(4)}</div>
 				</div>
@@ -970,7 +970,7 @@ async function paintBook() {
 					class="OBR_AB"
 					style="background:linear-gradient(to right, #0000ffff 0 ${_pl/_tliqMax*100}%, #0000ffff 0 100%)"
 				>
-					<div>${_p.toFixed(6)}</div>
+					<div>${_p.toFixed(8)}</div>
 					<div>${(_pl/_p).toFixed(4)}</div>
 					<div>${_pl.toFixed(4)}</div>
 					<div>${_up}</div>
@@ -990,7 +990,7 @@ async function paintBook() {
 			/*
 			$("mp-list").innerHTML += `
 				<div class="OBR_A">
-					<div> ${_p.toFixed(6)} <img style="vertical-align: top;width: 16px;" src="${T_Y.logo}"></div>
+					<div> ${_p.toFixed(8)} <img style="vertical-align: top;width: 16px;" src="${T_Y.logo}"></div>
 					<div> ${(_ux*_p).toFixed(4)} <img style="vertical-align: top;width: 16px;" src="${T_Y.logo}"></div>
 					<div> ${(_uy).toFixed(4)} <img style="vertical-align: top;width: 16px;" src="${T_Y.logo}"></div>
 					<div>${(_upabx)}</div>
@@ -999,7 +999,7 @@ async function paintBook() {
 			*/
 			let e = $$.CE("div")
 			e.innerHTML =`
-				<div> ${_p.toFixed(6)} <img style="vertical-align: top;width: 16px;" src="${T_Y.logo}"></div>
+				<div> ${_p.toFixed(8)} <img style="vertical-align: top;width: 16px;" src="${T_Y.logo}"></div>
 				<div> ${(_ux*_p).toFixed(4)} <img style="vertical-align: top;width: 16px;" src="${T_Y.logo}"></div>
 				<div> ${(_uy).toFixed(4)} <img style="vertical-align: top;width: 16px;" src="${T_Y.logo}"></div>
 				<div>${(_upabx)}</div>
@@ -1013,7 +1013,7 @@ async function paintBook() {
 			/*
 			$("mp-list").innerHTML +=  `
 				<div class="OBR_B">
-					<div> ${_p.toFixed(6)} <img style="vertical-align: top;width: 16px;" src="${T_Y.logo}"></div>
+					<div> ${_p.toFixed(8)} <img style="vertical-align: top;width: 16px;" src="${T_Y.logo}"></div>
 					<div> ${(_uy/_p).toFixed(4)} <img style="vertical-align: top;width: 16px;" src="${T_X.logo}"></div>
 					<div> ${(_ux).toFixed(4)} <img style="vertical-align: top;width: 16px;" src="${T_X.logo}"></div>
 					<div>${(_upaby)}</div>
@@ -1022,7 +1022,7 @@ async function paintBook() {
 			*/
 			let e = $$.CE("div")
 			e.innerHTML = `
-				<div> ${_p.toFixed(6)} <img style="vertical-align: top;width: 16px;" src="${T_Y.logo}"></div>
+				<div> ${_p.toFixed(8)} <img style="vertical-align: top;width: 16px;" src="${T_Y.logo}"></div>
 				<div> ${(_uy/_p).toFixed(4)} <img style="vertical-align: top;width: 16px;" src="${T_X.logo}"></div>
 				<div> ${(_ux).toFixed(4)} <img style="vertical-align: top;width: 16px;" src="${T_X.logo}"></div>
 				<div>${(_upaby)}</div>
@@ -1156,12 +1156,12 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl,_kind) {
 		]);
 		//_prx = _op_ubb[2][0];
 		//_pry = _op_ubb[2][1];
-		if( _op_ubb[0] < _ops ) { notice(`<h3>Insufficient Balance!</h3><br>Desired: ${(_ops / 10**T_Y.decimals).toFixed(6)} ${T_X.symbol}<br>Available: ${_op_ubb[2]/10**T_X.decimals} ${T_X.symbol}`); return};
+		if( _op_ubb[0] < _ops ) { notice(`<h3>Insufficient Balance!</h3><br>Desired: ${(_ops / 10**T_Y.decimals).toFixed(8)} ${T_X.symbol}<br>Available: ${_op_ubb[2]/10**T_X.decimals} ${T_X.symbol}`); return};
 
 		if(Number(_op_ubb[1]) < Number(_op_ubb[0])) {
 			notice(`
 				<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}"> Approve ${T_X.symbol} for Trade</h2>
-				E3 Engine needs your approval to open a new ${(_ops / 10**T_X.decimals).toFixed(6)} ${T_X.symbol} position.
+				E3 Engine needs your approval to open a new ${(_ops / 10**T_X.decimals).toFixed(8)} ${T_X.symbol} position.
 				<br><br>
 				<br><i>Please confirm this tx in your wallet.</i>
 			`);
@@ -1187,8 +1187,8 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl,_kind) {
 			<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}"> New Limit Order</h2>
 			<h4>Selling ${T_X.symbol} for ${T_Y.symbol}</h4>
 			Quantity: ${(_ops / 10**T_Y.decimals)} ${T_X.symbol}<br>
-			Price: ${_price.toFixed(6)} ${T_Y.symbol}<br>
-			Size: ${ ((_ops / 10**T_Y.decimals).toFixed(6)/_price).toFixed(6) } ${T_Y.symbol}<br>
+			Price: ${_price.toFixed(8)} ${T_Y.symbol}<br>
+			Size: ${ ((_ops / 10**T_Y.decimals).toFixed(8)/_price).toFixed(8) } ${T_Y.symbol}<br>
 			<br><br>
 			<br><i>Please confirm this tx in your wallet.</i>
 		`);
@@ -1205,9 +1205,9 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl,_kind) {
 		notice(`
 			<h2><img style="vertical-align: bottom;" height="32px" src="${T_X.logo}">New Position Opened</h2>
 			<h4>Selling ${T_X.symbol} for ${T_Y.symbol}</h4>
-			Quantity: ${(_ops / 10**T_Y.decimals).toFixed(6)} ${T_X.symbol}<br>
-			Price: ${_price.toFixed(6)} ${T_Y.symbol}<br>
-			Size: ${ ((_ops / 10**T_Y.decimals)/_price).toFixed(6) } ${T_Y.symbol}<br>
+			Quantity: ${(_ops / 10**T_Y.decimals).toFixed(8)} ${T_X.symbol}<br>
+			Price: ${_price.toFixed(8)} ${T_Y.symbol}<br>
+			Size: ${ ((_ops / 10**T_Y.decimals)/_price).toFixed(8) } ${T_Y.symbol}<br>
 			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
 	}
@@ -1226,12 +1226,12 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl,_kind) {
 		]);
 		//_prx = _op_ubb[2][0];
 		//_pry = _op_ubb[2][1];
-		if( _op_ubb[0] < _ops ) { notice(`<h3>Insufficient Balance!</h3><br>Desired: ${(_ops / 10**T_Y.decimals).toFixed(6)} ${T_Y.symbol}<br>Available: ${_op_ubb[2]/10**T_Y.decimals} ${T_Y.symbol}`); return};
+		if( _op_ubb[0] < _ops ) { notice(`<h3>Insufficient Balance!</h3><br>Desired: ${(_ops / 10**T_Y.decimals).toFixed(8)} ${T_Y.symbol}<br>Available: ${_op_ubb[2]/10**T_Y.decimals} ${T_Y.symbol}`); return};
 
 		if(Number(_op_ubb[1]) < Number(_op_ubb[0])) {
 			notice(`
 				<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}"> Approve ${T_Y.symbol} for Trade</h2>
-				E3 Engine needs your approval to open a new ${(_ops / 10**T_Y.decimals).toFixed(6)} ${T_Y.symbol} position.
+				E3 Engine needs your approval to open a new ${(_ops / 10**T_Y.decimals).toFixed(8)} ${T_Y.symbol} position.
 				<br><br>
 				<br><i>Please confirm this tx in your wallet.</i>
 			`);
@@ -1254,9 +1254,9 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl,_kind) {
 		notice(`
 			<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}"> New Limit Order</h2>
 			<h4>Purchasing ${T_X.symbol} using ${T_Y.symbol}</h4>
-			Quantity: ${(_ops / 10**T_Y.decimals).toFixed(6)} ${T_Y.symbol}<br>
-			Price: ${_price.toFixed(6)} ${T_X.symbol}<br>
-			Size: ${ ((_ops / 10**T_Y.decimals)/_price).toFixed(6) } ${T_X.symbol}<br>
+			Quantity: ${(_ops / 10**T_Y.decimals).toFixed(8)} ${T_Y.symbol}<br>
+			Price: ${_price.toFixed(8)} ${T_X.symbol}<br>
+			Size: ${ ((_ops / 10**T_Y.decimals)/_price).toFixed(8) } ${T_X.symbol}<br>
 			<br><br>
 			<br><i>Please confirm this tx in your wallet.</i>
 		`);
@@ -1274,8 +1274,8 @@ async function openPositionAt(_bId,_ubx,_uby,_ubl,_prx,_pry,_prl,_kind) {
 			<h2><img style="vertical-align: bottom;" height="32px" src="${T_Y.logo}">New Position Opened</h2>
 			<h4>Purchasing ${T_X.symbol} for ${T_Y.symbol}
 			Quantity: ${(_ops / 10**T_Y.decimals)/_price} ${T_X.symbol}<br>
-			Price: ${_price.toFixed(6)} ${T_Y.symbol}<br>
-			Size: ${ ((_ops / 10**T_Y.decimals).toFixed(6)) } ${T_Y.symbol}<br>
+			Price: ${_price.toFixed(8)} ${T_Y.symbol}<br>
+			Size: ${ ((_ops / 10**T_Y.decimals).toFixed(8)) } ${T_Y.symbol}<br>
 			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
 		`);
 	}
@@ -1391,10 +1391,10 @@ async function onp_create() {
 	if( _usernums[1] < (_aamt*10**T_X.decimals) || _usernums[3] < (_bamt*10**T_Y.decimals) ) {
 		notice(`
 			<h3>Insufficient Balance!</h3>
-			<br>Desired ${T_X.symbol}: ${(_aamt).toFixed(6)}
+			<br>Desired ${T_X.symbol}: ${(_aamt).toFixed(8)}
 			<br>Available ${T_X.symbol}: ${_usernums[1]/10**T_X.decimals}
 			<br>
-			<br>Desired ${T_Y.symbol}: ${(_bamt).toFixed(6)}
+			<br>Desired ${T_Y.symbol}: ${(_bamt).toFixed(8)}
 			<br>Available ${T_Y.symbol}: ${_usernums[3]/10**T_Y.decimals}
 		`);
 		return;
@@ -1404,10 +1404,10 @@ async function onp_create() {
 	if( _usernums[2] < (_aamt*10**T_X.decimals) || _usernums[4] < (_bamt*10**T_Y.decimals) ) {
 		notice(`
 			<h3>Insufficient Allowances!</h3>
-			<br>Desired ${T_X.symbol}: ${(_aamt).toFixed(6)}
+			<br>Desired ${T_X.symbol}: ${(_aamt).toFixed(8)}
 			<br>Allowed ${T_X.symbol}: ${_usernums[2]/10**T_X.decimals}
 			<br>
-			<br>Desired ${T_Y.symbol}: ${(_bamt).toFixed(6)}
+			<br>Desired ${T_Y.symbol}: ${(_bamt).toFixed(8)}
 			<br>Allowed ${T_Y.symbol}: ${_usernums[4]/10**T_Y.decimals}
 			<br><br>E3 Engine needs your approval to open a new	position.
 			<br><i>Please confirm approval transactions in your wallet.</i>
