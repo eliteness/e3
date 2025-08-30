@@ -637,7 +637,6 @@ function pairSelectionMenu() {
 						<div><img src="https://ftm.guru/icons/base.svg"> #2 - Base</div>
 					</div>
 				</a>
-<<<<<<< HEAD
 				<a href="8453-3">
 					<div><img src="https://ftm.guru/icons/scale-base.png"><img src="https://ftm.guru/icons/eth.svg"></div>
 					<div>
@@ -645,8 +644,6 @@ function pairSelectionMenu() {
 						<div><img src="https://ftm.guru/icons/base.svg"> #3 - Base</div>
 					</div>
 				</a>
-=======
->>>>>>> 3e9f8de994aa086d00a08a63ca607f394d6cc306
 			</h2>
 		</div>
 	`);
@@ -1700,7 +1697,6 @@ async function cute_confirm(_aamt,_bamt,_activeId) {
 		notice(`Invalid Number of Buckets Filled. \nYour input: ${cute_params.spill}`);
 		return;
 	}
-<<<<<<< HEAD
 
 	if(cute_params.side=="selling") {
 		if(_aamt<T_X.minimum/10**T_X.decimals) { notice(`<h3>Amount of ${T_X.symbol} low!</h3>Minimum order size: ${T_X.minimum/10**T_X.decimals}`); return;}
@@ -1820,127 +1816,6 @@ async function cute_confirm(_aamt,_bamt,_activeId) {
 		gubs();paintBook();
 	}
 
-=======
-
-	if(cute_params.side=="selling") {
-		if(_aamt<T_X.minimum/10**T_X.decimals) { notice(`<h3>Amount of ${T_X.symbol} low!</h3>Minimum order size: ${T_X.minimum/10**T_X.decimals}`); return;}
-		notice(`
-			<h3>Creating New EⅢ Position</h3>
-			Using <b>Custom Cutie</b> strategy..
-			<br>
-			<br><img style="vertical-align: bottom;" height="20px" src="${T_X.logo}"> Asks: ${_aamt} ${T_X.symbol}
-			<br>Distance from Current Bucket: ${cute_params.shift}
-			<br>Number of Buckets Filled: ${cute_params.spill}
-			<br>${T_X.symbol} per Bucket: ${Number(_aamt)/cute_params.spill}
-		`);
-
-		let _op_obj = {
-			"tokenX": T_X.address,
-			"tokenY": T_Y.address,
-			"binStep": BUCKET,
-			"amountX": BigInt(Math.floor(_aamt*10**T_X.decimals)),
-			"amountY": BigInt(0),
-			"amountXMin": BigInt(Math.floor(_aamt*10**T_X.decimals*SLIPBPS/1e4)),
-			"amountYMin": BigInt(0),
-			"activeIdDesired": _activeId,
-			"idSlippage": 10,
-			"deltaIds": e3lib_gen_ids(cute_params.shift, cute_params.shift + cute_params.spill - 1),
-			"distributionX": (new Array(cute_params.spill)).fill(BigInt(Math.floor(1e18/cute_params.spill))),
-			"distributionY": (new Array(cute_params.spill)).fill(BigInt(0)),
-			"to": window.ethereum.selectedAddress,
-			"refundTo": window.ethereum.selectedAddress,
-			"deadline": Math.floor(Date.now()/999.999)
-		};
-		console.log("_op_obj",_op_obj);
-
-		txh = await R.addLiquidity(_op_obj);
-		notice(`
-			<h2>Opening a new position</h2>
-			<div align="center">
-				<img style="vertical-align: bottom;" height="64px" src="${T_X.logo}">
-				<img style="vertical-align: bottom;" height="64px" src="${T_Y.logo}">
-			</div>
-			<br>Using <b>Custom Cutie</b> strategy..
-			<br><img style="vertical-align: bottom;" height="20px" src="${T_X.logo}"> Asks: ${_aamt} ${T_X.symbol}
-			<br>Distance from Current Bucket: ${cute_params.shift}
-			<br>Number of Buckets Filled: ${cute_params.spill}
-			<br>${T_X.symbol} per Bucket: ${Number(_aamt)/cute_params.spill}
-			<br><br><i>Awaiting confirmation from the network... Please wait.</i>
-			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
-		`);
-		txr = await txh.wait();
-		notice(`
-			<h2>New Position Opened!</h2>
-			<br>Using <b>Custom Cutie</b> strategy..
-			<br><img style="vertical-align: bottom;" height="20px" src="${T_X.logo}"> Asks: ${_aamt} ${T_X.symbol}
-			<br>Distance from Current Bucket: ${cute_params.shift}
-			<br>Number of Buckets Filled: ${cute_params.spill}
-			<br>${T_X.symbol} per Bucket: ${Number(_aamt)/cute_params.spill}
-			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
-		`);
-		gubs();paintBook();
-	}
-
-	else if(cute_params.side=="buying") {
-		if(_bamt<T_Y.minimum/10**T_Y.decimals) { notice(`<h3>Amount of ${T_Y.symbol} low!</h3>Minimum order size: ${T_Y.minimum/10**T_Y.decimals}`); return;}
-		notice(`
-			<h3>Creating New EⅢ Position</h3>
-			Using <b>Custom Cutie</b> strategy..
-			<br>
-			<br><img style="vertical-align: bottom;" height="20px" src="${T_Y.logo}"> Bids: ${_bamt} ${T_Y.symbol}
-			<br>Distance from Current Bucket: ${cute_params.shift}
-			<br>Number of Buckets Filled: ${cute_params.spill}
-			<br>${T_Y.symbol} per Bucket: ${Number(_aamt)/cute_params.spill}
-		`);
-
-		let _op_obj = {
-			"tokenX": T_X.address,
-			"tokenY": T_Y.address,
-			"binStep": BUCKET,
-			"amountX": BigInt(0),
-			"amountY": BigInt(Math.floor(_bamt*10**T_Y.decimals)),
-			"amountXMin": BigInt(0),
-			"amountYMin": BigInt(Math.floor(_bamt*10**T_Y.decimals*SLIPBPS/1e4)),
-			"activeIdDesired": _activeId,
-			"idSlippage": 10,
-			"deltaIds": e3lib_gen_ids( -(cute_params.shift + cute_params.spill) , -(cute_params.shift) -1 ),
-			"distributionX": (new Array(cute_params.spill)).fill(BigInt(0)),
-			"distributionY": (new Array(cute_params.spill)).fill(BigInt(Math.floor(1e18/cute_params.spill))),
-			"to": window.ethereum.selectedAddress,
-			"refundTo": window.ethereum.selectedAddress,
-			"deadline": Math.floor(Date.now()/999.999)
-		};
-		console.log("_op_obj",_op_obj);
-
-		txh = await R.addLiquidity(_op_obj);
-		notice(`
-			<h2>Opening a new position</h2>
-			<div align="center">
-				<img style="vertical-align: bottom;" height="64px" src="${T_X.logo}">
-				<img style="vertical-align: bottom;" height="64px" src="${T_Y.logo}">
-			</div>
-			<br>Using <b>Custom Cutie</b> strategy..
-			<br><img style="vertical-align: bottom;" height="20px" src="${T_Y.logo}"> Bids: ${_bamt} ${T_Y.symbol}
-			<br>Distance from Current Bucket: -${cute_params.shift}
-			<br>Number of Buckets Filled: ${cute_params.spill}
-			<br>${T_Y.symbol} per Bucket: ${Number(_bamt)/cute_params.spill}
-			<br><br><i>Awaiting confirmation from the network... Please wait.</i>
-			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
-		`);
-		txr = await txh.wait();
-		notice(`
-			<h2>New Position Opened!</h2>
-			<br>Using <b>Custom Cutie</b> strategy..
-			<br><img style="vertical-align: bottom;" height="20px" src="${T_Y.logo}"> Bids: ${_bamt} ${T_Y.symbol}
-			<br>Distance from Current Bucket: -${cute_params.shift}
-			<br>Number of Buckets Filled: ${cute_params.spill}
-			<br>${T_Y.symbol} per Bucket: ${Number(_bamt)/cute_params.spill}
-			<h4 align="center"><a target="_blank" href="${EXPLORE}/tx/${txh.hash}">View on Explorer</a></h4>
-		`);
-		gubs();paintBook();
-	}
-
->>>>>>> 3e9f8de994aa086d00a08a63ca607f394d6cc306
 }
 
 

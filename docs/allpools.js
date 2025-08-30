@@ -621,7 +621,6 @@ POOLS = {
 			f: 1,
 			a: "0x14EC8e1c2E57b2540841fd2C1d987CF611Bc165D",
 			t: [  ],
-<<<<<<< HEAD
 		},
 		{
 			i: 0,
@@ -629,8 +628,6 @@ POOLS = {
 			f: 1,
 			a: "0xf6f835dca4dbe0e4d3224b901286f4ab1fa3c315",
 			t: [  ],
-=======
->>>>>>> 3e9f8de994aa086d00a08a63ca607f394d6cc306
 		},
 	]
 };
@@ -653,10 +650,7 @@ async function pre_stats() {
 	TVLGURU_FANTOM = new ethers.Contract("0x0786c3a78f5133f08c1c70953b8b10376bc6dcad",["function p_t_coin_usd(address) public view returns(uint)"],FANTOM);
 	TVLGURU_SONIC = new ethers.Contract("0x2696f94f11dfF0d77875E2652FCdB537274B9CE7",["function p_t_coin_usd(address) public view returns(uint)"],SONIC);
 	PRICEGURU_SONIC = new ethers.Contract("0x5A11968256F7860C9c19513aDf30AD9C8F5F6041",["function getAssetPrice(address) public view returns(uint)"],SONIC);
-<<<<<<< HEAD
 	TVLGURU_BASE = new ethers.Contract("0x7a18D1b46baaBB2D8260D0f8cfBb2292901c2779",["function p_t_coin_usd(address) public view returns(uint)"],SONIC);
-=======
->>>>>>> 3e9f8de994aa086d00a08a63ca607f394d6cc306
 
 	_P_250_0 = new ethers.Contract(POOLS[250][0].a, PAIRABI, FANTOM);
 	_P_250_1 = new ethers.Contract(POOLS[250][1].a, PAIRABI, FANTOM);
@@ -676,21 +670,15 @@ async function pre_stats() {
 	_P_8453_0 = new ethers.Contract(POOLS[8453][0].a, PAIRABI, BASE);
 	_P_8453_1 = new ethers.Contract(POOLS[8453][1].a, PAIRABI, BASE);
 	_P_8453_2 = new ethers.Contract(POOLS[8453][2].a, PAIRABI, BASE);
-<<<<<<< HEAD
 	_P_8453_3 = new ethers.Contract(POOLS[8453][3].a, PAIRABI, BASE);
 
-=======
->>>>>>> 3e9f8de994aa086d00a08a63ca607f394d6cc306
 
 
 
 
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 3e9f8de994aa086d00a08a63ca607f394d6cc306
 	_gr0 = await Promise.all([
 		_P_250_0.getReserves(),
 		_P_250_1.getReserves(),
@@ -711,10 +699,7 @@ async function pre_stats() {
 		_P_250_8.getReserves(),
 		_P_250_9.getReserves(),
 		_P_250_10.getReserves(),
-<<<<<<< HEAD
 		_P_8453_3.getReserves(),
-=======
->>>>>>> 3e9f8de994aa086d00a08a63ca607f394d6cc306
 	]);
 
 	_gr = [ ..._gr0, ..._gr1 ]
@@ -724,13 +709,9 @@ async function pre_stats() {
 		TVLGURU_FANTOM.p_t_coin_usd("0x5734fe62c9881c438da8ff21198dc733983f59dc"),//PRICEGURU_SONIC.getAssetPrice("0x308F66EBEE21861D304C8013Eb3A9a5fC78A8a6c")
 		TVLGURU_SONIC.p_t_coin_usd("0x1d64b681315839c83bf545b7a041f4e5111bee39"),
 		TVLGURU_FANTOM.p_t_coin_usd("0xea035a13b64cb49d85e2f0a2736c9604cb21599c"),
-<<<<<<< HEAD
 		TVLGURU_BASE.p_t_coin_usd("0xc825c67ca3a80d487c339a6c16bb84f7dca16012"),
 	])
 	// Convert to real 1e18
-=======
-	])
->>>>>>> 3e9f8de994aa086d00a08a63ca607f394d6cc306
 	_prices = _prices.map(i=>Number(i)/1e18)
 
 
@@ -782,12 +763,9 @@ async function pre_stats() {
 	$("250-10-gr0").innerHTML = ( Number( _gr[15][0] ) / 1e18 ).toLocaleString();
 	$("250-10-gr1").innerHTML = ( Number( _gr[15][1] ) / 1e18 ).toLocaleString();
 
-<<<<<<< HEAD
 	$("8453-3-gr0").innerHTML = ( Number( _gr[16][0] ) / 1e18 ).toLocaleString();
 	$("8453-3-gr1").innerHTML = ( Number( _gr[16][1] ) / 1e18 ).toLocaleString();
 
-=======
->>>>>>> 3e9f8de994aa086d00a08a63ca607f394d6cc306
 
 	_cgd = await (await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum%2Cfantom%2Cfantom-usd&order=id_asc&per_page=100&page=1&sparkline=false&price_change_percentage=30d&locale=en")).json();
 
@@ -810,10 +788,7 @@ async function pre_stats() {
 	$("8453-0-tvl").innerHTML = "$" + Number( ( Number( _gr[6][0] ) / 1e18 * _cgd[0].current_price + Number( _gr[6][1] ) / 1e06 ).toFixed() ).toLocaleString();
 	$("8453-1-tvl").innerHTML = "$" + Number( ( Number( _gr[7][0] ) / 1e18 * _cgd[0].current_price + Number( _gr[7][1] ) / 1e06 ).toFixed() ).toLocaleString();
 	$("8453-2-tvl").innerHTML = "$" + Number( ( Number( _gr[8][0] ) / 1e06 * 1                     + Number( _gr[8][1] ) / 1e06 ).toFixed() ).toLocaleString();
-<<<<<<< HEAD
 	$("8453-0-tvl").innerHTML = "$" + Number( ( Number( _gr[16][0] ) / 1e18 * _prices[4] + Number( _gr[16][1]) / 1e18 * _cgd[0].current_price ).toFixed() ).toLocaleString();
-=======
->>>>>>> 3e9f8de994aa086d00a08a63ca607f394d6cc306
 
 
 	sortit(3,"allpools","allpools-row","allpools-item");
