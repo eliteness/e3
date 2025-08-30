@@ -371,11 +371,18 @@ function pairSelectionMenu() {
 						<div><img src="https://ftm.guru/icons/base.svg"> #0 - Base</div>
 					</div>
 				</a>
-				<a href="8453-1">
-					<div><img src="https://ftm.guru/icons/eth.svg"><img src="https://ftm.guru/icons/usdc.svg"></div>
+				<a href="8453-2">
+					<div><img src="https://ftm.guru/icons/USDbC.webp"><img src="https://ftm.guru/icons/usdc.svg"></div>
 					<div>
-						<div>wETH/USDbC</div>
-						<div><img src="https://ftm.guru/icons/base.svg"> #1 - Base</div>
+						<div>USDbC/USDC</div>
+						<div><img src="https://ftm.guru/icons/base.svg"> #2 - Base</div>
+					</div>
+				</a>
+				<a href="8453-3">
+					<div><img src="https://ftm.guru/icons/scale-base.png"><img src="https://ftm.guru/icons/eth.svg"></div>
+					<div>
+						<div>SCALE/WETH</div>
+						<div><img src="https://ftm.guru/icons/base.svg"> #3 - Base</div>
 					</div>
 				</a>
 			</h2>
@@ -542,10 +549,38 @@ POOLS = {
 			t: [  ],
 		},
 		{
-			i: 5,
+			i: 6,//mftm/wftm
 			b: 1,
 			f: 1,
 			a: "0xcd836ad87959fAb4DC1c7f5352c0C0970384204e",
+			t: [  ],
+		},
+		{
+			i: 7,//fiery
+			b: 1,
+			f: 1,
+			a: "0x9F38B904664074422606005874EcF7b9163a1496",
+			t: [  ],
+		},
+		{
+			i: 8,//shrp/bol
+			b: 1,
+			f: 1,
+			a: "0x0918B2F00206C9f67cB3411B848bD0f1EAd044dA",
+			t: [  ],
+		},
+		{
+			i: 9,//fmulti
+			b: 1,
+			f: 1,
+			a: "0x16197Eb0650b49383E0E5724b6e4818dA47e9ad9",
+			t: [  ],
+		},
+		{
+			i: 10,//elite
+			b: 25,
+			f: 1,
+			a: "0xc2e7ba4a1d080b53ef7f9d9d62b2aa3b9908fae3",
 			t: [  ],
 		},
 	],
@@ -587,6 +622,13 @@ POOLS = {
 			a: "0x14EC8e1c2E57b2540841fd2C1d987CF611Bc165D",
 			t: [  ],
 		},
+		{
+			i: 0,
+			b: 1,
+			f: 1,
+			a: "0xf6f835dca4dbe0e4d3224b901286f4ab1fa3c315",
+			t: [  ],
+		},
 	]
 };
 
@@ -600,9 +642,15 @@ async function pre_stats() {
 	console.log("pre-stat'ing");
 	prepro = new ethers.providers.JsonRpcProvider(RPC_URL);
 
-	FANTOM = new ethers.providers.JsonRpcProvider("https://rpc.ankr.com/fantom");
+	FANTOM = new ethers.providers.JsonRpcProvider("https://rpcapi.fantom.network");
 	BASE = new ethers.providers.JsonRpcProvider("https://rpc.ankr.com/base");
 	ARB1 = new ethers.providers.JsonRpcProvider("https://rpc.ankr.com/arbitrum");
+	SONIC = new ethers.providers.JsonRpcProvider("https://rpc.soniclabs.com");
+
+	TVLGURU_FANTOM = new ethers.Contract("0x0786c3a78f5133f08c1c70953b8b10376bc6dcad",["function p_t_coin_usd(address) public view returns(uint)"],FANTOM);
+	TVLGURU_SONIC = new ethers.Contract("0x2696f94f11dfF0d77875E2652FCdB537274B9CE7",["function p_t_coin_usd(address) public view returns(uint)"],SONIC);
+	PRICEGURU_SONIC = new ethers.Contract("0x5A11968256F7860C9c19513aDf30AD9C8F5F6041",["function getAssetPrice(address) public view returns(uint)"],SONIC);
+	TVLGURU_BASE = new ethers.Contract("0x7a18D1b46baaBB2D8260D0f8cfBb2292901c2779",["function p_t_coin_usd(address) public view returns(uint)"],SONIC);
 
 	_P_250_0 = new ethers.Contract(POOLS[250][0].a, PAIRABI, FANTOM);
 	_P_250_1 = new ethers.Contract(POOLS[250][1].a, PAIRABI, FANTOM);
@@ -611,6 +659,10 @@ async function pre_stats() {
 	_P_250_4 = new ethers.Contract(POOLS[250][4].a, PAIRABI, FANTOM);
 	_P_250_5 = new ethers.Contract(POOLS[250][5].a, PAIRABI, FANTOM);
 	_P_250_6 = new ethers.Contract(POOLS[250][6].a, PAIRABI, FANTOM);
+	_P_250_7 = new ethers.Contract(POOLS[250][7].a, PAIRABI, FANTOM);
+	_P_250_8 = new ethers.Contract(POOLS[250][8].a, PAIRABI, FANTOM);
+	_P_250_9 = new ethers.Contract(POOLS[250][9].a, PAIRABI, FANTOM);
+	_P_250_10 = new ethers.Contract(POOLS[250][10].a, PAIRABI, FANTOM);
 
 	_P_42161_0 = new ethers.Contract(POOLS[42161][0].a, PAIRABI, ARB1);
 	_P_42161_1 = new ethers.Contract(POOLS[42161][1].a, PAIRABI, ARB1);
@@ -618,13 +670,16 @@ async function pre_stats() {
 	_P_8453_0 = new ethers.Contract(POOLS[8453][0].a, PAIRABI, BASE);
 	_P_8453_1 = new ethers.Contract(POOLS[8453][1].a, PAIRABI, BASE);
 	_P_8453_2 = new ethers.Contract(POOLS[8453][2].a, PAIRABI, BASE);
+	_P_8453_3 = new ethers.Contract(POOLS[8453][3].a, PAIRABI, BASE);
 
 
 
 
 
 
-	_gr = await Promise.all([
+
+
+	_gr0 = await Promise.all([
 		_P_250_0.getReserves(),
 		_P_250_1.getReserves(),
 		_P_250_2.getReserves(),
@@ -634,10 +689,30 @@ async function pre_stats() {
 		_P_8453_0.getReserves(),
 		_P_8453_1.getReserves(),
 		_P_8453_2.getReserves(),
+	]);
+
+	_gr1 = await Promise.all([
 		_P_250_4.getReserves(),
 		_P_250_5.getReserves(),
 		_P_250_6.getReserves(),
+		_P_250_7.getReserves(),
+		_P_250_8.getReserves(),
+		_P_250_9.getReserves(),
+		_P_250_10.getReserves(),
+		_P_8453_3.getReserves(),
 	]);
+
+	_gr = [ ..._gr0, ..._gr1 ]
+
+	_prices = await Promise.all([
+		PRICEGURU_SONIC.getAssetPrice("0xF97d438BC03aD0F75B83ce5714c9619880B305bc"),
+		TVLGURU_FANTOM.p_t_coin_usd("0x5734fe62c9881c438da8ff21198dc733983f59dc"),//PRICEGURU_SONIC.getAssetPrice("0x308F66EBEE21861D304C8013Eb3A9a5fC78A8a6c")
+		TVLGURU_SONIC.p_t_coin_usd("0x1d64b681315839c83bf545b7a041f4e5111bee39"),
+		TVLGURU_FANTOM.p_t_coin_usd("0xea035a13b64cb49d85e2f0a2736c9604cb21599c"),
+		TVLGURU_BASE.p_t_coin_usd("0xc825c67ca3a80d487c339a6c16bb84f7dca16012"),
+	])
+	// Convert to real 1e18
+	_prices = _prices.map(i=>Number(i)/1e18)
 
 
 	$("250-0-gr0").innerHTML = ( Number( _gr[0][0] ) / 1e06 ).toLocaleString();
@@ -676,6 +751,21 @@ async function pre_stats() {
 	$("250-6-gr0").innerHTML = ( Number( _gr[11][0] ) / 1e18 ).toLocaleString();
 	$("250-6-gr1").innerHTML = ( Number( _gr[11][1] ) / 1e18 ).toLocaleString();
 
+	$("250-7-gr0").innerHTML = ( Number( _gr[12][0] ) / 1e18 ).toLocaleString();
+	$("250-7-gr1").innerHTML = ( Number( _gr[12][1] ) / 1e18 ).toLocaleString();
+
+	$("250-8-gr0").innerHTML = ( Number( _gr[13][0] ) / 1e18 ).toLocaleString();
+	$("250-8-gr1").innerHTML = ( Number( _gr[13][1] ) / 1e18 ).toLocaleString();
+
+	$("250-9-gr0").innerHTML = ( Number( _gr[14][0] ) / 1e18 ).toLocaleString();
+	$("250-9-gr1").innerHTML = ( Number( _gr[14][1] ) / 1e18 ).toLocaleString();
+
+	$("250-10-gr0").innerHTML = ( Number( _gr[15][0] ) / 1e18 ).toLocaleString();
+	$("250-10-gr1").innerHTML = ( Number( _gr[15][1] ) / 1e18 ).toLocaleString();
+
+	$("8453-3-gr0").innerHTML = ( Number( _gr[16][0] ) / 1e18 ).toLocaleString();
+	$("8453-3-gr1").innerHTML = ( Number( _gr[16][1] ) / 1e18 ).toLocaleString();
+
 
 	_cgd = await (await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum%2Cfantom%2Cfantom-usd&order=id_asc&per_page=100&page=1&sparkline=false&price_change_percentage=30d&locale=en")).json();
 
@@ -685,7 +775,11 @@ async function pre_stats() {
 	$("250-3-tvl").innerHTML = "$" + Number( ( Number( _gr[3][0] ) / 1e18 * _cgd[1].current_price + Number( _gr[3][1] ) / 1e06 ).toFixed() ).toLocaleString();
 	$("250-4-tvl").innerHTML = "$" + Number( ( Number( _gr[9][0] ) / 1e18 * _cgd[2].current_price + Number( _gr[9][1] ) / 1e06 ).toFixed() ).toLocaleString();
 	$("250-5-tvl").innerHTML = "$" + Number( ( Number( _gr[10][0] ) / 1e06 + Number( _gr[10][1] ) / 1e06 ).toFixed() ).toLocaleString();
-	$("250-1-tvl").innerHTML = "$" + Number( ( Number( _gr[11][0] ) / 1e18 * _cgd[1].current_price + Number( _gr[11][1] ) / 1e18 * _cgd[1].current_price ).toFixed() ).toLocaleString();
+	$("250-6-tvl").innerHTML = "$" + Number( ( Number( _gr[11][0] ) / 1e18 * _cgd[1].current_price + Number( _gr[11][1] ) / 1e18 * _cgd[1].current_price ).toFixed() ).toLocaleString();
+	$("250-7-tvl").innerHTML = "$" + Number( ( Number( _gr[12][0] ) / 1e18 * _prices[0] + Number( _gr[12][1] ) / 1e18 * _prices[0] ).toFixed() ).toLocaleString();
+	$("250-8-tvl").innerHTML = "$" + Number( ( Number( _gr[13][0] ) / 1e18 * _prices[1] + Number( _gr[13][1] ) / 1e18 * _prices[1] / 19000 ).toFixed() ).toLocaleString();
+	$("250-9-tvl").innerHTML = "$" + Number( ( Number( _gr[14][0] ) / 1e18 * _prices[2] / 25 + Number( _gr[14][1] ) / 1e18 * _prices[2] ).toFixed() ).toLocaleString();
+	$("250-10-tvl").innerHTML = "$" + Number( ( Number( _gr[15][0] ) / 1e18 * _prices[3] + Number( _gr[15][1] ) / 1e18 * _prices[3] / 300000 ).toFixed() ).toLocaleString();
 
 
 	$("42161-0-tvl").innerHTML = "$" + Number( ( Number( _gr[4][0] ) / 1e18 * _cgd[0].current_price + Number( _gr[4][1] ) / 1e06 ).toFixed() ).toLocaleString();
@@ -694,6 +788,7 @@ async function pre_stats() {
 	$("8453-0-tvl").innerHTML = "$" + Number( ( Number( _gr[6][0] ) / 1e18 * _cgd[0].current_price + Number( _gr[6][1] ) / 1e06 ).toFixed() ).toLocaleString();
 	$("8453-1-tvl").innerHTML = "$" + Number( ( Number( _gr[7][0] ) / 1e18 * _cgd[0].current_price + Number( _gr[7][1] ) / 1e06 ).toFixed() ).toLocaleString();
 	$("8453-2-tvl").innerHTML = "$" + Number( ( Number( _gr[8][0] ) / 1e06 * 1                     + Number( _gr[8][1] ) / 1e06 ).toFixed() ).toLocaleString();
+	$("8453-0-tvl").innerHTML = "$" + Number( ( Number( _gr[16][0] ) / 1e18 * _prices[4] + Number( _gr[16][1]) / 1e18 * _cgd[0].current_price ).toFixed() ).toLocaleString();
 
 
 	sortit(3,"allpools","allpools-row","allpools-item");

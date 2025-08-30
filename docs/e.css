@@ -691,7 +691,7 @@ img.bigthumb {
 }
 .allpools-row{
 	display:grid;
-	grid-template-columns:auto auto auto auto auto;
+	grid-template-columns:100px 100px 200px 150px auto;
 	text-align: left;
 }
 .allpools-head {

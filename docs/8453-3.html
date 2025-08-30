@@ -413,8 +413,6 @@
 
 
 
-
-
 <!-- IGNORE BELOW BLOCK : DEV LOGS -->
 		<div style="display:none">
 		<span id="cw_m"></span>
@@ -428,47 +426,41 @@
 				<img src="img/wallet.svg" width="24px" style="position:relative;top:4px">
 				<span id="cw"></span>
 			</b>
-			<br>Balance: <b style="font-family:bold" id="usb-mtv">?</b> <img class="imgmtv" src="https://ftm.guru/icons/eth.svg" width="20px" style="position:relative;top:4px">USDC<br>
-			<span style="font-size:0.9em">Wallet at <img class="imgmtv" src="https://ftm.guru/icons/ftm.svg" width="20px" style="position:relative;top:4px">Fantom Opera. <a href="index.html" style="color:aqua;font-family:bold">Change?</a></span>
+			<br>Balance: <b style="font-family:bold" id="usb-mtv">?</b> <img class="imgmtv" src="https://ftm.guru/icons/eth.svg" width="20px" style="position:relative;top:4px">WETH<br>
+			<span style="font-size:0.9em">Wallet at <img class="imgmtv" src="https://ftm.guru/icons/eth.svg" width="20px" style="position:relative;top:4px">Arbitrum One. <a href="index.html" style="color:aqua;font-family:bold">Change?</a></span>
 		</div>
 	</div>
 <!-- IGNORE ABOVE BLOCK : DEV LOGS -->
-
-
 
 		<div id="particle-container" style="display:none">
 			<div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
 		</div>
 		<script>
 			DAPPNAME = "E3";
-			CHAINID = 250;
-			RPC_URL = "https://rpcapi.fantom.network";
-			EXPLORE = "https://ftmscan.com";
-			CHAIN_NAME = "Fantom Opera";
-			CHAIN_GAS = "FTM"
-			FTM="0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83";
-			USDC="0x04068DA6C83AFCFA0e13ba15A6696662335D5B75";
-			FUSDT="0x049d68029688eAbF473097a2fC38ef61633A3C7A";
-
-			POOLID = 0;
-			BUCKET = 1;
+			CHAINID = 8453;
+			RPC_URL = "https://developer-access-mainnet.base.org";
+			EXPLORE = "https://basescan.org";
+			CHAIN_NAME = "Base";
+			CHAIN_GAS = "ETH"
+			POOLID = 3;
+			BUCKET = 25;
 			BUCK_1 = 8388608;
-			POOLADDR = "0x1d766E912b4872ECa5172a5792c82ec28B9f894C";
-
+			POOLADDR = "0xF6F835dcA4DBe0e4d3224B901286F4aB1fA3C315";
 			T_X = {
-				symbol: "mc.USDC",
-				address: "0x04068DA6C83AFCFA0e13ba15A6696662335D5B75",
-				decimals: 6,
-				logo: "https://ftm.guru/icons/mc.USDC.png",
+				symbol: "SCALE",
+				address: "0x54016a4848a38f257B6E96331F7404073Fd9c32C",
+				decimals: 18,
+				logo: "https://ftm.guru/icons/scale-base.png",
 				minimum: 2e6
 			}
 			T_Y = {
-				symbol: "mc.fUSDT",
-				address: "0x049d68029688eAbF473097a2fC38ef61633A3C7A",
-				decimals: 6,
-				logo: "https://ftm.guru/icons/mc.USDT.png",
+				symbol: "WETH",
+				address: "0x4200000000000000000000000000000000000006",
+				decimals: 18,
+				logo: "https://ftm.guru/icons/eth.svg",
 				minimum: 2e6
 			}
+
 			INITIAL = "1";
 			SLIPBPS = 9990;
 		</script>
