@@ -1694,7 +1694,7 @@ async function cute_confirm(_aamt,_bamt,_activeId) {
 		return;
 	}
 
-	if(cute_params.spill > 100 || cute_params.spill < 0 || isNaN(cute_params.spill)) {
+	if(cute_params.spill > 501 || cute_params.spill < 0 || isNaN(cute_params.spill)) {
 		if(DEBUGMODE==false) {
 			notice(`Invalid Number of Buckets Filled. \nYour input: ${cute_params.spill}`);
 			return;
@@ -1711,6 +1711,9 @@ async function cute_confirm(_aamt,_bamt,_activeId) {
 			<br>Distance from Current Bucket: ${cute_params.shift}
 			<br>Number of Buckets Filled: ${cute_params.spill}
 			<br>${T_X.symbol} per Bucket: ${Number(_aamt)/cute_params.spill}
+			<br>
+			<br><i>Reduce number of buckets if the transaction isnt going through!</i>
+
 		`);
 
 		let _op_obj = {
