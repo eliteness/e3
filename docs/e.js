@@ -17,13 +17,13 @@ let DEBUGMODE = false;
 
 CHAINDATA = {
 	250 : {
-		logo: "https://ftm.guru/icons/ftm.svg"
+		logo: "https://ftm1337.eliteness.network/icons/ftm.svg"
 	},
 	42161 : {
-		logo: "https://ftm.guru/icons/arb1.svg"
+		logo: "https://ftm1337.eliteness.network/icons/arb1.svg"
 	},
 	42161 : {
-		logo: "https://ftm.guru/icons/base.svg"
+		logo: "https://ftm1337.eliteness.network/icons/base.svg"
 	}
 }
 window.addEventListener('load',async function() {
@@ -555,94 +555,94 @@ function pairSelectionMenu() {
 		<div style="" class="pairSelectionMenuContainer">
 			<h2 class="pairSelectionMenu">
 				<a href="250-0">
-					<div><img src="https://ftm.guru/icons/mc.USDC.png"><img src="https://ftm.guru/icons/mc.USDT.png"></div>
+					<div><img src="https://ftm1337.eliteness.network/icons/mc.USDC.png"><img src="https://ftm1337.eliteness.network/icons/mc.USDT.png"></div>
 					<div>
 						<div>mc.USDC/mc.fUSDT</div>
-						<div><img src="https://ftm.guru/icons/ftm.svg"> #0 - Fantom Opera</div>
+						<div><img src="https://ftm1337.eliteness.network/icons/ftm.svg"> #0 - Fantom Opera</div>
 					</div>
 				</a>
 				<a href="250-1">
-					<div><img src="https://ftm.guru/icons/ftm.svg"><img src="https://ftm.guru/icons/mc.USDC.png"></div>
+					<div><img src="https://ftm1337.eliteness.network/icons/ftm.svg"><img src="https://ftm1337.eliteness.network/icons/mc.USDC.png"></div>
 					<div>
 						<div>WFTM/mc.USDC</div>
-						<div><img src="https://ftm.guru/icons/ftm.svg"> #1 - Fantom Opera</div>
+						<div><img src="https://ftm1337.eliteness.network/icons/ftm.svg"> #1 - Fantom Opera</div>
 					</div>
 				</a>
 				<a href="250-2">
-					<div><img src="https://ftm.guru/icons/lz.USDC.png"><img src="https://ftm.guru/icons/axl.USDC.png"></div>
+					<div><img src="https://ftm1337.eliteness.network/icons/lz.USDC.png"><img src="https://ftm1337.eliteness.network/icons/axl.USDC.png"></div>
 					<div>
 						<div>lz.USDC/axlUSDC</div>
-						<div><img src="https://ftm.guru/icons/ftm.svg"> #2 - Fantom Opera</div>
+						<div><img src="https://ftm1337.eliteness.network/icons/ftm.svg"> #2 - Fantom Opera</div>
 					</div>
 				</a>
 				<a href="250-3">
-					<div><img src="https://ftm.guru/icons/ftm.svg"><img src="https://ftm.guru/icons/axl.USDC.png"></div>
+					<div><img src="https://ftm1337.eliteness.network/icons/ftm.svg"><img src="https://ftm1337.eliteness.network/icons/axl.USDC.png"></div>
 					<div>
 						<div>wFTM/axlUSDC</div>
-						<div><img src="https://ftm.guru/icons/ftm.svg"> #3 - Fantom Opera</div>
+						<div><img src="https://ftm1337.eliteness.network/icons/ftm.svg"> #3 - Fantom Opera</div>
 					</div>
 				</a>
 				<a href="250-4">
-					<div><img src="https://ftm.guru/icons/fusd.svg"><img src="https://ftm.guru/icons/axl.USDC.png"></div>
+					<div><img src="https://ftm1337.eliteness.network/icons/fusd.svg"><img src="https://ftm1337.eliteness.network/icons/axl.USDC.png"></div>
 					<div>
 						<div>FUSD/axlUSDC</div>
-						<div><img src="https://ftm.guru/icons/ftm.svg"> #4 - Fantom Opera</div>
+						<div><img src="https://ftm1337.eliteness.network/icons/ftm.svg"> #4 - Fantom Opera</div>
 					</div>
 				</a>
 				<a href="250-5">
-					<div><img src="https://ftm.guru/icons/axl.USDC.png"><img src="https://ftm.guru/icons/wh.USDC.png"></div>
+					<div><img src="https://ftm1337.eliteness.network/icons/axl.USDC.png"><img src="https://ftm1337.eliteness.network/icons/wh.USDC.png"></div>
 					<div>
 						<div>axlUSDC/wormUSDC.e</div>
-						<div><img src="https://ftm.guru/icons/ftm.svg"> #5 - Fantom Opera</div>
+						<div><img src="https://ftm1337.eliteness.network/icons/ftm.svg"> #5 - Fantom Opera</div>
 					</div>
 				</a>
 				<a href="250-6">
-					<div><img src="https://ftm.guru/icons/mftm.png"><img src="https://ftm.guru/icons/ftm.svg"></div>
+					<div><img src="https://ftm1337.eliteness.network/icons/mftm.png"><img src="https://ftm1337.eliteness.network/icons/ftm.svg"></div>
 					<div>
 						<div>mFTM/WFTM</div>
-						<div><img src="https://ftm.guru/icons/ftm.svg"> #6 - Fantom Opera</div>
+						<div><img src="https://ftm1337.eliteness.network/icons/ftm.svg"> #6 - Fantom Opera</div>
 					</div>
 				</a>
 				<a href="42161-0">
-					<div><img src="https://ftm.guru/icons/eth.svg"><img src="https://ftm.guru/icons/usdc.svg"></div>
+					<div><img src="https://ftm1337.eliteness.network/icons/eth.svg"><img src="https://ftm1337.eliteness.network/icons/usdc.svg"></div>
 					<div>
 						<div>WETH/USDC.e</div>
-						<div><img src="https://ftm.guru/icons/arb1.svg"> #0 - Arbitrum One</div>
+						<div><img src="https://ftm1337.eliteness.network/icons/arb1.svg"> #0 - Arbitrum One</div>
 					</div>
 				</a>
 				<a href="42161-1">
-					<div><img src="https://ftm.guru/icons/eth.svg"><img src="https://ftm.guru/icons/usdc.svg"></div>
+					<div><img src="https://ftm1337.eliteness.network/icons/eth.svg"><img src="https://ftm1337.eliteness.network/icons/usdc.svg"></div>
 					<div>
 						<div>WETH/USDC</div>
-						<div><img src="https://ftm.guru/icons/arb1.svg"> #1 - Arbitrum One</div>
+						<div><img src="https://ftm1337.eliteness.network/icons/arb1.svg"> #1 - Arbitrum One</div>
 					</div>
 				</a>
 				<a href="8453-0">
-					<div><img src="https://ftm.guru/icons/eth.svg"><img src="https://ftm.guru/icons/axl.USDC.png"></div>
+					<div><img src="https://ftm1337.eliteness.network/icons/eth.svg"><img src="https://ftm1337.eliteness.network/icons/axl.USDC.png"></div>
 					<div>
 						<div>wETH/axlUSDC</div>
-						<div><img src="https://ftm.guru/icons/base.svg"> #0 - Base</div>
+						<div><img src="https://ftm1337.eliteness.network/icons/base.svg"> #0 - Base</div>
 					</div>
 				</a>
 				<a href="8453-1">
-					<div><img src="https://ftm.guru/icons/eth.svg"><img src="https://ftm.guru/icons/usdc.svg"></div>
+					<div><img src="https://ftm1337.eliteness.network/icons/eth.svg"><img src="https://ftm1337.eliteness.network/icons/usdc.svg"></div>
 					<div>
 						<div>wETH/USDbC</div>
-						<div><img src="https://ftm.guru/icons/base.svg"> #1 - Base</div>
+						<div><img src="https://ftm1337.eliteness.network/icons/base.svg"> #1 - Base</div>
 					</div>
 				</a>
 				<a href="8453-2">
-					<div><img src="https://ftm.guru/icons/USDbC.webp"><img src="https://ftm.guru/icons/usdc.svg"></div>
+					<div><img src="https://ftm1337.eliteness.network/icons/USDbC.webp"><img src="https://ftm1337.eliteness.network/icons/usdc.svg"></div>
 					<div>
 						<div>USDbC/USDC</div>
-						<div><img src="https://ftm.guru/icons/base.svg"> #2 - Base</div>
+						<div><img src="https://ftm1337.eliteness.network/icons/base.svg"> #2 - Base</div>
 					</div>
 				</a>
 				<a href="8453-3">
-					<div><img src="https://ftm.guru/icons/scale-base.png"><img src="https://ftm.guru/icons/eth.svg"></div>
+					<div><img src="https://ftm1337.eliteness.network/icons/scale-base.png"><img src="https://ftm1337.eliteness.network/icons/eth.svg"></div>
 					<div>
 						<div>SCALE/WETH</div>
-						<div><img src="https://ftm.guru/icons/base.svg"> #3 - Base</div>
+						<div><img src="https://ftm1337.eliteness.network/icons/base.svg"> #3 - Base</div>
 					</div>
 				</a>
 			</h2>

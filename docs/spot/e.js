@@ -418,12 +418,12 @@ function pairSelectionMenu() {
 		<div style="overflow:auto;max-height:60vh">
 			<h2 class="pairSelectionMenu">
 				<a href="0">
-					<div><img src="https://ftm.guru/icons/usdc.svg"><img src="https://ftm.guru/icons/usdt.svg"></div>
+					<div><img src="https://ftm1337.eliteness.network/icons/usdc.svg"><img src="https://ftm1337.eliteness.network/icons/usdt.svg"></div>
 					<div>USDC/fUSDT</div>
 					<div>#0</div>
 				</a>
 				<a href="1">
-					<div><img src="https://ftm.guru/icons/ftm.svg"><img src="https://ftm.guru/icons/usdc.svg"></div>
+					<div><img src="https://ftm1337.eliteness.network/icons/ftm.svg"><img src="https://ftm1337.eliteness.network/icons/usdc.svg"></div>
 					<div>WFTM/USDC</div>
 					<div>#1</div>
 				</a>
